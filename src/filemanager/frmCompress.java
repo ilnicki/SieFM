@@ -29,7 +29,7 @@ public class frmCompress
         com.siemens.mp.lcdui.Displayable.setHeadlineIcon (this, images.getIcon (images.iPack));
     }
     /**
-     * Обработчик команд
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РєРѕРјР°РЅРґ
      */
     public void commandAction (Command c, Displayable d)
     {

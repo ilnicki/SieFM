@@ -8,7 +8,7 @@ public class FontWidthCache
     protected static Vector fwc = new Vector ();
     protected static Vector fwc_f = new Vector ();
     /**
-     * Получить кэш ширины для шрифта font
+     * РџРѕР»СѓС‡РёС‚СЊ РєСЌС€ С€РёСЂРёРЅС‹ РґР»СЏ С€СЂРёС„С‚Р° font
      */
     public static FontWidthCache getCache (Font font)
     {
@@ -23,7 +23,7 @@ public class FontWidthCache
     protected Font font;
     protected byte caches [][];
     /**
-     * Защищённый конструктор
+     * Р—Р°С‰РёС‰С‘РЅРЅС‹Р№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     protected FontWidthCache (Font font)
     {
@@ -33,7 +33,7 @@ public class FontWidthCache
             caches [i] = null;
     }
     /**
-     * Подсчитать (или взять из кэша) и вернуть ширину символа ch
+     * РџРѕРґСЃС‡РёС‚Р°С‚СЊ (РёР»Рё РІР·СЏС‚СЊ РёР· РєСЌС€Р°) Рё РІРµСЂРЅСѓС‚СЊ С€РёСЂРёРЅСѓ СЃРёРјРІРѕР»Р° ch
      */
     public int charWidth (char ch)
     {
@@ -49,7 +49,7 @@ public class FontWidthCache
         return caches [hi][lo];
     }
     /**
-     * Подсчитать и вернуть ширину строки s
+     * РџРѕРґСЃС‡РёС‚Р°С‚СЊ Рё РІРµСЂРЅСѓС‚СЊ С€РёСЂРёРЅСѓ СЃС‚СЂРѕРєРё s
      */
     public int stringWidth (String s)
     {
@@ -59,7 +59,7 @@ public class FontWidthCache
         return r;
     }
     /**
-     * Подсчитать и вернуть высоту строки s
+     * РџРѕРґСЃС‡РёС‚Р°С‚СЊ Рё РІРµСЂРЅСѓС‚СЊ РІС‹СЃРѕС‚Сѓ СЃС‚СЂРѕРєРё s
      */
     public int stringHeight (String s)
     {
@@ -72,8 +72,8 @@ public class FontWidthCache
         return c * font.getHeight ();
     }
     /**
-     * Вставить в строку \n-ы чтобы она вписывалась по ширине
-     * в экран шириной width
+     * Р’СЃС‚Р°РІРёС‚СЊ РІ СЃС‚СЂРѕРєСѓ \n-С‹ С‡С‚РѕР±С‹ РѕРЅР° РІРїРёСЃС‹РІР°Р»Р°СЃСЊ РїРѕ С€РёСЂРёРЅРµ
+     * РІ СЌРєСЂР°РЅ С€РёСЂРёРЅРѕР№ width
      */
     public String insert_lf (String s, int width)
     {

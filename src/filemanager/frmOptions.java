@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 
@@ -16,28 +16,28 @@ public class frmOptions
     {
         super (Locale.Strings[Locale.PREFERENCES_CMD]);
         this.parent = parent;
-        // Показывать скрытые файлы и папки
+        // РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРєСЂС‹С‚С‹Рµ С„Р°Р№Р»С‹ Рё РїР°РїРєРё
         cgOptions_showhidden = new ChoiceGroup (Locale.Strings[Locale.PREF_SHOW_HIDDEN_FILES], ChoiceGroup.MULTIPLE);
         cgOptions_showhidden.append (Locale.Strings[Locale.PREF_SHOW], null);
         cgOptions_showhidden.setSelectedIndex (0, options.showHidden);
-        // Показывать диски b: и 3:
+        // РџРѕРєР°Р·С‹РІР°С‚СЊ РґРёСЃРєРё b: Рё 3:
         cgOptions_show3 = new ChoiceGroup (Locale.Strings[Locale.PREF_DISK_3], ChoiceGroup.MULTIPLE);
         cgOptions_show3.append (Locale.Strings[Locale.PREF_OPEN], null);
         cgOptions_show3.setSelectedIndex (0, options.showDisk3);
-        // Пропускать сплэш
+        // РџСЂРѕРїСѓСЃРєР°С‚СЊ СЃРїР»СЌС€
         cgOptions_showSplash = new ChoiceGroup (Locale.Strings[Locale.PREF_SPLASH], ChoiceGroup.MULTIPLE);
         cgOptions_showSplash.append (Locale.Strings[Locale.PREF_DONOTSHOW], null);
         cgOptions_showSplash.setSelectedIndex (0, options.quickSplash);
-        // Не показывать "Пожалуйста, подождите" (cvsWait)
+        // РќРµ РїРѕРєР°Р·С‹РІР°С‚СЊ "РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РїРѕРґРѕР¶РґРёС‚Рµ" (cvsWait)
         cgOptions_noEffects = new ChoiceGroup (Locale.Strings[Locale.PREF_NO_EFFECTS], ChoiceGroup.MULTIPLE);
         cgOptions_noEffects.append (Locale.Strings[Locale.PREFS_YES], null);
         cgOptions_noEffects.setSelectedIndex (0, options.noEffects);
-        // Открывать неподдерживаемые как текст
+        // РћС‚РєСЂС‹РІР°С‚СЊ РЅРµРїРѕРґРґРµСЂР¶РёРІР°РµРјС‹Рµ РєР°Рє С‚РµРєСЃС‚
         cgOptions_openNotSupp = new ChoiceGroup (Locale.Strings[Locale.PREFS_OPEN_NOT_SUPP], ChoiceGroup.MULTIPLE);
         cgOptions_openNotSupp.append (Locale.Strings[Locale.PREFS_YES], null);
         cgOptions_openNotSupp.setSelectedIndex (0, options.openNotSupported);
-        // Список языков
-        cgOptions_lang = new ChoiceGroup ("Язык / Language:", ChoiceGroup.EXCLUSIVE);
+        // РЎРїРёСЃРѕРє СЏР·С‹РєРѕРІ
+        cgOptions_lang = new ChoiceGroup ("РЇР·С‹Рє / Language:", ChoiceGroup.EXCLUSIVE);
         for (int i = 0; i < Locale.languages.length; i++)
         {
             cgOptions_lang.append (Locale.languages[i], null);
@@ -56,7 +56,7 @@ public class frmOptions
         com.siemens.mp.lcdui.Displayable.setHeadlineIcon (this, images.getIcon(images.iOptions));
     }
     /**
-     * Обработчик команд
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РєРѕРјР°РЅРґ
      */
     public void commandAction (Command c, Displayable d)
     {
@@ -79,7 +79,7 @@ public class frmOptions
             main.dsp.setCurrent (parent);
     }
     /**
-     * Обработчик переключения состояния элемента
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ СЃРѕСЃС‚РѕСЏРЅРёСЏ СЌР»РµРјРµРЅС‚Р°
      */
     public void itemStateChanged (Item item)
     {

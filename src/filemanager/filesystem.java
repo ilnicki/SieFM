@@ -16,7 +16,7 @@ public class filesystem
     public static final int TYPE_UNKNOWN = 0, TYPE_SOUND = 1, TYPE_PICTURE = 2,
         TYPE_VIDEO = 3, TYPE_TEXT = 4, TYPE_ZIP = 5, TYPE_TMO = 6;
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public filesystem () throws IOException
     {
@@ -64,11 +64,11 @@ public class filesystem
         v.copyInto (zipexts);
     }
     /**
-     *  Проверка "это директория"?
+     *  РџСЂРѕРІРµСЂРєР° "СЌС‚Рѕ РґРёСЂРµРєС‚РѕСЂРёСЏ"?
      *
-     * @param fn String  - имя файла
+     * @param fn String  - РёРјСЏ С„Р°Р№Р»Р°
      * @throws IOException
-     * @return boolean  True - да, False - нет
+     * @return boolean  True - РґР°, False - РЅРµС‚
      */
     protected static String lastIDR = null;
     protected static boolean lastIsDir = false;
@@ -92,7 +92,7 @@ public class filesystem
     }
     
     /**
-     * Файл существует?
+     * Р¤Р°Р№Р» СЃСѓС‰РµСЃС‚РІСѓРµС‚?
      *
      * @param fileName name of file to be examined
      * @return true if file exists, false otherwise
@@ -111,10 +111,10 @@ public class filesystem
     }
     
     /**
-     * Получить список доступных дисков телефона 0:/ 1:/ ...
+     * РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… РґРёСЃРєРѕРІ С‚РµР»РµС„РѕРЅР° 0:/ 1:/ ...
      *
      * @throws IOException
-     * @return String[]  - список строк с именами доступных дисков
+     * @return String[]  - СЃРїРёСЃРѕРє СЃС‚СЂРѕРє СЃ РёРјРµРЅР°РјРё РґРѕСЃС‚СѓРїРЅС‹С… РґРёСЃРєРѕРІ
      */
     public static String[] listRoots () throws IOException
     {
@@ -133,8 +133,8 @@ public class filesystem
         return roots;
     }
     /**
-     * Распаковать в dir файлы из текущего ZIP-архива, перечисленные в vs
-     * (с сохранением относительных путей). Если vs == null => распаковать всё
+     * Р Р°СЃРїР°РєРѕРІР°С‚СЊ РІ dir С„Р°Р№Р»С‹ РёР· С‚РµРєСѓС‰РµРіРѕ ZIP-Р°СЂС…РёРІР°, РїРµСЂРµС‡РёСЃР»РµРЅРЅС‹Рµ РІ vs
+     * (СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹С… РїСѓС‚РµР№). Р•СЃР»Рё vs == null => СЂР°СЃРїР°РєРѕРІР°С‚СЊ РІСЃС‘
      */
     public static boolean unpackZip (Vector vs, String dir, Gauge progress)
     {
@@ -172,8 +172,8 @@ public class filesystem
         return true;
     }
     /**
-     * Получить список файлов из ZIP-файла zipfile,
-     * находящихся внутри него в папке zipdir.
+     * РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє С„Р°Р№Р»РѕРІ РёР· ZIP-С„Р°Р№Р»Р° zipfile,
+     * РЅР°С…РѕРґСЏС‰РёС…СЃСЏ РІРЅСѓС‚СЂРё РЅРµРіРѕ РІ РїР°РїРєРµ zipdir.
      */
     protected static ZipFile zf = null;
     protected static long zfsize = 0, zfcompsize = 0;
@@ -213,10 +213,10 @@ public class filesystem
                 addfld = false;
                 if (zn.charAt (zn.length()-1) == '/')
                 {
-                    // считаем что если в архиве хоть одна папка есть -
-                    // - тогда он нормальный
+                    // СЃС‡РёС‚Р°РµРј С‡С‚Рѕ РµСЃР»Рё РІ Р°СЂС…РёРІРµ С…РѕС‚СЊ РѕРґРЅР° РїР°РїРєР° РµСЃС‚СЊ -
+                    // - С‚РѕРіРґР° РѕРЅ РЅРѕСЂРјР°Р»СЊРЅС‹Р№
                     dirs = null;
-                    //addfld = true; // это папка, её надо в хэш-мэп добавить
+                    //addfld = true; // СЌС‚Рѕ РїР°РїРєР°, РµС‘ РЅР°РґРѕ РІ С…СЌС€-РјСЌРї РґРѕР±Р°РІРёС‚СЊ
                     zn = zn.substring (0, zn.length()-1);
                 }
                 if (zn.startsWith (zipdir))
@@ -230,11 +230,11 @@ public class filesystem
                     }
                     else if (dirs != null)
                     {
-                        // этот else для кривых архивов! где папки не
-                        // записаны, т.е идёт сразу folder/file без folder/
+                        // СЌС‚РѕС‚ else РґР»СЏ РєСЂРёРІС‹С… Р°СЂС…РёРІРѕРІ! РіРґРµ РїР°РїРєРё РЅРµ
+                        // Р·Р°РїРёСЃР°РЅС‹, С‚.Рµ РёРґС‘С‚ СЃСЂР°Р·Сѓ folder/file Р±РµР· folder/
                         updir = zn.substring (zipdir.length (), zn.indexOf ("/", zipdir.length()));
                         updirhash = updir.hashCode ();
-                        // если папки, блин, нету - её добавить надо...
+                        // РµСЃР»Рё РїР°РїРєРё, Р±Р»РёРЅ, РЅРµС‚Сѓ - РµС‘ РґРѕР±Р°РІРёС‚СЊ РЅР°РґРѕ...
                         if (dirs.find (updirhash) < 0)
                         {
                             dirs.add (updirhash);
@@ -265,7 +265,7 @@ public class filesystem
         }
     }
     /**
-     * Получить суммарный размер всех элементов вектора
+     * РџРѕР»СѓС‡РёС‚СЊ СЃСѓРјРјР°СЂРЅС‹Р№ СЂР°Р·РјРµСЂ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ РІРµРєС‚РѕСЂР°
      */
     public static long getInZipSize (Vector vs, boolean compr)
     {
@@ -305,7 +305,7 @@ public class filesystem
         return r;
     }
     /**
-     * Получить размер файла из zip-а
+     * РџРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ С„Р°Р№Р»Р° РёР· zip-Р°
      */
     public static long getInZipSize (String name, boolean compr)
     {
@@ -337,7 +337,7 @@ public class filesystem
         return -1;
     }
     /**
-     * Получить InputStream файла inZip из открытого ZIP-архива
+     * РџРѕР»СѓС‡РёС‚СЊ InputStream С„Р°Р№Р»Р° inZip РёР· РѕС‚РєСЂС‹С‚РѕРіРѕ ZIP-Р°СЂС…РёРІР°
      */
     public static InputStream getZipInputStream (String inZip) throws IOException
     {
@@ -346,7 +346,7 @@ public class filesystem
         return null;
     }
     /**
-     * Вернуть начало имени файла ВНУТРИ zip-архива (начинается после .../archive.zip/)
+     * Р’РµСЂРЅСѓС‚СЊ РЅР°С‡Р°Р»Рѕ РёРјРµРЅРё С„Р°Р№Р»Р° Р’РќРЈРўР Р zip-Р°СЂС…РёРІР° (РЅР°С‡РёРЅР°РµС‚СЃСЏ РїРѕСЃР»Рµ .../archive.zip/)
      */
     public static int divideZipName (String filename)
     {
@@ -366,13 +366,13 @@ public class filesystem
         return -1;
     }
     /**
-     * Получить список файлов и папок в данной папке
-     * Работа с ZIP-архивами прозрачная.
+     * РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє С„Р°Р№Р»РѕРІ Рё РїР°РїРѕРє РІ РґР°РЅРЅРѕР№ РїР°РїРєРµ
+     * Р Р°Р±РѕС‚Р° СЃ ZIP-Р°СЂС…РёРІР°РјРё РїСЂРѕР·СЂР°С‡РЅР°СЏ.
      *
-     * @param folder String  - имя файла
-     * @param includeHidden boolean - включая скрытые
+     * @param folder String  - РёРјСЏ С„Р°Р№Р»Р°
+     * @param includeHidden boolean - РІРєР»СЋС‡Р°СЏ СЃРєСЂС‹С‚С‹Рµ
      * @throws IOException
-     * @return String[]  - массив строк с именами файлов или директорий
+     * @return String[]  - РјР°СЃСЃРёРІ СЃС‚СЂРѕРє СЃ РёРјРµРЅР°РјРё С„Р°Р№Р»РѕРІ РёР»Рё РґРёСЂРµРєС‚РѕСЂРёР№
      */
     public static String[] list (String folder, boolean includeHidden) throws Exception
     {
@@ -401,7 +401,7 @@ public class filesystem
         }
         catch (Exception e)
         {
-            if (files == null && sFile) // через FileConnection не вышло, пробуем через File
+            if (files == null && sFile) // С‡РµСЂРµР· FileConnection РЅРµ РІС‹С€Р»Рѕ, РїСЂРѕР±СѓРµРј С‡РµСЂРµР· File
             {
                 files = com.siemens.mp.io.File.list (main.currentPath, includeHidden);
                 return files;
@@ -412,7 +412,7 @@ public class filesystem
     }
     public static String listError = "";
     /**
-     * Определям тип файла по расширению
+     * РћРїСЂРµРґРµР»СЏРј С‚РёРї С„Р°Р№Р»Р° РїРѕ СЂР°СЃС€РёСЂРµРЅРёСЋ
      */
     public static int fileType (String filename)
     {
@@ -447,10 +447,10 @@ public class filesystem
     }
     
     /**
-     * Удалить файл / папку
+     * РЈРґР°Р»РёС‚СЊ С„Р°Р№Р» / РїР°РїРєСѓ
      *
-     * @param fileName String  - имя файла
-     * @return boolean операция удачна
+     * @param fileName String  - РёРјСЏ С„Р°Р№Р»Р°
+     * @return boolean РѕРїРµСЂР°С†РёСЏ СѓРґР°С‡РЅР°
      */
     public static boolean deleteFile (String fileName, boolean recursively)
     {
@@ -466,7 +466,7 @@ public class filesystem
                 conn.close ();
             }
         }
-        catch (Exception e) // пытаемся удалить через File.delete
+        catch (Exception e) // РїС‹С‚Р°РµРјСЃСЏ СѓРґР°Р»РёС‚СЊ С‡РµСЂРµР· File.delete
         {
             if (sFile)
             {
@@ -482,7 +482,7 @@ public class filesystem
     }
     
     /**
-     * Папка / файл скрытый ?
+     * РџР°РїРєР° / С„Р°Р№Р» СЃРєСЂС‹С‚С‹Р№ ?
      *
      * @param fileName String
      * @return boolean
@@ -506,10 +506,10 @@ public class filesystem
     }
     
     /**
-     * Размер файла или папки
+     * Р Р°Р·РјРµСЂ С„Р°Р№Р»Р° РёР»Рё РїР°РїРєРё
      *
-     * @param fileName String  имя файла/папки
-     * @return long  размер в байтах
+     * @param fileName String  РёРјСЏ С„Р°Р№Р»Р°/РїР°РїРєРё
+     * @return long  СЂР°Р·РјРµСЂ РІ Р±Р°Р№С‚Р°С…
      */
     public static long getSize (String fileName)
     {
@@ -527,7 +527,7 @@ public class filesystem
             else size = conn.fileSize ();
             conn.close ();
         } catch (Exception e) { size = -1; }
-        if (sFile && size == -2) // пытаемся получить размер папки через File.getDirectorySize
+        if (sFile && size == -2) // РїС‹С‚Р°РµРјСЃСЏ РїРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ РїР°РїРєРё С‡РµСЂРµР· File.getDirectorySize
         { 
             try
             { 
@@ -555,7 +555,7 @@ public class filesystem
     }
     */
     /**
-     * Файл только для чтения ?
+     * Р¤Р°Р№Р» С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ ?
      *
      * @param fn String
      * @return boolean
@@ -576,7 +576,7 @@ public class filesystem
     }
     
     /**
-     * Доступный размер диска
+     * Р”РѕСЃС‚СѓРїРЅС‹Р№ СЂР°Р·РјРµСЂ РґРёСЃРєР°
      *
      * @param fn String
      * @return long
@@ -595,7 +595,7 @@ public class filesystem
     }
     
     /**
-     * Общий размер диска
+     * РћР±С‰РёР№ СЂР°Р·РјРµСЂ РґРёСЃРєР°
      *
      * @param fn String
      * @return long
@@ -614,11 +614,11 @@ public class filesystem
     }
     
     /**
-     * Сделать файл Read-only
+     * РЎРґРµР»Р°С‚СЊ С„Р°Р№Р» Read-only
      *
-     * @param fn String  файл/папка
-     * @param yes boolean да/нет
-     * @return boolean операция успешна да/нет
+     * @param fn String  С„Р°Р№Р»/РїР°РїРєР°
+     * @param yes boolean РґР°/РЅРµС‚
+     * @return boolean РѕРїРµСЂР°С†РёСЏ СѓСЃРїРµС€РЅР° РґР°/РЅРµС‚
      */
     public static boolean setReadOnly (String fn, boolean readOnly)
     {
@@ -633,11 +633,11 @@ public class filesystem
     }
     
     /**
-     * Сделать файл скрытым
+     * РЎРґРµР»Р°С‚СЊ С„Р°Р№Р» СЃРєСЂС‹С‚С‹Рј
      *
-     * @param fn String файл/папка
-     * @param yes boolean да/нет
-     * @return boolean операция успешна да/нет
+     * @param fn String С„Р°Р№Р»/РїР°РїРєР°
+     * @param yes boolean РґР°/РЅРµС‚
+     * @return boolean РѕРїРµСЂР°С†РёСЏ СѓСЃРїРµС€РЅР° РґР°/РЅРµС‚
      */
     public static boolean setHidden (String fn, boolean hidden)
     {
@@ -653,9 +653,9 @@ public class filesystem
     }
     
     /**
-     * Дата последнего изменения файла
+     * Р”Р°С‚Р° РїРѕСЃР»РµРґРЅРµРіРѕ РёР·РјРµРЅРµРЅРёСЏ С„Р°Р№Р»Р°
      *
-     * @param fn String имя файла
+     * @param fn String РёРјСЏ С„Р°Р№Р»Р°
      * @return long
      */
     public static long lastModified (String fn)
@@ -672,7 +672,7 @@ public class filesystem
     }
     
     /**
-     * Переименовать файл/папку
+     * РџРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ С„Р°Р№Р»/РїР°РїРєСѓ
      *
      * @param oldName String
      * @param newName String
@@ -691,7 +691,7 @@ public class filesystem
         {
             if (sFile)
             {
-                try // пытаемся переименовать через File.rename
+                try // РїС‹С‚Р°РµРјСЃСЏ РїРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ С‡РµСЂРµР· File.rename
                 {
                     if (com.siemens.mp.io.File.rename (oldName, main.currentPath + newName) >= 0)
                         return true;
@@ -708,7 +708,7 @@ public class filesystem
         return true;
     }
     /**
-     * Нерекурсивно создать папку
+     * РќРµСЂРµРєСѓСЂСЃРёРІРЅРѕ СЃРѕР·РґР°С‚СЊ РїР°РїРєСѓ
      */
     public static boolean makeNewDirNotRec (String fn)
     {
@@ -724,7 +724,7 @@ public class filesystem
             if (sFile)
             {
                 try
-                { // пытаемся создать папку средствами File
+                { // РїС‹С‚Р°РµРјСЃСЏ СЃРѕР·РґР°С‚СЊ РїР°РїРєСѓ СЃСЂРµРґСЃС‚РІР°РјРё File
                     if (com.siemens.mp.io.File.mkdir (fn))
                         return true;
                     else
@@ -740,8 +740,8 @@ public class filesystem
         return true;
     }
     /**
-     * Рекурсивно создать папку (т.е можно создавать Folder1/Folder2 где не
-     * существует ещё даже Folder1)
+     * Р РµРєСѓСЂСЃРёРІРЅРѕ СЃРѕР·РґР°С‚СЊ РїР°РїРєСѓ (С‚.Рµ РјРѕР¶РЅРѕ СЃРѕР·РґР°РІР°С‚СЊ Folder1/Folder2 РіРґРµ РЅРµ
+     * СЃСѓС‰РµСЃС‚РІСѓРµС‚ РµС‰С‘ РґР°Р¶Рµ Folder1)
      */
     public static boolean makeNewDir (String fn)
     {
@@ -757,7 +757,7 @@ public class filesystem
         return false;
     }
     /**
-     * Копировать содержимое папки
+     * РљРѕРїРёСЂРѕРІР°С‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ РїР°РїРєРё
      */
     public static boolean copyDirectoryContents (String oldName, String newName)
     {
@@ -776,7 +776,7 @@ public class filesystem
         return r;
     }
     /**
-     * Копировать поток в файл и закрыть его
+     * РљРѕРїРёСЂРѕРІР°С‚СЊ РїРѕС‚РѕРє РІ С„Р°Р№Р» Рё Р·Р°РєСЂС‹С‚СЊ РµРіРѕ
      */
     public static boolean copyStreamToFile (InputStream is, String fileName,
             Gauge progress)
@@ -813,7 +813,7 @@ public class filesystem
         return true;
     }
     /**
-     * Копировать файл
+     * РљРѕРїРёСЂРѕРІР°С‚СЊ С„Р°Р№Р»
      *
      * @param oldFileName String
      * @param newFileName String
@@ -874,7 +874,7 @@ public class filesystem
     }
     
     /**
-     * Перевод времени в строку вида 01.01.2005 15:00:00
+     * РџРµСЂРµРІРѕРґ РІСЂРµРјРµРЅРё РІ СЃС‚СЂРѕРєСѓ РІРёРґР° 01.01.2005 15:00:00
      *
      * @return String
      */
@@ -902,7 +902,7 @@ public class filesystem
     }
     
     /**
-     *  Перевод времени в строку вида 01.01.2005 15:00:00
+     *  РџРµСЂРµРІРѕРґ РІСЂРµРјРµРЅРё РІ СЃС‚СЂРѕРєСѓ РІРёРґР° 01.01.2005 15:00:00
      * @param time long
      * @return String
      */
@@ -930,8 +930,8 @@ public class filesystem
         return (dd + "." + mm + "." + yy + " " + h + ":" + m + ":" + s);
     }
     /**
-     * Создать новый файл, записать туда text в UTF-8
-     * и опционально BOM UTF-8 сигнатуру
+     * РЎРѕР·РґР°С‚СЊ РЅРѕРІС‹Р№ С„Р°Р№Р», Р·Р°РїРёСЃР°С‚СЊ С‚СѓРґР° text РІ UTF-8
+     * Рё РѕРїС†РёРѕРЅР°Р»СЊРЅРѕ BOM UTF-8 СЃРёРіРЅР°С‚СѓСЂСѓ
      */
     public static boolean makeNewFile (String fn, String text, boolean writeBOM)
     {
@@ -955,14 +955,14 @@ public class filesystem
         return true;
     }
     /**
-     * Возвращает true если доступен класс com.siemens.mp.io.File
+     * Р’РѕР·РІСЂР°С‰Р°РµС‚ true РµСЃР»Рё РґРѕСЃС‚СѓРїРµРЅ РєР»Р°СЃСЃ com.siemens.mp.io.File
      */
     public static boolean hasFile ()
     {
         return sFile;
     }
     /**
-     * Преобразовать double d в строку с точностью afterdot знаков после '.'
+     * РџСЂРµРѕР±СЂР°Р·РѕРІР°С‚СЊ double d РІ СЃС‚СЂРѕРєСѓ СЃ С‚РѕС‡РЅРѕСЃС‚СЊСЋ afterdot Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ '.'
      */
     public static String doubleToString (double d, int afterdot)
     {
@@ -973,7 +973,7 @@ public class filesystem
         return s;
     }
     /**
-     * Преобразовывает число байт в нормальную строку с размером
+     * РџСЂРµРѕР±СЂР°Р·РѕРІС‹РІР°РµС‚ С‡РёСЃР»Рѕ Р±Р°Р№С‚ РІ РЅРѕСЂРјР°Р»СЊРЅСѓСЋ СЃС‚СЂРѕРєСѓ СЃ СЂР°Р·РјРµСЂРѕРј
      */
     public static String getSizeString (long bytes)
     {

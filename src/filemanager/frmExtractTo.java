@@ -46,7 +46,7 @@ public class frmExtractTo
                     dir = dir + '/';
                 if (!filesystem.isFileExist (dir))
                     filesystem.makeNewDir (dir);
-                if (filesystem.isFileExist (dir)) // папка есть, распаковываем
+                if (filesystem.isFileExist (dir)) // РїР°РїРєР° РµСЃС‚СЊ, СЂР°СЃРїР°РєРѕРІС‹РІР°РµРј
                 {
                     Alert al = new Alert (Locale.Strings[Locale.WAIT],
                             Locale.Strings[Locale.WAIT_PLEASE],

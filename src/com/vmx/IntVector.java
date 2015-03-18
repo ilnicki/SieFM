@@ -12,7 +12,7 @@ public class IntVector
         arrplus = 32;
     }
     /**
-     * Удалить элементы с first по first+n-1
+     * РЈРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚С‹ СЃ first РїРѕ first+n-1
      */
     public void remove (int first, int n)
     {
@@ -25,7 +25,7 @@ public class IntVector
                 array [i] = array [i+n];
     }
     /**
-     * Добавить в array значение n
+     * Р”РѕР±Р°РІРёС‚СЊ РІ array Р·РЅР°С‡РµРЅРёРµ n
      */
     public void add (int el)
     {
@@ -38,14 +38,14 @@ public class IntVector
         array [count++] = el;
     }
     /**
-     * Получить элемент номер index
+     * РџРѕР»СѓС‡РёС‚СЊ СЌР»РµРјРµРЅС‚ РЅРѕРјРµСЂ index
      */
     public int get (int index)
     {
         return array[index];
     }
     /**
-     * Найти value в векторе
+     * РќР°Р№С‚Рё value РІ РІРµРєС‚РѕСЂРµ
      */
     public int find (int value)
     {
@@ -58,7 +58,7 @@ public class IntVector
         return i;
     }
     /**
-     * Получить размер
+     * РџРѕР»СѓС‡РёС‚СЊ СЂР°Р·РјРµСЂ
      */
     public int size ()
     {

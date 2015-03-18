@@ -17,7 +17,7 @@ public class frmRename
         super (Locale.Strings[Locale.RENAME]);
         this.parent = parent;
         oldFileName = main.currentFile;
-        if (oldFileName.endsWith ("/")) //если выбранный файл - папка, убираем посл/ слеш
+        if (oldFileName.endsWith ("/")) //РµСЃР»Рё РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р» - РїР°РїРєР°, СѓР±РёСЂР°РµРј РїРѕСЃР»/ СЃР»РµС€
         {
             oldFileName = oldFileName.substring (0, oldFileName.length () - 1);
             isFolder = true;
@@ -41,7 +41,7 @@ public class frmRename
             else
                 newfileName = tf.getString ();
             if ((newfileName.equalsIgnoreCase (oldFileName)) ||
-                (newfileName.equalsIgnoreCase (oldFileName + "/"))) // имя не изменилось
+                (newfileName.equalsIgnoreCase (oldFileName + "/"))) // РёРјСЏ РЅРµ РёР·РјРµРЅРёР»РѕСЃСЊ
                 main.dsp.setCurrent (parent);
             else
             {
@@ -55,17 +55,17 @@ public class frmRename
                     al.setTimeout (3000);
                     main.dsp.setCurrent (al, this);
                 }
-                else // переименовываем
+                else // РїРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµРј
                 { 
-                    if (filesystem.renameFile (main.currentPath + oldFileName, newfileName)) // если переименован
+                    if (filesystem.renameFile (main.currentPath + oldFileName, newfileName)) // РµСЃР»Рё РїРµСЂРµРёРјРµРЅРѕРІР°РЅ
                     {
                         main.FileSelect.files [main.FileSelect.scrSel] = newfileName;
-                        // меняем имя и, если не папка, значок
+                        // РјРµРЅСЏРµРј РёРјСЏ Рё, РµСЃР»Рё РЅРµ РїР°РїРєР°, Р·РЅР°С‡РѕРє
                         if (!filesystem.isDir (main.currentPath + newfileName))
                             main.FileSelect.updateFileType (main.FileSelect.scrSel);
                         main.dsp.setCurrent (parent);
                     }
-                    else // не переименован
+                    else // РЅРµ РїРµСЂРµРёРјРµРЅРѕРІР°РЅ
                     {
                         if (filesystem.isReadOnly (main.currentPath + main.currentFile)) // ReadOnly
                         {

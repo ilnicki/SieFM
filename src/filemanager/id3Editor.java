@@ -7,7 +7,7 @@ import javax.microedition.io.*;
 import java.io.*;
 
 /**
- * Форма-редактор ID3v1-тегов MP3
+ * Р¤РѕСЂРјР°-СЂРµРґР°РєС‚РѕСЂ ID3v1-С‚РµРіРѕРІ MP3
  */
 public class id3Editor
        extends Form
@@ -20,7 +20,7 @@ public class id3Editor
     protected static String id3v1enc = "windows-1251";
     protected TextField tf1, tf2, tf3, tf4, tf5, tf6;
     /**
-     * Конструктор: создать форму для редактирования тегов файла filename
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ: СЃРѕР·РґР°С‚СЊ С„РѕСЂРјСѓ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ С‚РµРіРѕРІ С„Р°Р№Р»Р° filename
      */
     public id3Editor (String filename, Displayable parent) throws IOException
     {
@@ -62,7 +62,7 @@ public class id3Editor
         setCommandListener (this);
     }
     /**
-     * Взять кусок тега и сделать строкой
+     * Р’Р·СЏС‚СЊ РєСѓСЃРѕРє С‚РµРіР° Рё СЃРґРµР»Р°С‚СЊ СЃС‚СЂРѕРєРѕР№
      */
     protected static String getFromTag (byte [] tag, int offset, int len)
     {
@@ -82,7 +82,7 @@ public class id3Editor
         return "";
     }
     /**
-     * Записать строку в кусок тега
+     * Р—Р°РїРёСЃР°С‚СЊ СЃС‚СЂРѕРєСѓ РІ РєСѓСЃРѕРє С‚РµРіР°
      */
     protected static void setToTag (byte [] tag, String s, int offset, int len)
     {
@@ -100,7 +100,7 @@ public class id3Editor
         }
     }
     /**
-     * Обработчик команд
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РєРѕРјР°РЅРґ
      */
     public void commandAction (Command c, Displayable d)
     {
@@ -141,8 +141,8 @@ public class id3Editor
             main.dsp.setCurrent (parent);
     }
     /**
-     * Получить строку теговой информации из mp3-файла
-     * (разделена на части символом \n)
+     * РџРѕР»СѓС‡РёС‚СЊ СЃС‚СЂРѕРєСѓ С‚РµРіРѕРІРѕР№ РёРЅС„РѕСЂРјР°С†РёРё РёР· mp3-С„Р°Р№Р»Р°
+     * (СЂР°Р·РґРµР»РµРЅР° РЅР° С‡Р°СЃС‚Рё СЃРёРјРІРѕР»РѕРј \n)
      */
     public static String getTagString (String filename) throws IOException
     {

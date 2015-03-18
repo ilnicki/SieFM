@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 import java.util.*;
@@ -13,7 +13,7 @@ public class alMessage
     public alMessage (String text)
     {
         super ("", "", null, null);
-        if (text == null || text.equalsIgnoreCase ("")) // копирование переименование удаление без ошибок
+        if (text == null || text.equalsIgnoreCase ("")) // РєРѕРїРёСЂРѕРІР°РЅРёРµ РїРµСЂРµРёРјРµРЅРѕРІР°РЅРёРµ СѓРґР°Р»РµРЅРёРµ Р±РµР· РѕС€РёР±РѕРє
         {
             //this.setImage (images.ok);
             this.setType (AlertType.INFO);
@@ -41,7 +41,7 @@ public class alMessage
             {
                 t.sleep (5000);
             } catch (InterruptedException ie) {}
-            // переход
+            // РїРµСЂРµС…РѕРґ
             main.FileSelect.showWait ();
         }
     }
@@ -51,7 +51,7 @@ public class alMessage
         if (command.getCommandType () == Command.OK)
         {
             t.interrupt ();
-            // прерываем таймер выше, там будет переход
+            // РїСЂРµСЂС‹РІР°РµРј С‚Р°Р№РјРµСЂ РІС‹С€Рµ, С‚Р°Рј Р±СѓРґРµС‚ РїРµСЂРµС…РѕРґ
             if (!ok)
                 main.FileSelect.showWait ();
         }

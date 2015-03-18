@@ -3,7 +3,7 @@ package filemanager;
 public interface MenuListener
 {
     /**
-     * Выполнить действие с названием Locale.Strings[code]
+     * Р’С‹РїРѕР»РЅРёС‚СЊ РґРµР№СЃС‚РІРёРµ СЃ РЅР°Р·РІР°РЅРёРµРј Locale.Strings[code]
      */
     public void menuAction (int code);
 }

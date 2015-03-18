@@ -3,8 +3,8 @@ package filemanager;
 import javax.microedition.lcdui.*;
 
 /**
- * Класс для выдачи сообщения типа "Файл ... существует. Перезаписать?"
- * с вариантами ответа Да / Нет / Да для всех / Нет для всех / Отмена
+ * РљР»Р°СЃСЃ РґР»СЏ РІС‹РґР°С‡Рё СЃРѕРѕР±С‰РµРЅРёСЏ С‚РёРїР° "Р¤Р°Р№Р» ... СЃСѓС‰РµСЃС‚РІСѓРµС‚. РџРµСЂРµР·Р°РїРёСЃР°С‚СЊ?"
+ * СЃ РІР°СЂРёР°РЅС‚Р°РјРё РѕС‚РІРµС‚Р° Р”Р° / РќРµС‚ / Р”Р° РґР»СЏ РІСЃРµС… / РќРµС‚ РґР»СЏ РІСЃРµС… / РћС‚РјРµРЅР°
  */
 public class alConfirmOverwrite extends Alert implements CommandListener, Runnable
 {
@@ -17,8 +17,8 @@ public class alConfirmOverwrite extends Alert implements CommandListener, Runnab
     public Thread t;
     Displayable nextShow;
     /**
-     * Конструирует класс и создаёт поток, ожидающий выбора команды.
-     * А lstBuffer юзает al.t.join() для того, чтобы подождать.
+     * РљРѕРЅСЃС‚СЂСѓРёСЂСѓРµС‚ РєР»Р°СЃСЃ Рё СЃРѕР·РґР°С‘С‚ РїРѕС‚РѕРє, РѕР¶РёРґР°СЋС‰РёР№ РІС‹Р±РѕСЂР° РєРѕРјР°РЅРґС‹.
+     * Рђ lstBuffer СЋР·Р°РµС‚ al.t.join() РґР»СЏ С‚РѕРіРѕ, С‡С‚РѕР±С‹ РїРѕРґРѕР¶РґР°С‚СЊ.
      */
     public alConfirmOverwrite (String filename, Displayable nextDsp)
     {
@@ -38,7 +38,7 @@ public class alConfirmOverwrite extends Alert implements CommandListener, Runnab
         t = new Thread (this);
     }
     /**
-     * Функция ожидания выбора команды
+     * Р¤СѓРЅРєС†РёСЏ РѕР¶РёРґР°РЅРёСЏ РІС‹Р±РѕСЂР° РєРѕРјР°РЅРґС‹
      */
     public void run ()
     {
@@ -50,7 +50,7 @@ public class alConfirmOverwrite extends Alert implements CommandListener, Runnab
         main.dsp.setCurrent (nextShow);
     }
     /**
-     * Обработка команды - прерывает поток выполнения и задаёт modalResult
+     * РћР±СЂР°Р±РѕС‚РєР° РєРѕРјР°РЅРґС‹ - РїСЂРµСЂС‹РІР°РµС‚ РїРѕС‚РѕРє РІС‹РїРѕР»РЅРµРЅРёСЏ Рё Р·Р°РґР°С‘С‚ modalResult
      */
     public void commandAction (Command c, Displayable d)
     {

@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 
@@ -30,12 +30,12 @@ public class frmNewFolder
         {
             if (command.getCommandType () == Command.OK)
             {
-                if (filesystem.makeNewDir (main.currentPath + tf.getString () + "/")) // если папка создана
+                if (filesystem.makeNewDir (main.currentPath + tf.getString () + "/")) // РµСЃР»Рё РїР°РїРєР° СЃРѕР·РґР°РЅР°
                     cvsWait.start ();
-                else // не создана
+                else // РЅРµ СЃРѕР·РґР°РЅР°
                 {
                     if ((filesystem.isFileExist (main.currentPath + tf.getString () + "/")) &&
-                        (!tf.getString ().equalsIgnoreCase (""))) // такой файл уже есть
+                        (!tf.getString ().equalsIgnoreCase (""))) // С‚Р°РєРѕР№ С„Р°Р№Р» СѓР¶Рµ РµСЃС‚СЊ
                     {
                         Alert al = new Alert (Locale.Strings[Locale.ERROR],
                                 Locale.Strings[Locale.NAME_EXIST_SELECT_ANOTHER],

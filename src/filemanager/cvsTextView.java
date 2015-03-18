@@ -64,7 +64,7 @@ class FileConnectionOutputOpener implements OutputStreamOpener
 public class cvsTextView extends gkcCanvas implements CommandListener
 {
     public Displayable parent;
-    // Чтение и запись текста
+    // Р§С‚РµРЅРёРµ Рё Р·Р°РїРёСЃСЊ С‚РµРєСЃС‚Р°
     BufDataInputStream bdis = null;
     InputStreamDecoder isd = null;
     InputStreamCloser closer = null;
@@ -72,7 +72,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
     static int BUFSIZE = 2048;
     String enc;
     int scrStart, scrEnd;
-    // Отрисовка текста и заголовок
+    // РћС‚СЂРёСЃРѕРІРєР° С‚РµРєСЃС‚Р° Рё Р·Р°РіРѕР»РѕРІРѕРє
     public String caption;
     private int linesPerScreen;
     int w, h;
@@ -82,10 +82,10 @@ public class cvsTextView extends gkcCanvas implements CommandListener
     String lines [];
     int lineposes [];
     boolean wordWrapGlobal = true;
-    // Полноэкранный режим
+    // РџРѕР»РЅРѕСЌРєСЂР°РЅРЅС‹Р№ СЂРµР¶РёРј
     boolean fsmode;
     int header, footer;
-    // Правка текста
+    // РџСЂР°РІРєР° С‚РµРєСЃС‚Р°
     int selStart;
     int editStart, editEnd;
     String edittext = null;
@@ -97,7 +97,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
     Command cmdNo = new Command (Locale.Strings[Locale.NO_CMD], Command.BACK, 1);
     boolean rescanAfterExit;
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public cvsTextView ()
     {
@@ -112,17 +112,17 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         lines = new String [linesPerScreen];
         lineposes = new int [linesPerScreen+1];
         selStart = -1;
-        // инициализация переменных i/o
+        // РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРµСЂРµРјРµРЅРЅС‹С… i/o
         bdis = null;
         isd = null;
         opener = null;
         closer = null;
-        // фулл/не фулл скрин
+        // С„СѓР»Р»/РЅРµ С„СѓР»Р» СЃРєСЂРёРЅ
         fsmode = true;
         setFSMode (false);
     }
     /**
-     * Установить полноэкранный/не полноэкранный режим
+     * РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїРѕР»РЅРѕСЌРєСЂР°РЅРЅС‹Р№/РЅРµ РїРѕР»РЅРѕСЌРєСЂР°РЅРЅС‹Р№ СЂРµР¶РёРј
      */
     public void setFSMode (boolean nm)
     {
@@ -151,25 +151,25 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         }
     }
     /**
-     * Просто открыть входной поток, без дополнительных процедур закрытия
-     * и без возможности записи.
+     * РџСЂРѕСЃС‚Рѕ РѕС‚РєСЂС‹С‚СЊ РІС…РѕРґРЅРѕР№ РїРѕС‚РѕРє, Р±РµР· РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… РїСЂРѕС†РµРґСѓСЂ Р·Р°РєСЂС‹С‚РёСЏ
+     * Рё Р±РµР· РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё Р·Р°РїРёСЃРё.
      */
     public boolean openStream (InputStream is, String enc)
     {
         return openStream (is, enc, null, null);
     }
     /**
-     * Открыть входной поток с использованием дополнительных процедур
-     * закрытия потока (например, закрытие соответствующего FileConnection)
+     * РћС‚РєСЂС‹С‚СЊ РІС…РѕРґРЅРѕР№ РїРѕС‚РѕРє СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… РїСЂРѕС†РµРґСѓСЂ
+     * Р·Р°РєСЂС‹С‚РёСЏ РїРѕС‚РѕРєР° (РЅР°РїСЂРёРјРµСЂ, Р·Р°РєСЂС‹С‚РёРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРіРѕ FileConnection)
      */
     public boolean openStream (InputStream is, String enc, InputStreamCloser cls)
     {
         return openStream (is, enc, cls, null);
     }
     /**
-     * Открыть входной поток с использованием дополнительных процедур
-     * закрытия потока (например, закрытие соответствующего FileConnection) и
-     * с возможностью записи через oso.
+     * РћС‚РєСЂС‹С‚СЊ РІС…РѕРґРЅРѕР№ РїРѕС‚РѕРє СЃ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµРј РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹С… РїСЂРѕС†РµРґСѓСЂ
+     * Р·Р°РєСЂС‹С‚РёСЏ РїРѕС‚РѕРєР° (РЅР°РїСЂРёРјРµСЂ, Р·Р°РєСЂС‹С‚РёРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РµРіРѕ FileConnection) Рё
+     * СЃ РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊСЋ Р·Р°РїРёСЃРё С‡РµСЂРµР· oso.
      */
     public boolean openStream (InputStream is, String enc, InputStreamCloser cls,
             OutputStreamOpener oso)
@@ -195,8 +195,8 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         return true;
     }
     /**
-     * Осознать, в какой кодировке is, записать кодировку в enc,
-     * позиционировать is на начало текста и вернуть это смещение
+     * РћСЃРѕР·РЅР°С‚СЊ, РІ РєР°РєРѕР№ РєРѕРґРёСЂРѕРІРєРµ is, Р·Р°РїРёСЃР°С‚СЊ РєРѕРґРёСЂРѕРІРєСѓ РІ enc,
+     * РїРѕР·РёС†РёРѕРЅРёСЂРѕРІР°С‚СЊ is РЅР° РЅР°С‡Р°Р»Рѕ С‚РµРєСЃС‚Р° Рё РІРµСЂРЅСѓС‚СЊ СЌС‚Рѕ СЃРјРµС‰РµРЅРёРµ
      */
     public int detectEncoding (InputStream is) throws IOException
     {
@@ -216,7 +216,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         return off;
     }
     /**
-     * Открыть файл через FileConnection со всеми возможностями
+     * РћС‚РєСЂС‹С‚СЊ С„Р°Р№Р» С‡РµСЂРµР· FileConnection СЃРѕ РІСЃРµРјРё РІРѕР·РјРѕР¶РЅРѕСЃС‚СЏРјРё
      */
     public void openFile (String filename)
     {
@@ -263,7 +263,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         }
     }
     /**
-     * Закрыть входной поток, и если closer != null => вызвать closer.close();
+     * Р—Р°РєСЂС‹С‚СЊ РІС…РѕРґРЅРѕР№ РїРѕС‚РѕРє, Рё РµСЃР»Рё closer != null => РІС‹Р·РІР°С‚СЊ closer.close();
      */
     public void closeStream ()
     {
@@ -277,7 +277,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         }
     }
     /**
-     * Прочитать строку из потока
+     * РџСЂРѕС‡РёС‚Р°С‚СЊ СЃС‚СЂРѕРєСѓ РёР· РїРѕС‚РѕРєР°
      */
     public String readString (boolean wordWrap)
     {
@@ -298,7 +298,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
                     s += c;
                     strwidth += fch.charWidth (c);
                 }
-                if ((c == cmin1) || (c == '\n')) // новая строка или конец файла
+                if ((c == cmin1) || (c == '\n')) // РЅРѕРІР°СЏ СЃС‚СЂРѕРєР° РёР»Рё РєРѕРЅРµС† С„Р°Р№Р»Р°
                 {
                     wordWrap = false;
                     break;
@@ -325,7 +325,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         return s;
     }
     /**
-     * Прочитать строку из потока НАЗАД
+     * РџСЂРѕС‡РёС‚Р°С‚СЊ СЃС‚СЂРѕРєСѓ РёР· РїРѕС‚РѕРєР° РќРђР—РђР”
      */
     public String readStringBack (boolean wordWrap)
     {
@@ -347,7 +347,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
                     s = c + s;
                     strwidth += fch.charWidth (c);
                 }
-                if ((c == cmin1) || (c == '\n' && s.length () > 1)) // новая строка или начало файла
+                if ((c == cmin1) || (c == '\n' && s.length () > 1)) // РЅРѕРІР°СЏ СЃС‚СЂРѕРєР° РёР»Рё РЅР°С‡Р°Р»Рѕ С„Р°Р№Р»Р°
                 {
                     wordWrap = false;
                     break;
@@ -376,7 +376,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         return s;
     }
     /*
-    // Отладочная функция
+    // РћС‚Р»Р°РґРѕС‡РЅР°СЏ С„СѓРЅРєС†РёСЏ
     void printposes ()
     {
         System.out.print ("lineposes:");
@@ -385,7 +385,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         System.out.println ();
     }*/
     /**
-     * Прочитать экран из потока
+     * РџСЂРѕС‡РёС‚Р°С‚СЊ СЌРєСЂР°РЅ РёР· РїРѕС‚РѕРєР°
      */
     void readScreen (boolean wordWrap)
     {
@@ -402,7 +402,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         } catch (IOException iox) { iox.printStackTrace (); }
     }
     /**
-     * Очистить экран
+     * РћС‡РёСЃС‚РёС‚СЊ СЌРєСЂР°РЅ
      */
     void clearScreen ()
     {
@@ -414,7 +414,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         lineposes [linesPerScreen] = 0;
     }
     /**
-     * Перейти строчкой выше
+     * РџРµСЂРµР№С‚Рё СЃС‚СЂРѕС‡РєРѕР№ РІС‹С€Рµ
      */
     void lineUp ()
     {
@@ -436,7 +436,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         } catch (IOException iox) { return; }
     }
     /**
-     * Перейти строчкой ниже
+     * РџРµСЂРµР№С‚Рё СЃС‚СЂРѕС‡РєРѕР№ РЅРёР¶Рµ
      */
     void lineDown ()
     {
@@ -457,7 +457,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         } catch (IOException iox) {}
     }
     /**
-     * Перейти экраном выше
+     * РџРµСЂРµР№С‚Рё СЌРєСЂР°РЅРѕРј РІС‹С€Рµ
      */
     void screenUp ()
     {
@@ -470,7 +470,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         } catch (IOException iox) { return; }
     }
     /**
-     * Перейти экраном ниже
+     * РџРµСЂРµР№С‚Рё СЌРєСЂР°РЅРѕРј РЅРёР¶Рµ
      */
     void screenDown ()
     {
@@ -481,13 +481,13 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         } catch (IOException iox) {}
     }
     /**
-     * Редактировать кусок текста с start до end
+     * Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ РєСѓСЃРѕРє С‚РµРєСЃС‚Р° СЃ start РґРѕ end
      */
     public void editText (int start, int end)
     {
         editStart = start;
         editEnd = end;
-        // Читаем то, что будем редактировать
+        // Р§РёС‚Р°РµРј С‚Рѕ, С‡С‚Рѕ Р±СѓРґРµРј СЂРµРґР°РєС‚РёСЂРѕРІР°С‚СЊ
         try
         {
             bdis.seek (editStart);
@@ -496,18 +496,18 @@ public class cvsTextView extends gkcCanvas implements CommandListener
             edittext = StringEncoder.decodeString (bs, 0, rl, enc);
         } catch (Exception iox) { edittext = null; return; }
         int maxsize = BUFSIZE;
-        // Запихиваем это в TextBox
+        // Р—Р°РїРёС…РёРІР°РµРј СЌС‚Рѕ РІ TextBox
         tb = new TextBox (caption, edittext, edittext.length () + BUFSIZE, TextField.ANY);
         tb.addCommand (cmdCancel);
         tb.addCommand (cmdSave);
         tb.addCommand (cmdClear);
         tb.setCommandListener (this);
         tb.setTicker (new Ticker (enc));
-        // А TextBox - на экран
+        // Рђ TextBox - РЅР° СЌРєСЂР°РЅ
         main.dsp.setCurrent (tb);
     }
     /**
-     * Сохранить текущий текст из окна редактирования, если оно идёт
+     * РЎРѕС…СЂР°РЅРёС‚СЊ С‚РµРєСѓС‰РёР№ С‚РµРєСЃС‚ РёР· РѕРєРЅР° СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ, РµСЃР»Рё РѕРЅРѕ РёРґС‘С‚
      */
     public void saveEditText ()
     {
@@ -529,7 +529,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
             int oldsize = is.available ();
             is.mark (is.available () + 0x100);
             is.skip (editStart + oldlen);
-            if (newlen < oldlen) // если так, то удаляем кусок потока
+            if (newlen < oldlen) // РµСЃР»Рё С‚Р°Рє, С‚Рѕ СѓРґР°Р»СЏРµРј РєСѓСЃРѕРє РїРѕС‚РѕРєР°
             {
                 byte [] copybs = new byte [main.COPYBUFSIZE];
                 os = opener.openOutputStream (editStart + newlen);
@@ -539,11 +539,11 @@ public class cvsTextView extends gkcCanvas implements CommandListener
                 is.close ();
                 opener.truncate (oldsize + newlen - oldlen);
             }
-            else if (newlen > oldlen) // а если так, то вставляем свободного места
+            else if (newlen > oldlen) // Р° РµСЃР»Рё С‚Р°Рє, С‚Рѕ РІСЃС‚Р°РІР»СЏРµРј СЃРІРѕР±РѕРґРЅРѕРіРѕ РјРµСЃС‚Р°
             {
                 int copylen = is.available ();
                 byte [] copybs;
-                // сдвигаем вперёд
+                // СЃРґРІРёРіР°РµРј РІРїРµСЂС‘Рґ
                 copybs = new byte [main.COPYBUFSIZE];
                 int copycnt = (copylen+main.COPYBUFSIZE-1) / main.COPYBUFSIZE;
                 int i = copycnt-1, cblen = 0;
@@ -563,11 +563,11 @@ public class cvsTextView extends gkcCanvas implements CommandListener
                 is.close ();
             }
             else is.close ();
-            // записываем текст
+            // Р·Р°РїРёСЃС‹РІР°РµРј С‚РµРєСЃС‚
             os = opener.openOutputStream (editStart);
             os.write (StringEncoder.encodeString (newtext, enc));
             os.close ();
-            // открываем заново
+            // РѕС‚РєСЂС‹РІР°РµРј Р·Р°РЅРѕРІРѕ
             int oldstart = editStart;
             bdis = null;
             openStream (opener.openInputStream (), enc, closer, opener);
@@ -576,7 +576,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         } catch (IOException x) { x.printStackTrace (); return; }
     }
     /**
-     * Прервать редактирование, если оно идёт
+     * РџСЂРµСЂРІР°С‚СЊ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ, РµСЃР»Рё РѕРЅРѕ РёРґС‘С‚
      */
     public void breakEditing ()
     {
@@ -588,13 +588,13 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         edittext = null;
     }
     /**
-     * Функция отрисовки
+     * Р¤СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё
      */
     protected void paint (Graphics g)
     {
         g.setColor (Colors.back);
         g.fillRect (0, 0, w, h);
-        // Рисуем сам текст
+        // Р РёСЃСѓРµРј СЃР°Рј С‚РµРєСЃС‚
         g.setColor (Colors.fore);
         g.setFont (fntText);
         for (int i = 0; i < linesPerScreen; i++)
@@ -602,7 +602,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
                 g.drawString (lines[i], 2, header + 2 + i*(fntTextHeight+1), Graphics.LEFT | Graphics.TOP);
         if (!fsmode)
         {
-            // Рисуем заголовок
+            // Р РёСЃСѓРµРј Р·Р°РіРѕР»РѕРІРѕРє
             //g.setColor (Colors.back);
             //g.fillRect (0, 0, w, header);
             images.drawIcon (g, images.iText, (header-16)/2, (header-16)/2);
@@ -610,14 +610,14 @@ public class cvsTextView extends gkcCanvas implements CommandListener
             g.drawString (caption, (header+16)/2 + 2, (header-fntTextHeight)/2, Graphics.LEFT | Graphics.TOP);
             g.drawLine (0, header-1, w, header-1); // header = 20; footer = 8;
             g.drawLine (0, h - footer, w, h - footer);
-            // Рисуем "подписи" к софт-кнопкам (крестик и "...")
+            // Р РёСЃСѓРµРј "РїРѕРґРїРёСЃРё" Рє СЃРѕС„С‚-РєРЅРѕРїРєР°Рј (РєСЂРµСЃС‚РёРє Рё "...")
             g.setColor (Colors.fore);
             g.drawLine (w-footer+2, h-footer+2, w-footer+6, h-footer+6);
             g.drawLine (w-footer+6, h-footer+2, w-footer+2, h-footer+6);
             if (opener != null)
                 g.drawString ("...", 3, h - fntTextHeight - 1, Graphics.LEFT | Graphics.TOP);
         }
-        // Рисуем полосу прокрутки
+        // Р РёСЃСѓРµРј РїРѕР»РѕСЃСѓ РїСЂРѕРєСЂСѓС‚РєРё
         g.drawLine (w-3, header, w-3, h-footer);
         int slall = h-header-footer, slpos = 0, slend = 0;
         try
@@ -651,22 +651,22 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         }
     }
     /**
-     * Функция обработки команд
+     * Р¤СѓРЅРєС†РёСЏ РѕР±СЂР°Р±РѕС‚РєРё РєРѕРјР°РЅРґ
      */
     public void commandAction (Command c, Displayable d)
     {
-        if (c == cmdSave) // сохранение, перезагрузка и выход из редактора
+        if (c == cmdSave) // СЃРѕС…СЂР°РЅРµРЅРёРµ, РїРµСЂРµР·Р°РіСЂСѓР·РєР° Рё РІС‹С…РѕРґ РёР· СЂРµРґР°РєС‚РѕСЂР°
         {
             saveEditText ();
             breakEditing ();
         }
-        else if (c == cmdCancel) // выход из редактора без сохранения
+        else if (c == cmdCancel) // РІС‹С…РѕРґ РёР· СЂРµРґР°РєС‚РѕСЂР° Р±РµР· СЃРѕС…СЂР°РЅРµРЅРёСЏ
             breakEditing ();
-        else if (c == cmdClear) // очистка
+        else if (c == cmdClear) // РѕС‡РёСЃС‚РєР°
             tb.setString ("");
     }
     /**
-     * Обработчик нажатия клавиши
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєР»Р°РІРёС€Рё
      */
     protected void keyPressed (int keyCode)
     {
@@ -699,7 +699,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         }
         else if (keyCode == KEY_POUND)
             setFSMode (!fsmode);
-        else if (keyCode == KEY_LSK && opener != null) // редактирование
+        else if (keyCode == KEY_LSK && opener != null) // СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ
         {
             if (selStart < 0)
                 editText (scrStart, scrEnd);
@@ -719,10 +719,10 @@ public class cvsTextView extends gkcCanvas implements CommandListener
                     repaint ();
             }
         }
-        else if (keyCode == KEY_RSK || keyCode == KEY_CANCEL) // выход
+        else if (keyCode == KEY_RSK || keyCode == KEY_CANCEL) // РІС‹С…РѕРґ
         {
             closeStream ();
-            if (rescanAfterExit) // если новый файл правили
+            if (rescanAfterExit) // РµСЃР»Рё РЅРѕРІС‹Р№ С„Р°Р№Р» РїСЂР°РІРёР»Рё
             {
                 cvsWait.start ();
                 rescanAfterExit = false;
@@ -737,7 +737,7 @@ public class cvsTextView extends gkcCanvas implements CommandListener
         }
     }
     /**
-     * Обработчик повторения (зажатия) клавиши
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РїРѕРІС‚РѕСЂРµРЅРёСЏ (Р·Р°Р¶Р°С‚РёСЏ) РєР»Р°РІРёС€Рё
      */
     protected void keyRepeated (int keyCode)
     {

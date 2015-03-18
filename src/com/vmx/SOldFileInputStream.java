@@ -4,7 +4,7 @@ import java.io.*;
 import com.siemens.mp.io.File;
 
 /**
- * Эмулятор входного потока через com.siemens.mp.io.File
+ * Р­РјСѓР»СЏС‚РѕСЂ РІС…РѕРґРЅРѕРіРѕ РїРѕС‚РѕРєР° С‡РµСЂРµР· com.siemens.mp.io.File
  */
 public class SOldFileInputStream
        extends InputStream
@@ -14,7 +14,7 @@ public class SOldFileInputStream
     protected byte [] onebyte;
     protected int lastMark;
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public SOldFileInputStream (File mf, int fd)
     {
@@ -24,7 +24,7 @@ public class SOldFileInputStream
         this.onebyte = new byte [1];
     }
     /**
-     * Чтение одного байта из потока
+     * Р§С‚РµРЅРёРµ РѕРґРЅРѕРіРѕ Р±Р°Р№С‚Р° РёР· РїРѕС‚РѕРєР°
      */
     public int read () throws IOException
     {
@@ -33,28 +33,28 @@ public class SOldFileInputStream
         return -1;
     }
     /**
-     * Чтение максимум len байт и запись их по смещению off в b
+     * Р§С‚РµРЅРёРµ РјР°РєСЃРёРјСѓРј len Р±Р°Р№С‚ Рё Р·Р°РїРёСЃСЊ РёС… РїРѕ СЃРјРµС‰РµРЅРёСЋ off РІ b
      */
     public int read (byte [] b, int off, int len) throws IOException
     {
         return mf.read (fd, b, off, len);
     }
     /**
-     * Чтение в b, на сколько места хватит
+     * Р§С‚РµРЅРёРµ РІ b, РЅР° СЃРєРѕР»СЊРєРѕ РјРµСЃС‚Р° С…РІР°С‚РёС‚
      */
     public int read (byte [] b) throws IOException
     {
         return read (b, 0, b.length);
     }
     /**
-     * Здесь mark всегда supported
+     * Р—РґРµСЃСЊ mark РІСЃРµРіРґР° supported
      */
     public boolean markSupported ()
     {
         return true;
     }
     /**
-     * Пометка места чтобы потом вернуться по reset
+     * РџРѕРјРµС‚РєР° РјРµСЃС‚Р° С‡С‚РѕР±С‹ РїРѕС‚РѕРј РІРµСЂРЅСѓС‚СЊСЃСЏ РїРѕ reset
      */
     public void mark (int readlimit)
     {
@@ -64,14 +64,14 @@ public class SOldFileInputStream
         } catch (IOException iox) { lastMark = -1; }
     }
     /**
-     * Возвращение на последнюю метку
+     * Р’РѕР·РІСЂР°С‰РµРЅРёРµ РЅР° РїРѕСЃР»РµРґРЅСЋСЋ РјРµС‚РєСѓ
      */
     public void reset () throws IOException
     {
         mf.seek (fd, lastMark);
     }
     /**
-     * Получить количество доступных байт
+     * РџРѕР»СѓС‡РёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РґРѕСЃС‚СѓРїРЅС‹С… Р±Р°Р№С‚
      */
     public int available () throws IOException
     {
@@ -80,7 +80,7 @@ public class SOldFileInputStream
         return len-pos;
     }
     /**
-     * Пропустить n байт
+     * РџСЂРѕРїСѓСЃС‚РёС‚СЊ n Р±Р°Р№С‚
      */
     public long skip (long n) throws IOException
     {
@@ -89,7 +89,7 @@ public class SOldFileInputStream
         return mf.seek (fd, 0) - oldpos;
     }
     /**
-     * Закрытие потока
+     * Р—Р°РєСЂС‹С‚РёРµ РїРѕС‚РѕРєР°
      */
     public void close () throws IOException
     {

@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import java.util.*;
 import javax.microedition.lcdui.*;
@@ -7,7 +7,7 @@ import com.vmx.*;
 public class cvsFileSelect
        extends gkcCanvas
 {
-    /** Данные списка */
+    /** Р”Р°РЅРЅС‹Рµ СЃРїРёСЃРєР° */
     String title;
     String files [] = new String [0];
     int types [] = new int [0];
@@ -15,36 +15,36 @@ public class cvsFileSelect
     boolean readonly [] = new boolean [0];
     boolean exact [] = new boolean [0];
     int scrStart, scrSel, scrLen;
-    /** Панели */
+    /** РџР°РЅРµР»Рё */
     String panels [] = new String [10];
     String pansel [] = new String [10];
     int curPanel = 0;
-    /** Вспомогательные данные */
+    /** Р’СЃРїРѕРјРѕРіР°С‚РµР»СЊРЅС‹Рµ РґР°РЅРЅС‹Рµ */
     String oldpath, oldfile;
     int w, h, allh, clntop, fileH;
-    boolean fsmode; // полноэкранный режим
+    boolean fsmode; // РїРѕР»РЅРѕСЌРєСЂР°РЅРЅС‹Р№ СЂРµР¶РёРј
     Font mf, mfro;
-    FontWidthCache fc, fcro; // кэши ширины шрифтов %)
-    boolean lskp = false, rskp = false, firep = false; // для мигания
+    FontWidthCache fc, fcro; // РєСЌС€Рё С€РёСЂРёРЅС‹ С€СЂРёС„С‚РѕРІ %)
+    boolean lskp = false, rskp = false, firep = false; // РґР»СЏ РјРёРіР°РЅРёСЏ
     boolean markMode = false;
     protected Image offscreen;
     /**
-     * Запуск рескана каталога через cvsWait
+     * Р—Р°РїСѓСЃРє СЂРµСЃРєР°РЅР° РєР°С‚Р°Р»РѕРіР° С‡РµСЂРµР· cvsWait
      */
     public void showWait ()
     {
         cvsWait.start().back = options.noEffects ? null : paintToImage();
     }
     /**
-     * Запуск рескана каталога через cvsWait, после рескана надо выбрать
-     * файл selectAfter
+     * Р—Р°РїСѓСЃРє СЂРµСЃРєР°РЅР° РєР°С‚Р°Р»РѕРіР° С‡РµСЂРµР· cvsWait, РїРѕСЃР»Рµ СЂРµСЃРєР°РЅР° РЅР°РґРѕ РІС‹Р±СЂР°С‚СЊ
+     * С„Р°Р№Р» selectAfter
      */
     public void showWait (String selectAfter)
     {
         cvsWait.start(selectAfter).back = options.noEffects ? null : paintToImage();
     }
     /**
-     * Показ буфера обмена
+     * РџРѕРєР°Р· Р±СѓС„РµСЂР° РѕР±РјРµРЅР°
      */
     public void showBuffer ()
     {
@@ -54,7 +54,7 @@ public class cvsFileSelect
         showWait ();
     }
     /**
-     * Переключение между панелями
+     * РџРµСЂРµРєР»СЋС‡РµРЅРёРµ РјРµР¶РґСѓ РїР°РЅРµР»СЏРјРё
      */
     public void changePanel (int to)
     {
@@ -68,7 +68,7 @@ public class cvsFileSelect
         }
     }
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public cvsFileSelect ()
     {
@@ -92,8 +92,8 @@ public class cvsFileSelect
         initFSMode (false);
     }
     /**
-     * Функция обновления списка - по возможности после обновления
-     * выберется файл/папка/диск selectAfter
+     * Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃРїРёСЃРєР° - РїРѕ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РїРѕСЃР»Рµ РѕР±РЅРѕРІР»РµРЅРёСЏ
+     * РІС‹Р±РµСЂРµС‚СЃСЏ С„Р°Р№Р»/РїР°РїРєР°/РґРёСЃРє selectAfter
      */
     public void list (String selectAfter) throws Exception
     {
@@ -109,7 +109,7 @@ public class cvsFileSelect
         lskp = rskp = firep = false;
         select (scrSel);
     }
-    /** Удаление из списка файла #x */
+    /** РЈРґР°Р»РµРЅРёРµ РёР· СЃРїРёСЃРєР° С„Р°Р№Р»Р° #x */
     public void delete (int x)
     {
         if (x < 1 || x >= files.length)
@@ -139,7 +139,7 @@ public class cvsFileSelect
         }
         select (scrSel);
     }
-    /** Функция обновления списка дисков */
+    /** Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃРїРёСЃРєР° РґРёСЃРєРѕРІ */
     public void listDrives (String selectAfter) throws Exception
     {
         String [] files1 = filesystem.listRoots ();
@@ -168,7 +168,7 @@ public class cvsFileSelect
                 types [i] = images.iMMC;
             if (files [i].equals (selectAfter))
                 scrSel = i;
-            // Добавляем название
+            // Р”РѕР±Р°РІР»СЏРµРј РЅР°Р·РІР°РЅРёРµ
             if (files [i].equals ("0:/"))
                 files [i] += " (Data)";
             else if (files [i].equals ("1:/") || files[i].equals ("b:/"))
@@ -179,7 +179,7 @@ public class cvsFileSelect
                 files [i] += " (MMC)";
         }
     }
-    /** Функция обновления списка файлов */
+    /** Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃРїРёСЃРєР° С„Р°Р№Р»РѕРІ */
     public void listFiles (String selectAfter) throws Exception
     {
         String [] files1 = filesystem.list (main.currentPath, options.showHidden);
@@ -213,7 +213,7 @@ public class cvsFileSelect
                 scrSel = i;
         }
     }
-    /** Функция обновления списка "Избранное" */
+    /** Р¤СѓРЅРєС†РёСЏ РѕР±РЅРѕРІР»РµРЅРёСЏ СЃРїРёСЃРєР° "РР·Р±СЂР°РЅРЅРѕРµ" */
     public void listFavorites (String selectAfter)
     {
         String [] files1 = options.getFavorites ();
@@ -267,7 +267,7 @@ public class cvsFileSelect
         }
         repaint ();
     }
-    /** Обновить тип файла #i */
+    /** РћР±РЅРѕРІРёС‚СЊ С‚РёРї С„Р°Р№Р»Р° #i */
     public void updateFileType (int i)
     {
         if (i < 1 || i >= files.length ||
@@ -291,7 +291,7 @@ public class cvsFileSelect
         }
     }
     /**
-     * Инициализация режима выделения
+     * РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЂРµР¶РёРјР° РІС‹РґРµР»РµРЅРёСЏ
      */
     public void startMarkMode ()
     {
@@ -300,7 +300,7 @@ public class cvsFileSelect
         markMode = true;
     }
     /**
-     * Пометить выбранный
+     * РџРѕРјРµС‚РёС‚СЊ РІС‹Р±СЂР°РЅРЅС‹Р№
      */
     public void markSelected ()
     {
@@ -314,7 +314,7 @@ public class cvsFileSelect
         }
     }
     /**
-     * Пометить все
+     * РџРѕРјРµС‚РёС‚СЊ РІСЃРµ
      */
     public void markAll ()
     {
@@ -328,7 +328,7 @@ public class cvsFileSelect
         }
     }
     /**
-     * Сбросить все отметки
+     * РЎР±СЂРѕСЃРёС‚СЊ РІСЃРµ РѕС‚РјРµС‚РєРё
      */
     public void demarkAll ()
     {
@@ -341,8 +341,8 @@ public class cvsFileSelect
         }
     }
     /**
-     * Перемещение по дереву каталогов вверх, переключение на меню
-     * выбора дисков или Избранное, или выход из программы наффик
+     * РџРµСЂРµРјРµС‰РµРЅРёРµ РїРѕ РґРµСЂРµРІСѓ РєР°С‚Р°Р»РѕРіРѕРІ РІРІРµСЂС…, РїРµСЂРµРєР»СЋС‡РµРЅРёРµ РЅР° РјРµРЅСЋ
+     * РІС‹Р±РѕСЂР° РґРёСЃРєРѕРІ РёР»Рё РР·Р±СЂР°РЅРЅРѕРµ, РёР»Рё РІС‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹ РЅР°С„С„РёРє
      */
     public void upDir ()
     {
@@ -387,7 +387,7 @@ public class cvsFileSelect
         showWait (str);
     }
     /**
-     * Выбор файла/папки, заданного main.currentPath и main.currentFile
+     * Р’С‹Р±РѕСЂ С„Р°Р№Р»Р°/РїР°РїРєРё, Р·Р°РґР°РЅРЅРѕРіРѕ main.currentPath Рё main.currentFile
      */
     public void selectFile ()
     {
@@ -401,7 +401,7 @@ public class cvsFileSelect
         }
         if (!main.currentFile.equals (".."))
         {
-            // если выбранный файл директория то входим в нее
+            // РµСЃР»Рё РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р» РґРёСЂРµРєС‚РѕСЂРёСЏ С‚Рѕ РІС…РѕРґРёРј РІ РЅРµРµ
             if (main.currentFile.charAt (main.currentFile.length()-1) == '/')
             {
                 if (main.currentPath == null || "fav:/".equals (main.currentPath) ||
@@ -410,15 +410,15 @@ public class cvsFileSelect
                 main.currentPath = main.currentPath + main.currentFile;
                 showWait ();
             }
-            // если не вложенный ZIP-файл - входим в него
+            // РµСЃР»Рё РЅРµ РІР»РѕР¶РµРЅРЅС‹Р№ ZIP-С„Р°Р№Р» - РІС…РѕРґРёРј РІ РЅРµРіРѕ
             else if (filesystem.divideZipName (main.currentPath) < 0 &&
                      filesystem.fileType (main.currentFile) == filesystem.TYPE_ZIP)
             {
                 main.currentPath = main.currentPath + main.currentFile + "/";
                 showWait ();
             }
-            // Если мы уже внутри ZIP-файла, то открываем только текст и
-            // изображения (без масштабирования)
+            // Р•СЃР»Рё РјС‹ СѓР¶Рµ РІРЅСѓС‚СЂРё ZIP-С„Р°Р№Р»Р°, С‚Рѕ РѕС‚РєСЂС‹РІР°РµРј С‚РѕР»СЊРєРѕ С‚РµРєСЃС‚ Рё
+            // РёР·РѕР±СЂР°Р¶РµРЅРёСЏ (Р±РµР· РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёСЏ)
             else
             {
                 String fileName = main.currentPath + main.currentFile;
@@ -440,33 +440,33 @@ public class cvsFileSelect
                             break;
                     }
                 }
-                else // файл
+                else // С„Р°Р№Р»
                 {
                     switch (type)
                     {
-                        case filesystem.TYPE_SOUND: // мелодия
+                        case filesystem.TYPE_SOUND: // РјРµР»РѕРґРёСЏ
                             main.dsp.setCurrent (main.player);
                             main.player.playSound (fileName, this);
                             break;
-                        case filesystem.TYPE_PICTURE: // картинка
+                        case filesystem.TYPE_PICTURE: // РєР°СЂС‚РёРЅРєР°
                             main.dsp.setCurrent (main.imageview);
                             main.imageview.displayImage (fileName, this);
                             break;
-                        case filesystem.TYPE_VIDEO: // видео
+                        case filesystem.TYPE_VIDEO: // РІРёРґРµРѕ
                             main.dsp.setCurrent (main.videoplayer);
                             main.videoplayer.playVideo (fileName, this);
                             break;
-                        case filesystem.TYPE_TEXT: // текст
+                        case filesystem.TYPE_TEXT: // С‚РµРєСЃС‚
                             main.dsp.setCurrent (main.textEditor);
                             main.textEditor.openFile (fileName);
                             break;
                         case filesystem.TYPE_TMO: // TMO
-                            if (filesystem.isReadOnly (fileName)) // проверка на readonly
+                            if (filesystem.isReadOnly (fileName)) // РїСЂРѕРІРµСЂРєР° РЅР° readonly
                                 main.dsp.setCurrent (new tbTmoEdit (fileName, false, true, this));
                             else
                                 main.dsp.setCurrent (new tbTmoEdit (fileName, false, false, this));
                             break;
-                        default: // всё остальное
+                        default: // РІСЃС‘ РѕСЃС‚Р°Р»СЊРЅРѕРµ
                             if (options.openNotSupported)
                             {
                                 main.dsp.setCurrent (main.textEditor);
@@ -486,11 +486,11 @@ public class cvsFileSelect
                 }
             }
         }
-        else // если выбрано .. или Назад переходим по папке вверх
+        else // РµСЃР»Рё РІС‹Р±СЂР°РЅРѕ .. РёР»Рё РќР°Р·Р°Рґ РїРµСЂРµС…РѕРґРёРј РїРѕ РїР°РїРєРµ РІРІРµСЂС…
             upDir ();
     }
     /**
-     * Показать меню
+     * РџРѕРєР°Р·Р°С‚СЊ РјРµРЅСЋ
      */
     public void showMenu ()
     {
@@ -516,7 +516,7 @@ public class cvsFileSelect
                 }
             }
         }
-        else// if (!Locale.Strings[Locale.FAVOURITE].equals (main.currentFile)) // выбран диск
+        else// if (!Locale.Strings[Locale.FAVOURITE].equals (main.currentFile)) // РІС‹Р±СЂР°РЅ РґРёСЃРє
             menuType = cvsMenu.MENU_DISK_SELECTED;
         //else menuType = cvsMenu.MENU_FAVORITES_SELECTED;
         main.menu.back = paintToImage ();
@@ -525,7 +525,7 @@ public class cvsFileSelect
         main.dsp.setCurrent (main.menu);
     }
     /**
-     * Нарисовать текущее содержимое в картинку
+     * РќР°СЂРёСЃРѕРІР°С‚СЊ С‚РµРєСѓС‰РµРµ СЃРѕРґРµСЂР¶РёРјРѕРµ РІ РєР°СЂС‚РёРЅРєСѓ
      */
     public Image paintToImage ()
     {
@@ -533,7 +533,7 @@ public class cvsFileSelect
         return offscreen;
     }
     /**
-     * Выбрать файл #index
+     * Р’С‹Р±СЂР°С‚СЊ С„Р°Р№Р» #index
      */
     public void select (int index)
     {
@@ -548,7 +548,7 @@ public class cvsFileSelect
         repaint ();
     }
     /**
-     * Вернуть индекс следующего файла типа type
+     * Р’РµСЂРЅСѓС‚СЊ РёРЅРґРµРєСЃ СЃР»РµРґСѓСЋС‰РµРіРѕ С„Р°Р№Р»Р° С‚РёРїР° type
      */
     int getNextOfType (int current, int type)
     {
@@ -565,7 +565,7 @@ public class cvsFileSelect
         return current;
     }
     /**
-     * Вернуть индекс предыдущего файла типа type
+     * Р’РµСЂРЅСѓС‚СЊ РёРЅРґРµРєСЃ РїСЂРµРґС‹РґСѓС‰РµРіРѕ С„Р°Р№Р»Р° С‚РёРїР° type
      */
     int getPrevOfType (int current, int type)
     {
@@ -582,8 +582,8 @@ public class cvsFileSelect
         return current;
     }
     /**
-     * Функция переключения между собственными полноэкранным
-     * и неполноэкранным режимами
+     * Р¤СѓРЅРєС†РёСЏ РїРµСЂРµРєР»СЋС‡РµРЅРёСЏ РјРµР¶РґСѓ СЃРѕР±СЃС‚РІРµРЅРЅС‹РјРё РїРѕР»РЅРѕСЌРєСЂР°РЅРЅС‹Рј
+     * Рё РЅРµРїРѕР»РЅРѕСЌРєСЂР°РЅРЅС‹Рј СЂРµР¶РёРјР°РјРё
      */
     public void initFSMode (boolean mode)
     {
@@ -602,7 +602,7 @@ public class cvsFileSelect
         }
     }
     /**
-     * Функция отрисовки
+     * Р¤СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё
      */
     protected void paint (Graphics g)
     {
@@ -611,7 +611,7 @@ public class cvsFileSelect
         g.setClip (0, 0, w, allh);
         g.fillRect (0, 0, w, allh);
         boolean inBuffer = "buf:/".equals (main.currentPath);
-        if (!fsmode) // рисуем интерфейс
+        if (!fsmode) // СЂРёСЃСѓРµРј РёРЅС‚РµСЂС„РµР№СЃ
         {
             g.setColor (Colors.fore);
             g.drawLine (0, 18, w, 18);
@@ -630,15 +630,15 @@ public class cvsFileSelect
             else if (title.equals (Locale.Strings[Locale.BUFFER]))
                 icon = images.iClipboard;
             images.drawIcon (g, icon, 1, 1);
-            // заглавие
+            // Р·Р°РіР»Р°РІРёРµ
             g.drawString (title, 19, 9-g.getFont().getHeight ()/2, Graphics.LEFT|Graphics.TOP);
-            // номер панели
+            // РЅРѕРјРµСЂ РїР°РЅРµР»Рё
             String cp = String.valueOf (curPanel+1);
             g.setColor (Colors.back);
             g.fillRect (w-g.getFont().stringWidth(cp), 0, w, 17);
             g.setColor (Colors.fore1);
             g.drawString (cp, w, 9-g.getFont().getHeight()/2, Graphics.RIGHT|Graphics.TOP);
-            // подписи к LSK, RSK и джойстику
+            // РїРѕРґРїРёСЃРё Рє LSK, RSK Рё РґР¶РѕР№СЃС‚РёРєСѓ
             int lskstr = keyConfig.keyConfig[keyConfig.CONF_LSK],
                 rskstr = keyConfig.keyConfig[keyConfig.CONF_RSK];
             if (main.currentPath == null || main.currentPath.length () == 0)
@@ -724,7 +724,7 @@ public class cvsFileSelect
         g.drawLine (w-3, sbstart, w-3, sbstart+sbsize);
     }
     /**
-     * Обработчик нажатий клавиш
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёР№ РєР»Р°РІРёС€
      */
     public void keyPressed (int keyCode)
     {
@@ -811,13 +811,13 @@ public class cvsFileSelect
         }
     }
     /**
-     * Выделение по нажатию кнопы "огонь", т.е джойстика
+     * Р’С‹РґРµР»РµРЅРёРµ РїРѕ РЅР°Р¶Р°С‚РёСЋ РєРЅРѕРїС‹ "РѕРіРѕРЅСЊ", С‚.Рµ РґР¶РѕР№СЃС‚РёРєР°
      */
     public void fireSelectAction ()
     {
         if (!markMode)
             selectFile ();
-        else // если идёт процесс выделения
+        else // РµСЃР»Рё РёРґС‘С‚ РїСЂРѕС†РµСЃСЃ РІС‹РґРµР»РµРЅРёСЏ
         {
             markSelected ();
             repaint ();
@@ -825,7 +825,7 @@ public class cvsFileSelect
     }
     public String prevpath;
     /**
-     * Обработчик отпусканий клавиш
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РѕС‚РїСѓСЃРєР°РЅРёР№ РєР»Р°РІРёС€
      */
     public void keyReleased (int keyCode)
     {
@@ -854,7 +854,7 @@ public class cvsFileSelect
         }
     }
     /**
-     * Обработчик повторений клавиш
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РїРѕРІС‚РѕСЂРµРЅРёР№ РєР»Р°РІРёС€
      */
     int starHeld = 0;
     public void keyRepeated (int keyCode)
@@ -873,7 +873,7 @@ public class cvsFileSelect
         }
     }
     /**
-     *  Получить последние n символов (для титула)
+     *  РџРѕР»СѓС‡РёС‚СЊ РїРѕСЃР»РµРґРЅРёРµ n СЃРёРјРІРѕР»РѕРІ (РґР»СЏ С‚РёС‚СѓР»Р°)
      *
      * @param path String
      * @param n int

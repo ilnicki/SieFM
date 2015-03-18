@@ -1,7 +1,7 @@
 /*
  * BufDataOutputStream.java
  *
- * Created on 24 Октябрь 2005 г., 14:26
+ * Created on 24 РћРєС‚СЏР±СЂСЊ 2005 Рі., 14:26
  *
  * To change this template, choose Tools | Template Manager
  * and open the template in the editor.
@@ -14,7 +14,7 @@ import javax.microedition.io.*;
 
 /**
  *
- * @author Виталий
+ * @author Р’РёС‚Р°Р»РёР№
  */
 public class BufDataOutputStream implements DataOutput
 {

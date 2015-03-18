@@ -4,7 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 public class StringEncoder
 {
-    /** Òàáëèöà êîäèðîâêè "windows-1251" */
+    /** Ð¢Ð°Ð±Ð»Ð¸Ñ†Ð° ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐ¸ "windows-1251" */
     protected static char cp1251 [] =
     {
         '\u0410', '\u0411', '\u0412', '\u0413', '\u0414', '\u0415', '\u0416',
@@ -18,11 +18,11 @@ public class StringEncoder
         '\u0448', '\u0449', '\u042A', '\u044B', '\u044C', '\u044D', '\u044E',
         '\u044F'
     };
-    /** Êîíñòðóêòîð. Ïóñòîé. */
+    /** ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€. ÐŸÑƒÑÑ‚Ð¾Ð¹. */
     public StringEncoder ()
     {
     }
-    /** Êîäèðîâàòü ñòðîêó s â êîäèðîâêó enc */
+    /** ÐšÐ¾Ð´Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÑ‚Ñ€Ð¾ÐºÑƒ s Ð² ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÑƒ enc */
     public static byte [] encodeString (String s, String enc) throws UnsupportedEncodingException
     {
         byte [] bs;
@@ -43,7 +43,7 @@ public class StringEncoder
         }
         return bs;
     }
-    /** Ïîëó÷èòü äëèíó ñòðîêè s â áàéòàõ â êîäèðîâêå enc */
+    /** ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð´Ð»Ð¸Ð½Ñƒ ÑÑ‚Ñ€Ð¾ÐºÐ¸ s Ð² Ð±Ð°Ð¹Ñ‚Ð°Ñ… Ð² ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐµ enc */
     public static int getEncodedLength (String s, String enc) throws UnsupportedEncodingException
     {
         byte [] bs;
@@ -59,7 +59,7 @@ public class StringEncoder
             throw x;
         }
     }
-    /** Äåêîäèðîâàòü ó÷àñòîê ìàññèâà b äëèíîé len ñî ñìåùåíèÿ off èç êîäèðîâêè enc */
+    /** Ð”ÐµÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑƒÑ‡Ð°ÑÑ‚Ð¾Ðº Ð¼Ð°ÑÑÐ¸Ð²Ð° b Ð´Ð»Ð¸Ð½Ð¾Ð¹ len ÑÐ¾ ÑÐ¼ÐµÑ‰ÐµÐ½Ð¸Ñ off Ð¸Ð· ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐ¸ enc */
     public static String decodeString (byte [] bs, int off, int len, String enc) throws UnsupportedEncodingException
     {
         String s;
@@ -80,35 +80,35 @@ public class StringEncoder
         }
         return s;
     }
-    /** Äåêîäèðîâàòü ñèìâîë â windows-1251 */
+    /** Ð”ÐµÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð² windows-1251 */
     public static char decodeCharCP1251 (byte b)
     {
         int ich = b & 0xff;
-        if (ich == 0xb8) // ¸
+        if (ich == 0xb8) // Ñ‘
             return 0x0451;
-        else if (ich == 0xa8) // ¨
+        else if (ich == 0xa8) // Ð
             return 0x0401;
         else if (ich >= 0xc0)
             return cp1251 [ich-192];
         return (char)ich;
     }
-    /** Êîäèðîâàòü ñèìâîë â windows-1251 */
+    /** ÐšÐ¾Ð´Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ ÑÐ¸Ð¼Ð²Ð¾Ð» Ð² windows-1251 */
     public static byte encodeCharCP1251 (char ch)
     {
         if (ch > 0 && ch < 128)
             return (byte) ch;
         else if (ch == 0x401)
-            return -88; // ¨
+            return -88; // Ð
         else if (ch == 0x404)
-            return -86; // ª
+            return -86; // Ð„
         else if (ch == 0x407)
-            return -81; // ¯
+            return -81; // Ð‡
         else if (ch == 0x451)
-            return -72; // ¸
+            return -72; // Ñ‘
         else if (ch == 0x454)
-            return -70; // º
+            return -70; // Ñ”
         else if (ch == 0x457)
-            return -65; // ¿
+            return -65; // Ñ—
         return (byte)((byte)(ch) + 176);
     }
 }

@@ -6,3 +6,4 @@
 *.obj
 manifest.mf
 nbproject/
+libs/

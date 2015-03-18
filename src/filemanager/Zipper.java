@@ -8,7 +8,7 @@ import javax.microedition.io.Connector;
 import com.siemens.mp.io.file.FileConnection;
 
 /**
- * Класс-"оболочка" для java.util.zip. Для записи файлов использует
+ * РљР»Р°СЃСЃ-"РѕР±РѕР»РѕС‡РєР°" РґР»СЏ java.util.zip. Р”Р»СЏ Р·Р°РїРёСЃРё С„Р°Р№Р»РѕРІ РёСЃРїРѕР»СЊР·СѓРµС‚
  * com.siemens.mp.io.file.FileConnection.
  */
 public class Zipper implements Runnable
@@ -20,9 +20,9 @@ public class Zipper implements Runnable
     public String error;
     public boolean interrupt;
     /**
-     * Архивирует файлы/папки, заданные вектором files, методом Deflate и
-     * уровнем сжатия comprLevel в новый ZIP-файл filename. Для индикации
-     * прогресса операции используется callback.
+     * РђСЂС…РёРІРёСЂСѓРµС‚ С„Р°Р№Р»С‹/РїР°РїРєРё, Р·Р°РґР°РЅРЅС‹Рµ РІРµРєС‚РѕСЂРѕРј files, РјРµС‚РѕРґРѕРј Deflate Рё
+     * СѓСЂРѕРІРЅРµРј СЃР¶Р°С‚РёСЏ comprLevel РІ РЅРѕРІС‹Р№ ZIP-С„Р°Р№Р» filename. Р”Р»СЏ РёРЅРґРёРєР°С†РёРё
+     * РїСЂРѕРіСЂРµСЃСЃР° РѕРїРµСЂР°С†РёРё РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ callback.
      */
     public Zipper (String fn, int level, Vector filelist, ProgressCallback cb)
     {
@@ -34,8 +34,8 @@ public class Zipper implements Runnable
         interrupt = false;
     }
     /**
-     * Добавляет файл/папку file к открытому ZipOutputStream-у zos
-     * во внутренний путь path
+     * Р”РѕР±Р°РІР»СЏРµС‚ С„Р°Р№Р»/РїР°РїРєСѓ file Рє РѕС‚РєСЂС‹С‚РѕРјСѓ ZipOutputStream-Сѓ zos
+     * РІРѕ РІРЅСѓС‚СЂРµРЅРЅРёР№ РїСѓС‚СЊ path
      */
     protected void zipDirOrFile (ZipOutputStream zos, String file,
         String path, ProgressCallback callback) throws IOException, ZipException
@@ -47,8 +47,8 @@ public class Zipper implements Runnable
         else zip_a_file (zos, file, path, callback);
     }
     /**
-     * Добавляет файл file к открытому ZipOutputStream-у zos во
-     * внутренний путь path
+     * Р”РѕР±Р°РІР»СЏРµС‚ С„Р°Р№Р» file Рє РѕС‚РєСЂС‹С‚РѕРјСѓ ZipOutputStream-Сѓ zos РІРѕ
+     * РІРЅСѓС‚СЂРµРЅРЅРёР№ РїСѓС‚СЊ path
      */
     protected void zip_a_file (ZipOutputStream zos, String file,
         String path, ProgressCallback callback) throws IOException, ZipException
@@ -71,8 +71,8 @@ public class Zipper implements Runnable
         //fc.close ();
     }
     /**
-     * Добавляет папку dir к открытому ZipOutputStream-у zos во
-     * внутренний путь path
+     * Р”РѕР±Р°РІР»СЏРµС‚ РїР°РїРєСѓ dir Рє РѕС‚РєСЂС‹С‚РѕРјСѓ ZipOutputStream-Сѓ zos РІРѕ
+     * РІРЅСѓС‚СЂРµРЅРЅРёР№ РїСѓС‚СЊ path
      */
     protected void zip_a_dir (ZipOutputStream zos, String file,
         String path, ProgressCallback callback) throws IOException, ZipException
@@ -90,7 +90,7 @@ public class Zipper implements Runnable
         fc.close ();
     }
     /**
-     * Функция, осуществляющая собственно создание ZIP-архива
+     * Р¤СѓРЅРєС†РёСЏ, РѕСЃСѓС‰РµСЃС‚РІР»СЏСЋС‰Р°СЏ СЃРѕР±СЃС‚РІРµРЅРЅРѕ СЃРѕР·РґР°РЅРёРµ ZIP-Р°СЂС…РёРІР°
      */
     public void run ()
     {

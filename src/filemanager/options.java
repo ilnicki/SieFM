@@ -6,32 +6,32 @@ import java.util.Vector;
 
 public class options
 {
-    // Названия хранилищ RMS
+    // РќР°Р·РІР°РЅРёСЏ С…СЂР°РЅРёР»РёС‰ RMS
     private static final String optionsName = "SieFM";
     private static final String favoritesName = "SieFM_favorites";
-    // Хранилище для настроек
+    // РҐСЂР°РЅРёР»РёС‰Рµ РґР»СЏ РЅР°СЃС‚СЂРѕРµРє
     private static RecordStore optionsStore;
     private static RecordStore favoritesStore;
-    // Настройки
-    public static boolean firstTime = true; // первый раз запущен
-    public static boolean showHidden = false; // показывать скрытые
-    public static int volume = 100; // громкость аудио плейера
-    public static boolean muted = false; // отключен звук в аудиоплейере?
-    public static boolean quickSplash = false; // быстрая загрузка заставки
-    public static boolean showDisk3 = false; // показывать диск 3:/
-    public static boolean openNotSupported = false; // показывать неподдерживаемые
-    public static boolean noEffects = false; // не показывать окошки "подождите"
+    // РќР°СЃС‚СЂРѕР№РєРё
+    public static boolean firstTime = true; // РїРµСЂРІС‹Р№ СЂР°Р· Р·Р°РїСѓС‰РµРЅ
+    public static boolean showHidden = false; // РїРѕРєР°Р·С‹РІР°С‚СЊ СЃРєСЂС‹С‚С‹Рµ
+    public static int volume = 100; // РіСЂРѕРјРєРѕСЃС‚СЊ Р°СѓРґРёРѕ РїР»РµР№РµСЂР°
+    public static boolean muted = false; // РѕС‚РєР»СЋС‡РµРЅ Р·РІСѓРє РІ Р°СѓРґРёРѕРїР»РµР№РµСЂРµ?
+    public static boolean quickSplash = false; // Р±С‹СЃС‚СЂР°СЏ Р·Р°РіСЂСѓР·РєР° Р·Р°СЃС‚Р°РІРєРё
+    public static boolean showDisk3 = false; // РїРѕРєР°Р·С‹РІР°С‚СЊ РґРёСЃРє 3:/
+    public static boolean openNotSupported = false; // РїРѕРєР°Р·С‹РІР°С‚СЊ РЅРµРїРѕРґРґРµСЂР¶РёРІР°РµРјС‹Рµ
+    public static boolean noEffects = false; // РЅРµ РїРѕРєР°Р·С‹РІР°С‚СЊ РѕРєРѕС€РєРё "РїРѕРґРѕР¶РґРёС‚Рµ"
     public static String language = "en";
-    // Избранное
+    // РР·Р±СЂР°РЅРЅРѕРµ
     protected static Vector favorites = new Vector ();
     /**
-     * Пустой конструктор
+     * РџСѓСЃС‚РѕР№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public options ()
     {
     }
     /**
-     * Сохранение настроек
+     * РЎРѕС…СЂР°РЅРµРЅРёРµ РЅР°СЃС‚СЂРѕРµРє
      */
     public static void saveOptions ()
     {
@@ -60,7 +60,7 @@ public class options
             }
             catch (InvalidRecordIDException ridex)
             {
-                // Запись #1 не существует, создать новую
+                // Р—Р°РїРёСЃСЊ #1 РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚, СЃРѕР·РґР°С‚СЊ РЅРѕРІСѓСЋ
                 try { optionsStore.addRecord (options, 0, options.length); }
                 catch (RecordStoreException ex)
                 {
@@ -86,7 +86,7 @@ public class options
         }
     }
     /**
-     * Восстановить настройки
+     * Р’РѕСЃСЃС‚Р°РЅРѕРІРёС‚СЊ РЅР°СЃС‚СЂРѕР№РєРё
      */
     public static void restoreOptions ()
     {
@@ -104,14 +104,14 @@ public class options
             try
             {
                 DataInputStream dis = new DataInputStream (new ByteArrayInputStream (optionsStore.getRecord (1)));
-                firstTime = dis.readBoolean (); // первый раз запущен
-                showHidden = dis.readBoolean (); // показывать скрытые
-                volume = dis.readByte (); if (volume < 0) volume = -volume; // громкость аудио плейера
-                muted = dis.readBoolean (); // отключен звук в аудиоплейере?
-                quickSplash = dis.readBoolean (); // быстрая загрузка заставки
-                showDisk3 = dis.readBoolean (); // показывать диск 3:/
-                openNotSupported = dis.readBoolean (); // показывать неподдерживаемые
-                noEffects = dis.readBoolean (); // без "подождите"
+                firstTime = dis.readBoolean (); // РїРµСЂРІС‹Р№ СЂР°Р· Р·Р°РїСѓС‰РµРЅ
+                showHidden = dis.readBoolean (); // РїРѕРєР°Р·С‹РІР°С‚СЊ СЃРєСЂС‹С‚С‹Рµ
+                volume = dis.readByte (); if (volume < 0) volume = -volume; // РіСЂРѕРјРєРѕСЃС‚СЊ Р°СѓРґРёРѕ РїР»РµР№РµСЂР°
+                muted = dis.readBoolean (); // РѕС‚РєР»СЋС‡РµРЅ Р·РІСѓРє РІ Р°СѓРґРёРѕРїР»РµР№РµСЂРµ?
+                quickSplash = dis.readBoolean (); // Р±С‹СЃС‚СЂР°СЏ Р·Р°РіСЂСѓР·РєР° Р·Р°СЃС‚Р°РІРєРё
+                showDisk3 = dis.readBoolean (); // РїРѕРєР°Р·С‹РІР°С‚СЊ РґРёСЃРє 3:/
+                openNotSupported = dis.readBoolean (); // РїРѕРєР°Р·С‹РІР°С‚СЊ РЅРµРїРѕРґРґРµСЂР¶РёРІР°РµРјС‹Рµ
+                noEffects = dis.readBoolean (); // Р±РµР· "РїРѕРґРѕР¶РґРёС‚Рµ"
                 language = dis.readUTF ();
                 for (int i = 0; i < keyConfig.keyConfig.length; i++)
                     keyConfig.keyConfig[i] = dis.readInt ();
@@ -120,7 +120,7 @@ public class options
         }
     }
     /**
-     * Сохранение избранного
+     * РЎРѕС…СЂР°РЅРµРЅРёРµ РёР·Р±СЂР°РЅРЅРѕРіРѕ
      */
     public static void saveFavorites ()
     {
@@ -147,7 +147,7 @@ public class options
         catch (Exception e) {}
     }
     /**
-     * Получение массива строк - избранного
+     * РџРѕР»СѓС‡РµРЅРёРµ РјР°СЃСЃРёРІР° СЃС‚СЂРѕРє - РёР·Р±СЂР°РЅРЅРѕРіРѕ
      */
     public static String[] getFavorites ()
     {
@@ -156,21 +156,21 @@ public class options
         return fav;
     }
     /**
-     * Добавление в избранное
+     * Р”РѕР±Р°РІР»РµРЅРёРµ РІ РёР·Р±СЂР°РЅРЅРѕРµ
      */
     public static void addFavorite (String nf)
     {
         favorites.addElement (nf);
     }
     /**
-     * Удаление из избранного
+     * РЈРґР°Р»РµРЅРёРµ РёР· РёР·Р±СЂР°РЅРЅРѕРіРѕ
      */
     public static void deleteFavorite (String ff)
     {
         favorites.removeElement (ff);
     }
     /**
-     * Чтение строк из хранилища
+     * Р§С‚РµРЅРёРµ СЃС‚СЂРѕРє РёР· С…СЂР°РЅРёР»РёС‰Р°
      */
     public static void loadFavorites ()
     {

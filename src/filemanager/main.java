@@ -46,13 +46,13 @@ public class main extends MIDlet
             options.restoreOptions ();
             if (!options.firstTime)
                 lang = options.language;
-            // Показываем заставку
+            // РџРѕРєР°Р·С‹РІР°РµРј Р·Р°СЃС‚Р°РІРєСѓ
             dsp = Display.getDisplay (this);
             loadStage = 1;
             options.loadFavorites ();
             if (!options.quickSplash)
                 dsp.setCurrent (splashScreen = new cvsSplash ());
-            // Загружаем список языков и язык
+            // Р—Р°РіСЂСѓР¶Р°РµРј СЃРїРёСЃРѕРє СЏР·С‹РєРѕРІ Рё СЏР·С‹Рє
             if (!Locale.readLocaleList ())
                 throw new MIDletStateChangeException ("Fatal error: /lang/lang.ini not found");
             try 
@@ -73,7 +73,7 @@ public class main extends MIDlet
                 }
             }
             loadStage++;
-            // Загружаем картинки...
+            // Р—Р°РіСЂСѓР¶Р°РµРј РєР°СЂС‚РёРЅРєРё...
             try
             {
                 img = new images ();
@@ -105,7 +105,7 @@ public class main extends MIDlet
             diskinfo = new diskInfo ();
             alreadyStarted = true;
             loadStage++;
-            loadStage = 0x100; // 0x100 = подождать ещё
+            loadStage = 0x100; // 0x100 = РїРѕРґРѕР¶РґР°С‚СЊ РµС‰С‘
             if (options.quickSplash)
             {
                 splashScreen = null;
@@ -114,7 +114,7 @@ public class main extends MIDlet
         }
     }
     /**
-     * Запуск интерфейса
+     * Р—Р°РїСѓСЃРє РёРЅС‚РµСЂС„РµР№СЃР°
      */
     public static void startUI ()
     {
@@ -123,12 +123,12 @@ public class main extends MIDlet
         else
             wait.start ();
     }
-    /** Приостановить выполнение приложения - вызывается JRE */
+    /** РџСЂРёРѕСЃС‚Р°РЅРѕРІРёС‚СЊ РІС‹РїРѕР»РЅРµРЅРёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ - РІС‹Р·С‹РІР°РµС‚СЃСЏ JRE */
     public void pauseApp ()
     {
         notifyPaused ();
     }
-    /** Уничтожить приложение - вызывается JRE */
+    /** РЈРЅРёС‡С‚РѕР¶РёС‚СЊ РїСЂРёР»РѕР¶РµРЅРёРµ - РІС‹Р·С‹РІР°РµС‚СЃСЏ JRE */
     public void destroyApp (boolean unconditional)
     {
         options.saveOptions ();

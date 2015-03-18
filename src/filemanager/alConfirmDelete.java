@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 
@@ -27,7 +27,7 @@ public class alConfirmDelete extends Alert implements CommandListener
     {
         if (command == cmdYes)
         {
-            if (filesystem.isDir (fn)) // это папка
+            if (filesystem.isDir (fn)) // СЌС‚Рѕ РїР°РїРєР°
             {
                 //System.out.println (fn);
                 if (tryrec)
@@ -40,14 +40,14 @@ public class alConfirmDelete extends Alert implements CommandListener
                     this.removeCommand (cmdNo);
                     main.dsp.setCurrent (this, parent);
                 }
-                if (filesystem.deleteFile (fn, tryrec)) // папка удаленa успешно?
+                if (filesystem.deleteFile (fn, tryrec)) // РїР°РїРєР° СѓРґР°Р»РµРЅa СѓСЃРїРµС€РЅРѕ?
                 {
                     main.FileSelect.delete (main.FileSelect.scrSel);
                     Alert al = new Alert ("", Locale.Strings[Locale.FOLDER_DELETED], null, AlertType.INFO);
                     al.setTimeout (1500);
                     main.dsp.setCurrent (al, parent);
                 }
-                else if (filesystem.isReadOnly (fn)) // потому что ReadOnly
+                else if (filesystem.isReadOnly (fn)) // РїРѕС‚РѕРјСѓ С‡С‚Рѕ ReadOnly
                 {
                     Alert al = new Alert (Locale.Strings[Locale.ERROR],
                             Locale.Strings[Locale.READ_ONLY],
@@ -56,7 +56,7 @@ public class alConfirmDelete extends Alert implements CommandListener
                     al.setTimeout (3000);
                     main.dsp.setCurrent (al, parent);
                 }
-                else // папка не пуста
+                else // РїР°РїРєР° РЅРµ РїСѓСЃС‚Р°
                 { 
                     this.setString (Locale.Strings[Locale.FOLDER_NOT_EMPTY]);
                     this.setTimeout (3000);
@@ -64,9 +64,9 @@ public class alConfirmDelete extends Alert implements CommandListener
                     main.dsp.setCurrent (this, parent);
                 }
             }
-            else // это файл
+            else // СЌС‚Рѕ С„Р°Р№Р»
             {
-                if (filesystem.isReadOnly (fn)) // потому что ReadOnly
+                if (filesystem.isReadOnly (fn)) // РїРѕС‚РѕРјСѓ С‡С‚Рѕ ReadOnly
                 {
                     Alert al = new Alert (Locale.Strings[Locale.ERROR],
                             Locale.Strings[Locale.READ_ONLY],
@@ -74,7 +74,7 @@ public class alConfirmDelete extends Alert implements CommandListener
                     al.setTimeout (3000);
                     main.dsp.setCurrent (al, parent);
                 }
-                else if (filesystem.deleteFile (fn, false)) // файл удален успешно?
+                else if (filesystem.deleteFile (fn, false)) // С„Р°Р№Р» СѓРґР°Р»РµРЅ СѓСЃРїРµС€РЅРѕ?
                 {
                     main.FileSelect.delete (main.FileSelect.scrSel);
                     Alert al = new Alert ("",
@@ -83,7 +83,7 @@ public class alConfirmDelete extends Alert implements CommandListener
                     al.setTimeout (1500);
                     main.dsp.setCurrent (al, parent);
                 }
-                else // файл не удален неивестно почему
+                else // С„Р°Р№Р» РЅРµ СѓРґР°Р»РµРЅ РЅРµРёРІРµСЃС‚РЅРѕ РїРѕС‡РµРјСѓ
                 {
                     Alert al = new Alert (Locale.Strings[Locale.ERROR],
                             Locale.Strings[Locale.FILE_NOT_DELETED],

@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 import javax.microedition.lcdui.game.Sprite;
@@ -18,7 +18,7 @@ class waitTimerTask extends TimerTask
     }
 };
 
-/** Пишем "Пожалуйста, ждите..." и читаем список файлов для FileSelect */
+/** РџРёС€РµРј "РџРѕР¶Р°Р»СѓР№СЃС‚Р°, Р¶РґРёС‚Рµ..." Рё С‡РёС‚Р°РµРј СЃРїРёСЃРѕРє С„Р°Р№Р»РѕРІ РґР»СЏ FileSelect */
 public class cvsWait extends gkcCanvas implements Runnable
 {
     Thread t;
@@ -28,12 +28,12 @@ public class cvsWait extends gkcCanvas implements Runnable
     String selectAfter;
     public Image back;
     /**
-     * Пустой конструктор
+     * РџСѓСЃС‚РѕР№ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public cvsWait () {}
     /**
-     * start для случая, когда после загрузки списка
-     * файлов надо выбрать первый файл
+     * start РґР»СЏ СЃР»СѓС‡Р°СЏ, РєРѕРіРґР° РїРѕСЃР»Рµ Р·Р°РіСЂСѓР·РєРё СЃРїРёСЃРєР°
+     * С„Р°Р№Р»РѕРІ РЅР°РґРѕ РІС‹Р±СЂР°С‚СЊ РїРµСЂРІС‹Р№ С„Р°Р№Р»
      */
     public static cvsWait start ()
     {
@@ -42,8 +42,8 @@ public class cvsWait extends gkcCanvas implements Runnable
         return main.wait;
     }
     /**
-     * start для случая, когда после загрузки списка
-     * указывается то, какой файл надо выбрать
+     * start РґР»СЏ СЃР»СѓС‡Р°СЏ, РєРѕРіРґР° РїРѕСЃР»Рµ Р·Р°РіСЂСѓР·РєРё СЃРїРёСЃРєР°
+     * СѓРєР°Р·С‹РІР°РµС‚СЃСЏ С‚Рѕ, РєР°РєРѕР№ С„Р°Р№Р» РЅР°РґРѕ РІС‹Р±СЂР°С‚СЊ
      */
     public static cvsWait start (String selectAfter)
     {
@@ -51,7 +51,7 @@ public class cvsWait extends gkcCanvas implements Runnable
         main.wait.init ();
         return main.wait;
     }
-    /** Общая часть конструктора */
+    /** РћР±С‰Р°СЏ С‡Р°СЃС‚СЊ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° */
     public void init ()
     {
         back = null;
@@ -72,7 +72,7 @@ public class cvsWait extends gkcCanvas implements Runnable
         t = new Thread (this);
         t.start ();
     }
-    /** Функция потока */
+    /** Р¤СѓРЅРєС†РёСЏ РїРѕС‚РѕРєР° */
     public void run ()
     {
         String err = null;
@@ -106,7 +106,7 @@ public class cvsWait extends gkcCanvas implements Runnable
                 main.dsp.setCurrent (main.FileSelect);
         }
     }
-    /** Функция отрисовки */
+    /** Р¤СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё */
     protected void paint (Graphics gWait)
     {
         if (back != null)

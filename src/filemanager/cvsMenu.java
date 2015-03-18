@@ -12,17 +12,17 @@ public class cvsMenu
     public MenuListener listen;
     protected int type, w, h;
     protected int sel1, sel2;
-    protected int mw1, mw2, mh1, mh2; // width & height для меню и подменю
-    protected int mx1, mx2, my1, my2; // положение меню и подменю
-    protected Font mf; // шрифт меню
-    protected int mfh; // высота шрифта
-    protected FontWidthCache mfwc; // кэш ширины шрифта %)))
+    protected int mw1, mw2, mh1, mh2; // width & height РґР»СЏ РјРµРЅСЋ Рё РїРѕРґРјРµРЅСЋ
+    protected int mx1, mx2, my1, my2; // РїРѕР»РѕР¶РµРЅРёРµ РјРµРЅСЋ Рё РїРѕРґРјРµРЅСЋ
+    protected Font mf; // С€СЂРёС„С‚ РјРµРЅСЋ
+    protected int mfh; // РІС‹СЃРѕС‚Р° С€СЂРёС„С‚Р°
+    protected FontWidthCache mfwc; // РєСЌС€ С€РёСЂРёРЅС‹ С€СЂРёС„С‚Р° %)))
     public boolean enabled [][];
     public static final int MENU_DISK_SELECTED = 0, MENU_FILE_SELECTED = 1,
             MENU_FOLDER_SELECTED = 2, MENU_DOTDOT_SELECTED = 3,
             MENU_FAVORITES_SELECTED = 4, MENU_INSIDE_ARCHIVE = 5,
             MENU_BUFFER_SELECTED = 6, MENU_SELECT_ACTION = 0x100;
-    /** Конструктор */
+    /** РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ */
     public cvsMenu ()
     {
         listen = null;
@@ -38,7 +38,7 @@ public class cvsMenu
         mf = Font.getFont (Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
         mfh = mf.getHeight ();
         mfwc = FontWidthCache.getCache (mf);
-        // Подсчёт требуемой ширины и высоты меню ...
+        // РџРѕРґСЃС‡С‘С‚ С‚СЂРµР±СѓРµРјРѕР№ С€РёСЂРёРЅС‹ Рё РІС‹СЃРѕС‚С‹ РјРµРЅСЋ ...
         int i, j, tt;
         for (mw1 = 0, i = 0, tt = 0; i < menu.length; i++)
             if ((tt = mfwc.stringWidth (Locale.Strings[menu[i][0]])) > mw1)
@@ -49,7 +49,7 @@ public class cvsMenu
         mx1 = 7;
         mh1 = 2 + 17*menu_length;
         my1 = h-mh1-7;
-        // ... и подменю
+        // ... Рё РїРѕРґРјРµРЅСЋ
         for (mw2 = 0, i = 0, tt = 0; i < menu.length; i++)
             for (j = 0; j < (menu[i].length-1)/2; j++)
                 if ((tt = mfwc.stringWidth (Locale.Strings[menu[i][1+j*2]])) > mw2)
@@ -57,7 +57,7 @@ public class cvsMenu
         mw2 += 21;
         mh2 = -1;
         mx2 = 14;
-        // а также создаём и заполняем enabled
+        // Р° С‚Р°РєР¶Рµ СЃРѕР·РґР°С‘Рј Рё Р·Р°РїРѕР»РЅСЏРµРј enabled
         enabled = new boolean [menu.length][];
         for (i = 0; i < menu.length; i++)
         {
@@ -67,7 +67,7 @@ public class cvsMenu
         }
         listen = new WorkingMenu (this);
     }
-    /** Смена типа меню (затемнение ненужных элементов) */
+    /** РЎРјРµРЅР° С‚РёРїР° РјРµРЅСЋ (Р·Р°С‚РµРјРЅРµРЅРёРµ РЅРµРЅСѓР¶РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ) */
     public void setType (int type)
     {
         this.type = type;
@@ -119,7 +119,7 @@ public class cvsMenu
                     enabled [i][j] = true;
         }
     }
-    /** функция отрисовки */
+    /** С„СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё */
     public void paint (Graphics g)
     {
         if (back != null)
@@ -129,7 +129,7 @@ public class cvsMenu
         g.setColor (Colors.border);
         g.drawRect (mx1, my1, mw1, mh1);
         g.setFont (mf);
-        // Отрисовка меню
+        // РћС‚СЂРёСЃРѕРІРєР° РјРµРЅСЋ
         for (int i = 0; i < menu_length; i++)
         {
             if (i == sel1)
@@ -144,7 +144,7 @@ public class cvsMenu
                 g.setColor (Colors.disabled);
             g.drawString (Locale.Strings[menu[i][0]] + " >", mx1 + 2, my1 + 2 + i*17 + 8 - mfh/2, Graphics.LEFT|Graphics.TOP);
         }
-        // Если отображено подменю - рисуем его
+        // Р•СЃР»Рё РѕС‚РѕР±СЂР°Р¶РµРЅРѕ РїРѕРґРјРµРЅСЋ - СЂРёСЃСѓРµРј РµРіРѕ
         if (sel2 >= 0)
         {
             int m2l = (menu[sel1].length-1)/2;
@@ -175,7 +175,7 @@ public class cvsMenu
             }
         }
     }
-    /** Функция возвращения к предыдущему экрану (к parent) */
+    /** Р¤СѓРЅРєС†РёСЏ РІРѕР·РІСЂР°С‰РµРЅРёСЏ Рє РїСЂРµРґС‹РґСѓС‰РµРјСѓ СЌРєСЂР°РЅСѓ (Рє parent) */
     public void ret ()
     {
         if (parent != null)
@@ -185,20 +185,20 @@ public class cvsMenu
             parent = null;
         }
     }
-    /** Обработчик нажатий клавиш */
+    /** РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёР№ РєР»Р°РІРёС€ */
     protected void keyPressed (int keyCode)
     {
         int osel, ml;
         if (keyCode == KEY_DOWN)
         {
-            if (sel2 == -1) // гуляем по меню
+            if (sel2 == -1) // РіСѓР»СЏРµРј РїРѕ РјРµРЅСЋ
             {
                 osel = sel1;
                 ml = menu_length;
                 do { sel1 = (sel1+1)%ml; }
                 while (!enabled[sel1][0] && sel2 != osel);
             }
-            else // гуляем по подменю
+            else // РіСѓР»СЏРµРј РїРѕ РїРѕРґРјРµРЅСЋ
             {
                 osel = sel2;
                 ml = (menu[sel1].length-1)/2;
@@ -209,14 +209,14 @@ public class cvsMenu
         }
         else if (keyCode == KEY_UP)
         {
-            if (sel2 == -1) // гуляем по меню
+            if (sel2 == -1) // РіСѓР»СЏРµРј РїРѕ РјРµРЅСЋ
             {
                 osel = sel1;
                 ml = menu_length;
                 do { sel1 = (sel1-1+ml)%ml; }
                 while (!enabled[sel1][0] && sel2 != osel);
             }
-            else // гуляем по подменю
+            else // РіСѓР»СЏРµРј РїРѕ РїРѕРґРјРµРЅСЋ
             {
                 osel = sel2;
                 ml = (menu[sel1].length-1)/2;
@@ -252,13 +252,13 @@ public class cvsMenu
                 listen.menuAction (menu [sel1][1 + sel2*2]);
         }
     }
-    /** Обработчик повторений клавиш */
+    /** РћР±СЂР°Р±РѕС‚С‡РёРє РїРѕРІС‚РѕСЂРµРЅРёР№ РєР»Р°РІРёС€ */
     protected void keyRepeated (int keyCode)
     {
         if (keyCode == KEY_DOWN || keyCode == KEY_UP)
             keyPressed (keyCode);
     }
-    /** Данные меню */
+    /** Р”Р°РЅРЅС‹Рµ РјРµРЅСЋ */
     static final int menu[][] =
     {
         {
@@ -331,10 +331,10 @@ public class cvsMenu
     };
     static int menu_length = 6;
     static final int menu_length_fix = 6;
-    /* Данные enabled режимов меню */
+    /* Р”Р°РЅРЅС‹Рµ enabled СЂРµР¶РёРјРѕРІ РјРµРЅСЋ */
     static final boolean enabledModes [][][] =
     {
-        { // выбран диск
+        { // РІС‹Р±СЂР°РЅ РґРёСЃРє
             { false, true, false, false, false, false },
             { false, false, false },
             { false, false, true },
@@ -342,7 +342,7 @@ public class cvsMenu
             { false, false, false, false },
             { false, false, true, true, true, true, true }
         },
-        { // выбран файл
+        { // РІС‹Р±СЂР°РЅ С„Р°Р№Р»
             { false, true, true, true, true, false },
             { false, false, false },
             { false, true, true },
@@ -350,7 +350,7 @@ public class cvsMenu
             { false, true, true, false },
             { false, false, true, true, true, true, true }
         },
-        { // выбрана папка
+        { // РІС‹Р±СЂР°РЅР° РїР°РїРєР°
             { false, true, true, true, true, false },
             { false, false, false },
             { false, true, true },
@@ -358,7 +358,7 @@ public class cvsMenu
             { false, true, true, false },
             { false, false, true, true, true, true, true }
         },
-        { // выбрано ..
+        { // РІС‹Р±СЂР°РЅРѕ ..
             { false, true, false, true, true, false },
             { false, false, false },
             { false, true, true },
@@ -366,7 +366,7 @@ public class cvsMenu
             { false, true, true, false },
             { false, false, true, true, true, true, true }
         },
-        { // находимся в избранном
+        { // РЅР°С…РѕРґРёРјСЃСЏ РІ РёР·Р±СЂР°РЅРЅРѕРј
             { false, true, true, true, true, false },
             { false, false, false },
             { false, true, false },
@@ -374,7 +374,7 @@ public class cvsMenu
             { false, false, false, false },
             { false, false, true, true, true, true, true }
         },
-        { // находимся в архиве
+        { // РЅР°С…РѕРґРёРјСЃСЏ РІ Р°СЂС…РёРІРµ
             { false, true, true, true, true, false },
             { false, true, true },
             { false, true, true },
@@ -382,7 +382,7 @@ public class cvsMenu
             { false, false, false, false },
             { false, false, true, true, true, true, true }
         },
-        { // находимся в буфере обмена
+        { // РЅР°С…РѕРґРёРјСЃСЏ РІ Р±СѓС„РµСЂРµ РѕР±РјРµРЅР°
             { false, true, true, true, true, false },
             { false, false, false },
             { false, false, false },

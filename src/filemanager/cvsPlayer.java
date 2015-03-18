@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 import javax.microedition.lcdui.game.*;
@@ -39,7 +39,7 @@ public class cvsPlayer
         player = null;
         selectedIndex = main.FileSelect.scrSel;
         currentSoundFile = soundFile;
-        // только имя файла для прокрутки
+        // С‚РѕР»СЊРєРѕ РёРјСЏ С„Р°Р№Р»Р° РґР»СЏ РїСЂРѕРєСЂСѓС‚РєРё
         OnlyFileName = currentSoundFile.substring (currentSoundFile.lastIndexOf ('/') + 1);
         try
         {
@@ -68,17 +68,17 @@ public class cvsPlayer
     
     protected void paint (Graphics g)
     {
-        // Бэкграунд
+        // Р‘СЌРєРіСЂР°СѓРЅРґ
         g.drawRegion (images.playerUI, 0, 0,  w2, 146,  0,  0, 0, Graphics.TOP | Graphics.LEFT);
         g.drawRegion (images.playerUI, 132 - w2, 0,  w2, 146,  0,  w - w2, 0, Graphics.TOP | Graphics.LEFT);
         g.drawRegion (images.playerUI, 0, 146,  w2, 30,  0,  0, h - 30, Graphics.TOP | Graphics.LEFT);
         g.drawRegion (images.playerUI, 132 - w2, 146,  w2, 30,  0,  w - w2, h - 30, Graphics.TOP | Graphics.LEFT);
-        // Кнопка PLAY
+        // РљРЅРѕРїРєР° PLAY
         g.drawRegion (images.buttons, 0, 0, 21, 21, Sprite.TRANS_NONE, 7, h - 25, Graphics.LEFT | Graphics.TOP);
-        // Кнопка STOP
+        // РљРЅРѕРїРєР° STOP
         g.drawRegion (images.buttons, 42, 0, 21, 21, Sprite.TRANS_NONE, w - 28, h - 25, Graphics.LEFT | Graphics.TOP);
         g.setColor (0x000080);
-        if (options.volume == 0) // вывод значка громкости
+        if (options.volume == 0) // РІС‹РІРѕРґ Р·РЅР°С‡РєР° РіСЂРѕРјРєРѕСЃС‚Рё
         {
             images.drawIcon (g, images.iMute, w2 - 16, h - 23);
             g.fillRect (w2 + 4, h - 11, 10, 1);
@@ -98,7 +98,7 @@ public class cvsPlayer
             g.drawString(Locale.Strings[Locale.PLAYER_STOP], w2, h - h/4, Graphics.BOTTOM | Graphics.HCENTER);
         else if ((player.getState () == Player.PREFETCHED) && paused)
             g.drawString(Locale.Strings[Locale.PLAYER_PAUSE], w2, h - h/4, Graphics.BOTTOM | Graphics.HCENTER);
-        if (player.getState () == Player.STARTED) // старт
+        if (player.getState () == Player.STARTED) // СЃС‚Р°СЂС‚
         {
             g.drawRegion (images.buttons, 21, 0, 21, 21, Sprite.TRANS_NONE, 7, h - 25, Graphics.LEFT | Graphics.TOP);
             g.drawString(Locale.Strings[Locale.PLAYER_PLAY], w2, h - h/4, Graphics.BOTTOM | Graphics.HCENTER);
@@ -128,7 +128,7 @@ public class cvsPlayer
     {
         running = true;
         playerStart ();
-        while (running) // цикл
+        while (running) // С†РёРєР»
         {
             if (player != null)
             {
@@ -144,24 +144,24 @@ public class cvsPlayer
     }
     
     /**
-     * Обработчик нажатия кнопок
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРѕРє
      *
      * @param key int
      * @todo Implement this javax.microedition.lcdui.Canvas method
      */
     protected void keyPressed (int key)
     {
-        // красная или правая софт - выход
+        // РєСЂР°СЃРЅР°СЏ РёР»Рё РїСЂР°РІР°СЏ СЃРѕС„С‚ - РІС‹С…РѕРґ
         if (key == KEY_CANCEL || key == KEY_RSK)
         {
             destroyPlayer ();
-            // Возврат
+            // Р’РѕР·РІСЂР°С‚
             running = false;
             t = null;
             setLightOff();
             main.dsp.setCurrent (parent);
         }
-        // левая софт или зеленая - пауза\воспроизв.
+        // Р»РµРІР°СЏ СЃРѕС„С‚ РёР»Рё Р·РµР»РµРЅР°СЏ - РїР°СѓР·Р°\РІРѕСЃРїСЂРѕРёР·РІ.
         else if ((key == KEY_LSK) || (key == KEY_DIAL))
         {
             if (player.getState () == Player.STARTED)
@@ -193,13 +193,13 @@ public class cvsPlayer
             options.muted = !options.muted;
             vc.setMute (options.muted);
         }
-        // следующий звук
+        // СЃР»РµРґСѓСЋС‰РёР№ Р·РІСѓРє
         else if ((key == KEY_RIGHT) || (key == KEY_NUM6))
         {
             destroyPlayer ();
             nextSound ();
         }
-        // предыдущий звук
+        // РїСЂРµРґС‹РґСѓС‰РёР№ Р·РІСѓРє
         else if ((key == KEY_LEFT) || (key == KEY_NUM4))
         {
             destroyPlayer ();
@@ -221,7 +221,7 @@ public class cvsPlayer
             //e.printStackTrace ();
         }
     }
-    /** Останов плеера */
+    /** РћСЃС‚Р°РЅРѕРІ РїР»РµРµСЂР° */
     private void playerStop ()
     {
         try
@@ -237,7 +237,7 @@ public class cvsPlayer
             //e.printStackTrace ();
         }
     }
-    /** Пауза плеера */
+    /** РџР°СѓР·Р° РїР»РµРµСЂР° */
     private void playerPause ()
     {
         try
@@ -252,7 +252,7 @@ public class cvsPlayer
             //e.printStackTrace ();
         }
     }
-    /** Запуск плеера */
+    /** Р—Р°РїСѓСЃРє РїР»РµРµСЂР° */
     private void playerStart ()
     {
         try
@@ -268,7 +268,7 @@ public class cvsPlayer
         }
     }
     /**
-     * Скроллинг текста TEXT (кол-во символов COUNT)
+     * РЎРєСЂРѕР»Р»РёРЅРі С‚РµРєСЃС‚Р° TEXT (РєРѕР»-РІРѕ СЃРёРјРІРѕР»РѕРІ COUNT)
      *
      * @param text String
      * @param count int
@@ -300,7 +300,7 @@ public class cvsPlayer
         return tmp;
     }
     /**
-     * следующий звук
+     * СЃР»РµРґСѓСЋС‰РёР№ Р·РІСѓРє
      */
     private void nextSound ()
     {
@@ -309,7 +309,7 @@ public class cvsPlayer
         playerStart ();
     }
     /**
-     * предыдущий звук
+     * РїСЂРµРґС‹РґСѓС‰РёР№ Р·РІСѓРє
      */
     private void prevSound ()
     {

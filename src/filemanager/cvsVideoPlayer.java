@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 import javax.microedition.lcdui.game.*;
@@ -26,7 +26,7 @@ public class cvsVideoPlayer
     int scrollPos = 0;
     boolean scrolldirection = false;
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public cvsVideoPlayer ()
     {
@@ -38,7 +38,7 @@ public class cvsVideoPlayer
         infoFont = Font.getFont (Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_SMALL);
     }
     /**
-     * Обновление данных в соответствии с состоянием плеера
+     * РћР±РЅРѕРІР»РµРЅРёРµ РґР°РЅРЅС‹С… РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ СЃРѕСЃС‚РѕСЏРЅРёРµРј РїР»РµРµСЂР°
      */
     public void playerUpdate (Player player, String event, Object data)
     {
@@ -67,7 +67,7 @@ public class cvsVideoPlayer
         }
     }
     /**
-     * Играть файл videoFile
+     * РРіСЂР°С‚СЊ С„Р°Р№Р» videoFile
      */
     public void playVideo (String videoFile, Displayable parent)
     {
@@ -115,7 +115,7 @@ public class cvsVideoPlayer
         setLightOn ();
     }
     /**
-     * Функция отрисовки
+     * Р¤СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё
      */
     protected void paint (Graphics g)
     {
@@ -142,7 +142,7 @@ public class cvsVideoPlayer
                     g.drawRegion (images.playerUI, 0, 146, w2, 30, 0, 0, h - 30, Graphics.LEFT | Graphics.TOP);
                     g.drawRegion (images.playerUI, 132 - w2, 146, w2, 30, 0, w - w2, h - 30, Graphics.LEFT | Graphics.TOP);
                     g.drawRegion (images.buttons, 42, 0, 21, 21, Sprite.TRANS_NONE, w - 28, h - 25, Graphics.LEFT | Graphics.TOP);
-                    if (options.volume == 0) // вывод значка громкости
+                    if (options.volume == 0) // РІС‹РІРѕРґ Р·РЅР°С‡РєР° РіСЂРѕРјРєРѕСЃС‚Рё
                     {
                         images.drawIcon (g, images.iMute, w2-16, h-23);
                         g.fillRect (w2 + 4, h - 11, 10, 1);
@@ -180,7 +180,7 @@ public class cvsVideoPlayer
         }
     }
     /**
-     * Установить параметры места для отображения видео
+     * РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїР°СЂР°РјРµС‚СЂС‹ РјРµСЃС‚Р° РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІРёРґРµРѕ
      */
     public void setDisplay ()
     {
@@ -192,7 +192,7 @@ public class cvsVideoPlayer
         videoControl.setVisible (true);
     }
     /**
-     * Функция потока
+     * Р¤СѓРЅРєС†РёСЏ РїРѕС‚РѕРєР°
      */
     public void run ()
     {
@@ -202,7 +202,7 @@ public class cvsVideoPlayer
             {
                 try
                 {
-                    player.start (); // стартуем плейер
+                    player.start (); // СЃС‚Р°СЂС‚СѓРµРј РїР»РµР№РµСЂ
                 }
                 catch (Exception e)
                 {
@@ -210,7 +210,7 @@ public class cvsVideoPlayer
                     //e.printStackTrace ();
                 }
             }
-            while (running) // цикл
+            while (running) // С†РёРєР»
             {
                 try
                 {
@@ -225,7 +225,7 @@ public class cvsVideoPlayer
         }
     }
     /**
-     * Обработчик нажатия кнопок
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёСЏ РєРЅРѕРїРѕРє
      *
      * @param keyCode int
      */
@@ -238,7 +238,7 @@ public class cvsVideoPlayer
             setDisplay();
             videoControl.setVisible (true);
         }
-        // красная выход, но на S75 - не катит. длинное нажатие правой софт тоже выход
+        // РєСЂР°СЃРЅР°СЏ РІС‹С…РѕРґ, РЅРѕ РЅР° S75 - РЅРµ РєР°С‚РёС‚. РґР»РёРЅРЅРѕРµ РЅР°Р¶Р°С‚РёРµ РїСЂР°РІРѕР№ СЃРѕС„С‚ С‚РѕР¶Рµ РІС‹С…РѕРґ
         else if ((keyCode == KEY_CANCEL) || (keyCode == KEY_RSK))
         {
             if (player.getState () == Player.STARTED)
@@ -247,14 +247,14 @@ public class cvsVideoPlayer
             repaint ();
             serviceRepaints ();
             destroyPlayer (false);
-            // Возврат
+            // Р’РѕР·РІСЂР°С‚
             setLightOff();
             //com.siemens.mp.lcdui.Graphics.setLightOff ();
             t = null;
             main.dsp.setCurrent (parent);
             drawWaitImage = false;
         }
-        // левая софт или зеленая - пауза/воспроизведение
+        // Р»РµРІР°СЏ СЃРѕС„С‚ РёР»Рё Р·РµР»РµРЅР°СЏ - РїР°СѓР·Р°/РІРѕСЃРїСЂРѕРёР·РІРµРґРµРЅРёРµ
         else if (((keyCode == KEY_LSK) || (keyCode == KEY_DIAL)) && (player.getState () == Player.PREFETCHED))
             playerStart ();
         // Volume up
@@ -300,25 +300,25 @@ public class cvsVideoPlayer
             else
                 volumeControl.setMute (options.muted);
         }
-        // следующий клип
+        // СЃР»РµРґСѓСЋС‰РёР№ РєР»РёРї
         else if ((keyCode == KEY_RIGHT) || (keyCode == KEY_NUM6))
         {
             destroyPlayer ();
             nextClip ();
         }
-        // предыдущ клип
+        // РїСЂРµРґС‹РґСѓС‰ РєР»РёРї
         else if ((keyCode == KEY_LEFT) || ( keyCode == KEY_NUM4))
         {
             destroyPlayer ();
             prevClip ();
         }
     }
-    /** Уничтожение плеера с предварительным остановом */
+    /** РЈРЅРёС‡С‚РѕР¶РµРЅРёРµ РїР»РµРµСЂР° СЃ РїСЂРµРґРІР°СЂРёС‚РµР»СЊРЅС‹Рј РѕСЃС‚Р°РЅРѕРІРѕРј */
     private void destroyPlayer ()
     {
         destroyPlayer (true);
     }
-    /** Уничтожение плеера (если alsoStop = true - сначала останов) */
+    /** РЈРЅРёС‡С‚РѕР¶РµРЅРёРµ РїР»РµРµСЂР° (РµСЃР»Рё alsoStop = true - СЃРЅР°С‡Р°Р»Р° РѕСЃС‚Р°РЅРѕРІ) */
     private void destroyPlayer (boolean alsoStop)
     {
         if (player == null)
@@ -338,7 +338,7 @@ public class cvsVideoPlayer
             //e.printStackTrace ();
         }
     }
-    /** Останов плеера */
+    /** РћСЃС‚Р°РЅРѕРІ РїР»РµРµСЂР° */
     private void playerStop ()
     {
         if (player == null)
@@ -354,7 +354,7 @@ public class cvsVideoPlayer
             //e.printStackTrace ();
         }
     }
-    /** Запуск плеера */
+    /** Р—Р°РїСѓСЃРє РїР»РµРµСЂР° */
     private void playerStart ()
     {
         if (player == null)
@@ -370,7 +370,7 @@ public class cvsVideoPlayer
         }
     }
     /**
-     * Перейти к следующему видеофайлу
+     * РџРµСЂРµР№С‚Рё Рє СЃР»РµРґСѓСЋС‰РµРјСѓ РІРёРґРµРѕС„Р°Р№Р»Сѓ
      */
     private void nextClip ()
     {
@@ -380,7 +380,7 @@ public class cvsVideoPlayer
         playerStart ();
     }
     /**
-     * Перейти к предыдущему видеофайлу
+     * РџРµСЂРµР№С‚Рё Рє РїСЂРµРґС‹РґСѓС‰РµРјСѓ РІРёРґРµРѕС„Р°Р№Р»Сѓ
      */
     private void prevClip ()
     {
@@ -390,7 +390,7 @@ public class cvsVideoPlayer
         playerStart ();
     }
     /**
-     * Скроллинг текста TEXT (кол-во символов COUNT)
+     * РЎРєСЂРѕР»Р»РёРЅРі С‚РµРєСЃС‚Р° TEXT (РєРѕР»-РІРѕ СЃРёРјРІРѕР»РѕРІ COUNT)
      *
      * @param text String
      * @param count int

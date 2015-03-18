@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 import java.util.*;
@@ -13,7 +13,7 @@ public class frmProperties
     Displayable parent;
     boolean hidden, readonly;
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public frmProperties (Displayable parent)
     {
@@ -25,7 +25,7 @@ public class frmProperties
             tmp = "";
         if (!main.currentFile.equalsIgnoreCase (".."))
             tmp += main.currentFile;
-        // Значок файла или папки
+        // Р—РЅР°С‡РѕРє С„Р°Р№Р»Р° РёР»Рё РїР°РїРєРё
         if (filesystem.isDir (tmp))
         {
             if (filesystem.isHidden (tmp))
@@ -35,7 +35,7 @@ public class frmProperties
         }
         else
             this.append (images.getIcon(filesystem.fileType (tmp)));
-        // Имя
+        // РРјСЏ
         if (filesystem.isDir (tmp))
         {
             StringItem si = new StringItem ("\n", Locale.Strings[Locale.FOLDER_NAME] + "\n");
@@ -49,7 +49,7 @@ public class frmProperties
         StringItem si = new StringItem ("", tmp + "\n");
         si.setFont (Font.getFont (Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM));
         this.append (si);
-        // Размер
+        // Р Р°Р·РјРµСЂ
         long size;
         int zipext;
         if ((zipext = filesystem.divideZipName (tmp)) < 0)
@@ -62,7 +62,7 @@ public class frmProperties
                 this.append (si);
             }
             // Attributes
-            // при выбранном диске b и c свойств ReadOnly и Hidden нет
+            // РїСЂРё РІС‹Р±СЂР°РЅРЅРѕРј РґРёСЃРєРµ b Рё c СЃРІРѕР№СЃС‚РІ ReadOnly Рё Hidden РЅРµС‚
             if (!main.currentFile.equalsIgnoreCase ("..") &&
                 !main.currentPath.startsWith ("b:/") && !main.currentPath.startsWith ("3:/"))
             {
@@ -78,7 +78,7 @@ public class frmProperties
                 cgAttrib.setSelectedIndex (0, readonly);
                 this.append (cgAttrib);
             }
-            // Посл изм.
+            // РџРѕСЃР» РёР·Рј.
             si = new StringItem (Locale.Strings[Locale.LAST_MODIF],
                     filesystem.time2String (filesystem.lastModified (tmp)));
             si.setFont (Font.getFont (Font.FACE_SYSTEM, Font.STYLE_BOLD, Font.SIZE_MEDIUM));
@@ -110,7 +110,7 @@ public class frmProperties
     
     public void commandAction (Command command, Displayable displayable)
     {
-        // Команда ОК - изменяем свойства файла или папки
+        // РљРѕРјР°РЅРґР° РћРљ - РёР·РјРµРЅСЏРµРј СЃРІРѕР№СЃС‚РІР° С„Р°Р№Р»Р° РёР»Рё РїР°РїРєРё
         if (command == cmdPropOK)
         {
             if ((readonly != cgAttrib.isSelected (0)) || 
@@ -123,7 +123,7 @@ public class frmProperties
             }
             main.dsp.setCurrent (parent);
         }
-        // НАЗАД - ВЫХОД ИЗ ОКНА СВОЙСТВ
+        // РќРђР—РђР” - Р’Р«РҐРћР” РР— РћРљРќРђ РЎР’РћР™РЎРўР’
         else if (command == cmdPropBack)
             main.dsp.setCurrent (parent);
     }

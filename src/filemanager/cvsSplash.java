@@ -11,7 +11,7 @@ public class cvsSplash extends gkcCanvas implements Runnable
     int backx, backy, aboutx, abouty;
     Image splashBack, splashAbout;
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public cvsSplash ()
     {
@@ -41,7 +41,7 @@ public class cvsSplash extends gkcCanvas implements Runnable
         } catch (IOException iox) {}
     }
     /**
-     * Функция отрисовки
+     * Р¤СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё
      */
     protected void paint (Graphics g)
     {
@@ -57,7 +57,7 @@ public class cvsSplash extends gkcCanvas implements Runnable
         else g.fillRect (2, 2, w-4, 3);
     }
     /**
-     * Функция потока (ожидающая завершения по main.loadStage)
+     * Р¤СѓРЅРєС†РёСЏ РїРѕС‚РѕРєР° (РѕР¶РёРґР°СЋС‰Р°СЏ Р·Р°РІРµСЂС€РµРЅРёСЏ РїРѕ main.loadStage)
      */
     public void run ()
     {

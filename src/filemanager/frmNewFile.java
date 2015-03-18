@@ -39,7 +39,7 @@ public class frmNewFile extends Form implements CommandListener
                 case 1: fileName = main.currentPath + fileName + ".txt"; break;
                 case 2: fileName = main.currentPath + fileName + ".tmo"; break;
             }
-            if (filesystem.isFileExist (fileName)) // уже существует
+            if (filesystem.isFileExist (fileName)) // СѓР¶Рµ СЃСѓС‰РµСЃС‚РІСѓРµС‚
             { 
                 Alert al = new Alert ("", Locale.Strings[Locale.FILE_NAME_EXIST],
                                       null, AlertType.ERROR);
@@ -51,15 +51,15 @@ public class frmNewFile extends Form implements CommandListener
             {
                 switch (cg.getSelectedIndex ())
                 {
-                    case 0: // текстовый файл UTF
-                    case 1: // текстовый файл Win
+                    case 0: // С‚РµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р» UTF
+                    case 1: // С‚РµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р» Win
                         filesystem.makeNewFile (fileName, "", cg.getSelectedIndex () == 0);
                         main.dsp.setCurrent(main.textEditor);
                         main.textEditor.rescanAfterExit = true;
                         main.textEditor.openFile (fileName);
                         main.textEditor.editText (main.textEditor.scrStart, main.textEditor.scrEnd);
                         break;
-                    case 2: // текстовый файл tmo
+                    case 2: // С‚РµРєСЃС‚РѕРІС‹Р№ С„Р°Р№Р» tmo
                         filesystem.makeNewFile (fileName, "\0\0\0\0", false);
                         main.dsp.setCurrent 
                             (new tbTmoEdit (fileName, true, false, parent));

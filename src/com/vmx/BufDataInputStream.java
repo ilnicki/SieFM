@@ -1,7 +1,7 @@
 /**************************************\
- * Áóôåðèçîâàííûé ââîä/âûâîä          *
+ * Ð‘ÑƒÑ„ÐµÑ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð²Ð²Ð¾Ð´/Ð²Ñ‹Ð²Ð¾Ð´          *
  **                                  **
- * Áóôåðèçîâàííûé ïîòîê ââîäà         *
+ * Ð‘ÑƒÑ„ÐµÑ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ Ð¿Ð¾Ñ‚Ð¾Ðº Ð²Ð²Ð¾Ð´Ð°         *
  * (c) 2005+, Vitali Filippov [VMX]   *
  *                                    *
  *            BufDataInputStream.java *
@@ -27,7 +27,7 @@ public class BufDataInputStream extends InputStream implements DataInput
     protected boolean markSupp;
     protected InputStream is;
     /**
-     * Êîíñòðóêòîð
+     * ÐšÐ¾Ð½ÑÑ‚Ñ€ÑƒÐºÑ‚Ð¾Ñ€
      */
     public BufDataInputStream (int bufsize, InputStream iis) throws IOException
     {
@@ -44,30 +44,30 @@ public class BufDataInputStream extends InputStream implements DataInput
         markedPos = -1;
     }
     /**
-     * Çàêðûòèå áóôåðèçîâàííîãî ïîòîêà âìåñòå ñ òåì, íà êîòîðîì
-     * îí îñíîâàí.
+     * Ð—Ð°ÐºÑ€Ñ‹Ñ‚Ð¸Ðµ Ð±ÑƒÑ„ÐµÑ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ñ‚Ð¾ÐºÐ° Ð²Ð¼ÐµÑÑ‚Ðµ Ñ Ñ‚ÐµÐ¼, Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€Ð¾Ð¼
+     * Ð¾Ð½ Ð¾ÑÐ½Ð¾Ð²Ð°Ð½.
      */
     public void close () throws IOException
     {
         is.close ();
     }
     /**
-     * Âîçâðàùàåò êîëè÷åñòâî áàéò, êîòîðûå åù¸ âîçìîæíî ïðî÷åñòü èç
-     * ýòîãî áóôåðèçîâàííîãî ïîòîêà.
+     * Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð±Ð°Ð¹Ñ‚, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ðµ ÐµÑ‰Ñ‘ Ð²Ð¾Ð·Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ñ€Ð¾Ñ‡ÐµÑÑ‚ÑŒ Ð¸Ð·
+     * ÑÑ‚Ð¾Ð³Ð¾ Ð±ÑƒÑ„ÐµÑ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ð¾Ð³Ð¾ Ð¿Ð¾Ñ‚Ð¾ÐºÐ°.
      */
     public int available () throws IOException
     {
         return blen-bpos + is_available;
     }
     /**
-     * Ïîëó÷èòü îáú¸ì ïîòîêà
+     * ÐŸÐ¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑŒ Ð¾Ð±ÑŠÑ‘Ð¼ Ð¿Ð¾Ñ‚Ð¾ÐºÐ°
      */
     public int getCapacity () throws IOException
     {
         return capacity;
     }
     /**
-     * Ïåðåéòè ê ïîëîæåíèþ pos
+     * ÐŸÐµÑ€ÐµÐ¹Ñ‚Ð¸ Ðº Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸ÑŽ pos
      */
     public void seek (int pos) throws IOException
     {
@@ -82,14 +82,14 @@ public class BufDataInputStream extends InputStream implements DataInput
         }
     }
     /**
-     * Âîçâðàùàåò òåêóùóþ ïîçèöèþ â áóôåðèçîâàííîì ïîòîêå.
+     * Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚ Ñ‚ÐµÐºÑƒÑ‰ÑƒÑŽ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ Ð² Ð±ÑƒÑ„ÐµÑ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ð¾Ð¼ Ð¿Ð¾Ñ‚Ð¾ÐºÐµ.
      */
     public int tell () throws IOException
     {
         return capacity-available();
     }
     /**
-     * Ñòàâèò ìåòêó, íà êîòîðóþ âîçâðàùàòüñÿ ïîòîì ìîæíî ïî reset.
+     * Ð¡Ñ‚Ð°Ð²Ð¸Ñ‚ Ð¼ÐµÑ‚ÐºÑƒ, Ð½Ð° ÐºÐ¾Ñ‚Ð¾Ñ€ÑƒÑŽ Ð²Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°Ñ‚ÑŒÑÑ Ð¿Ð¾Ñ‚Ð¾Ð¼ Ð¼Ð¾Ð¶Ð½Ð¾ Ð¿Ð¾ reset.
      */
     public void mark (int readlimit)
     {
@@ -99,14 +99,14 @@ public class BufDataInputStream extends InputStream implements DataInput
         } catch (IOException ix) { markedPos = -1; }
     }
     /**
-     * Âîçâðàùàåò, äîñòóïíû ëè ôóíêöèè mark() è reset()?
+     * Ð’Ð¾Ð·Ð²Ñ€Ð°Ñ‰Ð°ÐµÑ‚, Ð´Ð¾ÑÑ‚ÑƒÐ¿Ð½Ñ‹ Ð»Ð¸ Ñ„ÑƒÐ½ÐºÑ†Ð¸Ð¸ mark() Ð¸ reset()?
      */
     public boolean markSupported ()
     {
         return is.markSupported ();
     }
     /**
-     * Ïåðåéòè íà ïîñëåäíþþ çàäàííóþ mark'îì ïîçèöèþ.
+     * ÐŸÐµÑ€ÐµÐ¹Ñ‚Ð¸ Ð½Ð° Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÑŽÑŽ Ð·Ð°Ð´Ð°Ð½Ð½ÑƒÑŽ mark'Ð¾Ð¼ Ð¿Ð¾Ð·Ð¸Ñ†Ð¸ÑŽ.
      */
     public void reset () throws IOException
     {
@@ -116,7 +116,7 @@ public class BufDataInputStream extends InputStream implements DataInput
             throw new IOException ("call mark() before reset()");
     }
     /**
-     * ïðîïóñòèòü n áàéò
+     * Ð¿Ñ€Ð¾Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ n Ð±Ð°Ð¹Ñ‚
      */
     public long skip (long n) throws IOException
     {
@@ -135,20 +135,20 @@ public class BufDataInputStream extends InputStream implements DataInput
         }
     }
     /**
-     * Ïðî÷èòàòü ìàññèâ èç ïîòîêà: ïðî÷èòàòü è çàïèñàòü ìàêñèìóì len áàéò,
-     * çàïèñàòü èõ â b[], íà÷èíàÿ ñî ñìåùåíèÿ off, è âåðíóòü êîëè÷åñòâî
-     * ñ÷èòàííûõ áàéò.
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¼Ð°ÑÑÐ¸Ð² Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ°: Ð¿Ñ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸ Ð·Ð°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð¼Ð°ÐºÑÐ¸Ð¼ÑƒÐ¼ len Ð±Ð°Ð¹Ñ‚,
+     * Ð·Ð°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð¸Ñ… Ð² b[], Ð½Ð°Ñ‡Ð¸Ð½Ð°Ñ ÑÐ¾ ÑÐ¼ÐµÑ‰ÐµÐ½Ð¸Ñ off, Ð¸ Ð²ÐµÑ€Ð½ÑƒÑ‚ÑŒ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾
+     * ÑÑ‡Ð¸Ñ‚Ð°Ð½Ð½Ñ‹Ñ… Ð±Ð°Ð¹Ñ‚.
      */
     public int read (byte [] b, int off, int len) throws IOException
     {
         int rest = len, pos = off, n;
         while (rest > 0)
         {
-            if (bpos >= blen && bufferize() <= 0) // äàííûå êîí÷èëèñü?
+            if (bpos >= blen && bufferize() <= 0) // Ð´Ð°Ð½Ð½Ñ‹Ðµ ÐºÐ¾Ð½Ñ‡Ð¸Ð»Ð¸ÑÑŒ?
             {
                 blen = 0;
                 break;
-            } // åñëè áóôåð êîí÷èëñÿ, à bufferize çàïîëíèëî åãî ÷åì-òî - áóäåò îê
+            } // ÐµÑÐ»Ð¸ Ð±ÑƒÑ„ÐµÑ€ ÐºÐ¾Ð½Ñ‡Ð¸Ð»ÑÑ, Ð° bufferize Ð·Ð°Ð¿Ð¾Ð»Ð½Ð¸Ð»Ð¾ ÐµÐ³Ð¾ Ñ‡ÐµÐ¼-Ñ‚Ð¾ - Ð±ÑƒÐ´ÐµÑ‚ Ð¾Ðº
             n = rest;
             if (n > blen-bpos)
                 n = blen-bpos;
@@ -160,25 +160,25 @@ public class BufDataInputStream extends InputStream implements DataInput
         return len-rest;
     }
     /**
-     * Ïðî÷èòàòü ìàññèâ b[] ïîëíîñòüþ - ýêâèâàëåíòíî read (b, 0, b.length);
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¼Ð°ÑÑÐ¸Ð² b[] Ð¿Ð¾Ð»Ð½Ð¾ÑÑ‚ÑŒÑŽ - ÑÐºÐ²Ð¸Ð²Ð°Ð»ÐµÐ½Ñ‚Ð½Ð¾ read (b, 0, b.length);
      */
     public int read (byte [] b) throws IOException
     {
         return read (b, 0, b.length);
     }
     /**
-     * Ïðî÷èòàòü 1 áàéò èç ïîòîêà, âåðíóòü åãî, åñëè óñïåøíî, è -1,
-     * åñëè äîñòèãíóò êîíåö ïîòîêà.
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ 1 Ð±Ð°Ð¹Ñ‚ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ°, Ð²ÐµÑ€Ð½ÑƒÑ‚ÑŒ ÐµÐ³Ð¾, ÐµÑÐ»Ð¸ ÑƒÑÐ¿ÐµÑˆÐ½Ð¾, Ð¸ -1,
+     * ÐµÑÐ»Ð¸ Ð´Ð¾ÑÑ‚Ð¸Ð³Ð½ÑƒÑ‚ ÐºÐ¾Ð½ÐµÑ† Ð¿Ð¾Ñ‚Ð¾ÐºÐ°.
      */
     public int read () throws IOException
     {
-        if (bpos >= blen && bufferize() <= 0) // äàííûå êîí÷èëèñü?
+        if (bpos >= blen && bufferize() <= 0) // Ð´Ð°Ð½Ð½Ñ‹Ðµ ÐºÐ¾Ð½Ñ‡Ð¸Ð»Ð¸ÑÑŒ?
             return -1;
       	return ((int)buffer[bpos++])&0xFF;
     }
     /**
-     * Ïðî÷èòàòü 1 áàéò èç ïîòîêà íàçàä, åñëè íà÷àëî ôàéëà - âåðíóòü -1.
-     * Äëÿ ðàáîòû òðåáóåòñÿ ïîääåðæêà mark() è reset()
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ 1 Ð±Ð°Ð¹Ñ‚ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° Ð½Ð°Ð·Ð°Ð´, ÐµÑÐ»Ð¸ Ð½Ð°Ñ‡Ð°Ð»Ð¾ Ñ„Ð°Ð¹Ð»Ð° - Ð²ÐµÑ€Ð½ÑƒÑ‚ÑŒ -1.
+     * Ð”Ð»Ñ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ Ñ‚Ñ€ÐµÐ±ÑƒÐµÑ‚ÑÑ Ð¿Ð¾Ð´Ð´ÐµÑ€Ð¶ÐºÐ° mark() Ð¸ reset()
      */
     public int readBack () throws IOException
     {
@@ -198,7 +198,7 @@ public class BufDataInputStream extends InputStream implements DataInput
         return ((int)buffer[--bpos])&0xFF;
     }
     /**
-     * Åñëè áóôåð íå ïîëîí, äî÷èòàòü è äîïîëíèòü åãî.
+     * Ð•ÑÐ»Ð¸ Ð±ÑƒÑ„ÐµÑ€ Ð½Ðµ Ð¿Ð¾Ð»Ð¾Ð½, Ð´Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÑŒ ÐµÐ³Ð¾.
      */
     public void flush () throws IOException
     {
@@ -215,7 +215,7 @@ public class BufDataInputStream extends InputStream implements DataInput
         }
     }
     /**
-     * Óáèâàåò òåêóùèé áóôåð è áóôåðèçóåò ñ òåêóùåãî ïîëîæåíèÿ InputStream'à
+     * Ð£Ð±Ð¸Ð²Ð°ÐµÑ‚ Ñ‚ÐµÐºÑƒÑ‰Ð¸Ð¹ Ð±ÑƒÑ„ÐµÑ€ Ð¸ Ð±ÑƒÑ„ÐµÑ€Ð¸Ð·ÑƒÐµÑ‚ Ñ Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ Ð¿Ð¾Ð»Ð¾Ð¶ÐµÐ½Ð¸Ñ InputStream'Ð°
      */
     protected int bufferize () throws IOException
     {
@@ -230,7 +230,7 @@ public class BufDataInputStream extends InputStream implements DataInput
         return blen;
     }
     /**
-     * Îáíîâèòü ñîäåðæèìîå áóôåðà â ñîîòâåòñòâèè ñ ïîòîêîì
+     * ÐžÐ±Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ ÑÐ¾Ð´ÐµÑ€Ð¶Ð¸Ð¼Ð¾Ðµ Ð±ÑƒÑ„ÐµÑ€Ð° Ð² ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²Ð¸Ð¸ Ñ Ð¿Ð¾Ñ‚Ð¾ÐºÐ¾Ð¼
      */
     public void updateBuffer () throws IOException
     {
@@ -239,7 +239,7 @@ public class BufDataInputStream extends InputStream implements DataInput
         bufferize ();
     }
     /**
-     * Ïðî÷èòàòü áóëåâî çíà÷åíèå èç ïîòîêà (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð±ÑƒÐ»ÐµÐ²Ð¾ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° (ÑÐ¼. DataInput)
      */
     public boolean readBoolean () throws IOException
     {
@@ -249,8 +249,8 @@ public class BufDataInputStream extends InputStream implements DataInput
         return r != 0;
     }
     /**
-     * Ïðî÷èòàòü áàéò èç ïîòîêà; åñëè äîñòèãíóò êîíåö ïîòîêà,
-     * ãåíåðèðóåòñÿ èñêëþ÷åíèå IOException ñ ñîîáùåíèåì "EOF" (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð±Ð°Ð¹Ñ‚ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ°; ÐµÑÐ»Ð¸ Ð´Ð¾ÑÑ‚Ð¸Ð³Ð½ÑƒÑ‚ ÐºÐ¾Ð½ÐµÑ† Ð¿Ð¾Ñ‚Ð¾ÐºÐ°,
+     * Ð³ÐµÐ½ÐµÑ€Ð¸Ñ€ÑƒÐµÑ‚ÑÑ Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ IOException Ñ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸ÐµÐ¼ "EOF" (ÑÐ¼. DataInput)
      */
     public byte readByte () throws IOException
     {
@@ -260,29 +260,29 @@ public class BufDataInputStream extends InputStream implements DataInput
         return (byte)r;
     }
     /**
-     * Ïðî÷èòàòü ñèìâîë (Unicode Big Endian) èç ïîòîêà (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ ÑÐ¸Ð¼Ð²Ð¾Ð» (Unicode Big Endian) Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° (ÑÐ¼. DataInput)
      */
     public char readChar () throws IOException
     {
         return (char)((readUnsignedByte() << 8)|readUnsignedByte ());
     }
     /**
-     * Ïðî÷èòàòü ÷èñëî ñ ïëàâàþùåé òî÷êîé äâîéíîé òî÷íîñòè (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ñ‡Ð¸ÑÐ»Ð¾ Ñ Ð¿Ð»Ð°Ð²Ð°ÑŽÑ‰ÐµÐ¹ Ñ‚Ð¾Ñ‡ÐºÐ¾Ð¹ Ð´Ð²Ð¾Ð¹Ð½Ð¾Ð¹ Ñ‚Ð¾Ñ‡Ð½Ð¾ÑÑ‚Ð¸ (ÑÐ¼. DataInput)
      */
     public double readDouble () throws IOException
     {
         return Double.longBitsToDouble (readLong ());
     }
     /**
-     * Ïðî÷èòàòü ÷èñëî ñ ïëàâàþùåé òî÷êîé îäèíàðíîé òî÷íîñòè (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ñ‡Ð¸ÑÐ»Ð¾ Ñ Ð¿Ð»Ð°Ð²Ð°ÑŽÑ‰ÐµÐ¹ Ñ‚Ð¾Ñ‡ÐºÐ¾Ð¹ Ð¾Ð´Ð¸Ð½Ð°Ñ€Ð½Ð¾Ð¹ Ñ‚Ð¾Ñ‡Ð½Ð¾ÑÑ‚Ð¸ (ÑÐ¼. DataInput)
      */
     public float readFloat () throws IOException
     {
         return Float.intBitsToFloat (readInt());
     }
     /**
-     * Ïðî÷èòàòü ìàññèâ b[] èç ïîòîêà öåëèêîì, åñëè öåëèêîì íå ïîëó÷èòñÿ, 
-     * ñãåíåðèðîâàòü èñêëþ÷åíèå IOException ñ ñîîáùåíèåì "EOF"
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¼Ð°ÑÑÐ¸Ð² b[] Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° Ñ†ÐµÐ»Ð¸ÐºÐ¾Ð¼, ÐµÑÐ»Ð¸ Ñ†ÐµÐ»Ð¸ÐºÐ¾Ð¼ Ð½Ðµ Ð¿Ð¾Ð»ÑƒÑ‡Ð¸Ñ‚ÑÑ, 
+     * ÑÐ³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ IOException Ñ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸ÐµÐ¼ "EOF"
      */
     public void readFully (byte [] b) throws IOException
     {
@@ -290,9 +290,9 @@ public class BufDataInputStream extends InputStream implements DataInput
             throw new IOException ("EOF");
     }
     /**
-     * Ïðî÷èòàòü â òî÷íîñòè len áàéò è çàïèñàòü èõ â ìàññèâ b[], íà÷èíàÿ
-     * ñî ñìåùåíèÿ off. Åñëè äîñòèãíóò êîíåö ôàéëà - ñãåíåðèðîâàòü
-     * èñêëþ÷åíèå IOException ñ ñîîáùåíèåì "EOF"
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð² Ñ‚Ð¾Ñ‡Ð½Ð¾ÑÑ‚Ð¸ len Ð±Ð°Ð¹Ñ‚ Ð¸ Ð·Ð°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð¸Ñ… Ð² Ð¼Ð°ÑÑÐ¸Ð² b[], Ð½Ð°Ñ‡Ð¸Ð½Ð°Ñ
+     * ÑÐ¾ ÑÐ¼ÐµÑ‰ÐµÐ½Ð¸Ñ off. Ð•ÑÐ»Ð¸ Ð´Ð¾ÑÑ‚Ð¸Ð³Ð½ÑƒÑ‚ ÐºÐ¾Ð½ÐµÑ† Ñ„Ð°Ð¹Ð»Ð° - ÑÐ³ÐµÐ½ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ
+     * Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð¸Ðµ IOException Ñ ÑÐ¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸ÐµÐ¼ "EOF"
      */
     public void readFully (byte [] b, int off, int len) throws IOException
     {
@@ -300,7 +300,7 @@ public class BufDataInputStream extends InputStream implements DataInput
             throw new IOException ("EOF");
     }
     /**
-     * Ïðî÷èòàòü èç ïîòîêà öåëîå ÷èñëî (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ (ÑÐ¼. DataInput)
      */
     public int readInt () throws IOException
     {
@@ -310,7 +310,7 @@ public class BufDataInputStream extends InputStream implements DataInput
                (readUnsignedByte ());
     }
     /**
-     * Ïðî÷èòàòü èç ïîòîêà äëèííîå öåëîå ÷èñëî (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° Ð´Ð»Ð¸Ð½Ð½Ð¾Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ (ÑÐ¼. DataInput)
      */
     public long readLong () throws IOException
     {
@@ -322,36 +322,36 @@ public class BufDataInputStream extends InputStream implements DataInput
                (bb [3]);
     }
     /**
-     * Ïðî÷èòàòü èç ïîòîêà êîðîòêîå öåëîå ÷èñëî (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° ÐºÐ¾Ñ€Ð¾Ñ‚ÐºÐ¾Ðµ Ñ†ÐµÐ»Ð¾Ðµ Ñ‡Ð¸ÑÐ»Ð¾ (ÑÐ¼. DataInput)
      */
     public short readShort () throws IOException
     {
         return (short)((readUnsignedByte ()<<8)|readUnsignedByte ());
     }
     /**
-     * Ïðî÷èòàòü èç ïîòîêà áåççíàêîâûé áàéò (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° Ð±ÐµÐ·Ð·Ð½Ð°ÐºÐ¾Ð²Ñ‹Ð¹ Ð±Ð°Ð¹Ñ‚ (ÑÐ¼. DataInput)
      */
     public int readUnsignedByte () throws IOException
     {
         return ((int)readByte ())&0xFF;
     }
     /**
-     * Ïðî÷èòàòü èç ïîòîêà áåççíàêîâîå êîðîòêîå öåëîå (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° Ð±ÐµÐ·Ð·Ð½Ð°ÐºÐ¾Ð²Ð¾Ðµ ÐºÐ¾Ñ€Ð¾Ñ‚ÐºÐ¾Ðµ Ñ†ÐµÐ»Ð¾Ðµ (ÑÐ¼. DataInput)
      */
     public int readUnsignedShort () throws IOException
     {
         return ((int)readShort ())&0xFFFF;
     }
     /**
-     * Ïðîïóñòèòü len áàéò (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ len Ð±Ð°Ð¹Ñ‚ (ÑÐ¼. DataInput)
      */
     public int skipBytes (int len) throws IOException
     {
         return (int) skip(len);
     }
     /**
-     * Ïðî÷èòàòü èç ïîòîêà ñòðîêó â UTF-8 â ñîîòâåòñòâèè ñî
-     * ñïåöèôèêàöèåé â DataInput (ñì. DataInput)
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° ÑÑ‚Ñ€Ð¾ÐºÑƒ Ð² UTF-8 Ð² ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²Ð¸Ð¸ ÑÐ¾
+     * ÑÐ¿ÐµÑ†Ð¸Ñ„Ð¸ÐºÐ°Ñ†Ð¸ÐµÐ¹ Ð² DataInput (ÑÐ¼. DataInput)
      */
     public String readUTF () throws IOException, UTFDataFormatException
     {
@@ -361,7 +361,7 @@ public class BufDataInputStream extends InputStream implements DataInput
         readFully (b);
         return new String (b, 0, b.length, "UTF-8");
     }
-    /** Ïðî÷èòàòü èç ïîòîêà ñèìâîë â êîäèðîâêå UTF-8 */
+    /** ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° ÑÐ¸Ð¼Ð²Ð¾Ð» Ð² ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐµ UTF-8 */
     public char readCharUTF () throws IOException, UTFDataFormatException
     {
         int b, c, d;
@@ -386,7 +386,7 @@ public class BufDataInputStream extends InputStream implements DataInput
         }
         throw new UTFDataFormatException ();
     }
-    /** Ïðî÷èòàòü èç ïîòîêà ñèìâîë â êîäèðîâêå UTF-8 ÍÀÇÀÄ */
+    /** ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° ÑÐ¸Ð¼Ð²Ð¾Ð» Ð² ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐµ UTF-8 ÐÐÐ—ÐÐ” */
     public char readCharBackUTF () throws IOException, UTFDataFormatException
     {
         int b, c, d;
@@ -410,7 +410,7 @@ public class BufDataInputStream extends InputStream implements DataInput
         throw new UTFDataFormatException ();
     }
     /**
-     * Ïðî÷èòàòü èç ïîòîêà ìàêñèìóì count ñèìâîëîâ â êîäèðîâêå UTF-8
+     * ÐŸÑ€Ð¾Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ Ð¸Ð· Ð¿Ð¾Ñ‚Ð¾ÐºÐ° Ð¼Ð°ÐºÑÐ¸Ð¼ÑƒÐ¼ count ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð² Ð² ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐµ UTF-8
      */
     public String readUTF (int count) throws IOException, UTFDataFormatException
     {
@@ -425,8 +425,8 @@ public class BufDataInputStream extends InputStream implements DataInput
         return s;
     }
     /**
-     * Ïðîïóñòèòü â ïîòîêå ìàêñèìóì count ñèìâîëîâ â êîäèðîâêå UTF-8.
-     * Íå î÷åíü ÷¸òêî ïðîâåðÿåò ñîîòâåòñòâèå äàííûõ êîäèðîâêå.
+     * ÐŸÑ€Ð¾Ð¿ÑƒÑÑ‚Ð¸Ñ‚ÑŒ Ð² Ð¿Ð¾Ñ‚Ð¾ÐºÐµ Ð¼Ð°ÐºÑÐ¸Ð¼ÑƒÐ¼ count ÑÐ¸Ð¼Ð²Ð¾Ð»Ð¾Ð² Ð² ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐµ UTF-8.
+     * ÐÐµ Ð¾Ñ‡ÐµÐ½ÑŒ Ñ‡Ñ‘Ñ‚ÐºÐ¾ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÑÐµÑ‚ ÑÐ¾Ð¾Ñ‚Ð²ÐµÑ‚ÑÑ‚Ð²Ð¸Ðµ Ð´Ð°Ð½Ð½Ñ‹Ñ… ÐºÐ¾Ð´Ð¸Ñ€Ð¾Ð²ÐºÐµ.
      */
     public int skipUTF (int count) throws IOException, UTFDataFormatException
     {
@@ -444,7 +444,7 @@ public class BufDataInputStream extends InputStream implements DataInput
         return r;
     }
     /**
-     * Ïðîâåðèòü íàëè÷èå BOM UTF-8 ñèãíàòóðû
+     * ÐŸÑ€Ð¾Ð²ÐµÑ€Ð¸Ñ‚ÑŒ Ð½Ð°Ð»Ð¸Ñ‡Ð¸Ðµ BOM UTF-8 ÑÐ¸Ð³Ð½Ð°Ñ‚ÑƒÑ€Ñ‹
      */
     public boolean checkBOM ()
     {

@@ -1,10 +1,10 @@
-package filemanager; // с диском 3 не работает!
+package filemanager; // СЃ РґРёСЃРєРѕРј 3 РЅРµ СЂР°Р±РѕС‚Р°РµС‚!
 
 import java.io.*;
 import javax.microedition.io.*;
 import javax.microedition.lcdui.*;
 
-// класс для чтения и редактирования TMO файлов
+// РєР»Р°СЃСЃ РґР»СЏ С‡С‚РµРЅРёСЏ Рё СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ TMO С„Р°Р№Р»РѕРІ
 public class tbTmoEdit
        extends TextBox
        implements CommandListener
@@ -27,7 +27,7 @@ public class tbTmoEdit
         this.newfile = newfile;
         this.readOnly = ReadOnly;
         this.filename = filename;
-        if (!newfile) // если файл не новый, читаем его
+        if (!newfile) // РµСЃР»Рё С„Р°Р№Р» РЅРµ РЅРѕРІС‹Р№, С‡РёС‚Р°РµРј РµРіРѕ
         {
             savedText = readTMO_UTF (filename);
             this.setString (savedText);
@@ -47,7 +47,7 @@ public class tbTmoEdit
     {
         if (command == cmdCancel)
         {
-            if (this.getString ().compareTo (savedText) == 0 || readOnly) // не изменялось или readonly
+            if (this.getString ().compareTo (savedText) == 0 || readOnly) // РЅРµ РёР·РјРµРЅСЏР»РѕСЃСЊ РёР»Рё readonly
                 back ();
             else
             {
@@ -65,7 +65,7 @@ public class tbTmoEdit
         {
             if (!readOnly)
             {
-                // запись
+                // Р·Р°РїРёСЃСЊ
                 saveTMO_UTF (filename, this.getString ());
                 savedText = this.getString ();
                 Alert al = new Alert ("",
@@ -77,7 +77,7 @@ public class tbTmoEdit
             }
             else
             {
-                // только для чтения
+                // С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ
                 Alert al = new Alert (main.locale.Strings[main.locale.ERROR],
                         main.locale.Strings[main.locale.FILE_NOT_SAVED],
                         null, AlertType.ERROR);
@@ -86,27 +86,27 @@ public class tbTmoEdit
                 main.dsp.setCurrent (al, this);
             }
         }
-        // очистка
+        // РѕС‡РёСЃС‚РєР°
         else if (command == cmdClear)
             this.setString ("");
-        // выход
+        // РІС‹С…РѕРґ
         else if (command == cmdYes)
             back ();
-        // отмена
+        // РѕС‚РјРµРЅР°
         else if (command == cmdNo)
             main.dsp.setCurrent (this);
     }
     
     private void back ()
     {
-        if (newfile) // новый файл перечитываем ФС
+        if (newfile) // РЅРѕРІС‹Р№ С„Р°Р№Р» РїРµСЂРµС‡РёС‚С‹РІР°РµРј Р¤РЎ
             cvsWait.start();
         else
             main.dsp.setCurrent (parent);
     }
 
     /**
-     * Запись TMO файла
+     * Р—Р°РїРёСЃСЊ TMO С„Р°Р№Р»Р°
      * @param filename String
      */
     public static void saveTMO_UTF (String filename, String str)
@@ -124,7 +124,7 @@ public class tbTmoEdit
             dos.writeByte (length >> 8);
             for (int i = 0; i < length; i++)
             {
-                curr_ch = str.charAt (i); // сохраняем как тмо файл
+                curr_ch = str.charAt (i); // СЃРѕС…СЂР°РЅСЏРµРј РєР°Рє С‚РјРѕ С„Р°Р№Р»
                 byte_1 = (byte) (curr_ch);
                 byte_2 = (byte) (curr_ch >> 8);
                 ksum = ksum ^ curr_ch;
@@ -142,7 +142,7 @@ public class tbTmoEdit
     }
     
     /**
-     * Чтение TMO файла
+     * Р§С‚РµРЅРёРµ TMO С„Р°Р№Р»Р°
      *
      * @param filename String
      * @return String

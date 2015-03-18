@@ -12,40 +12,40 @@ class CopyMoveThread implements Runnable
         interrupt = false;
     }
     /**
-     * Функция потока копирования/перемещения
+     * Р¤СѓРЅРєС†РёСЏ РїРѕС‚РѕРєР° РєРѕРїРёСЂРѕРІР°РЅРёСЏ/РїРµСЂРµРјРµС‰РµРЅРёСЏ
      */
     public void run ()
     {
-        // папка, куда копируем/перемещаем
+        // РїР°РїРєР°, РєСѓРґР° РєРѕРїРёСЂСѓРµРј/РїРµСЂРµРјРµС‰Р°РµРј
         String targetPath = main.currentPath;
-        // файл для операции
+        // С„Р°Р№Р» РґР»СЏ РѕРїРµСЂР°С†РёРё
         String sourceFileFullName;
         String sourceOnlyName;
         boolean mustMove;
         boolean forAll = false, yes = false, fileExists = false;
         while (Buffer.buf.size() > 0 && !interrupt)
         {
-            mustMove = Buffer.move.get (Buffer.buf.size()-1) == 1 ? true : false; // true, если надо перемещать!
-            sourceFileFullName = noLastSlash((String)Buffer.buf.elementAt (Buffer.buf.size () - 1)); // посл файл из буфера
+            mustMove = Buffer.move.get (Buffer.buf.size()-1) == 1 ? true : false; // true, РµСЃР»Рё РЅР°РґРѕ РїРµСЂРµРјРµС‰Р°С‚СЊ!
+            sourceFileFullName = noLastSlash((String)Buffer.buf.elementAt (Buffer.buf.size () - 1)); // РїРѕСЃР» С„Р°Р№Р» РёР· Р±СѓС„РµСЂР°
             sourceOnlyName = sourceFileFullName.substring (sourceFileFullName.lastIndexOf ('/') + 1);
             fileExists = filesystem.isFileExist (targetPath + sourceOnlyName);
-            if (fileExists && !forAll) // файл существует и ещё не было команды "... для всех!"
+            if (fileExists && !forAll) // С„Р°Р№Р» СЃСѓС‰РµСЃС‚РІСѓРµС‚ Рё РµС‰С‘ РЅРµ Р±С‹Р»Рѕ РєРѕРјР°РЅРґС‹ "... РґР»СЏ РІСЃРµС…!"
             {
                 alConfirmOverwrite al = new alConfirmOverwrite (sourceOnlyName, main.FileSelect);
                 main.dsp.setCurrent (al);
                 al.t.start ();
                 try
                 {
-                    al.t.join(); // ждём, пока он СДОХНЕТ :)
+                    al.t.join(); // Р¶РґС‘Рј, РїРѕРєР° РѕРЅ РЎР”РћРҐРќР•Рў :)
                 } catch (InterruptedException x) {}
                 yes = false;
-                // если да или да для всех => yes!
+                // РµСЃР»Рё РґР° РёР»Рё РґР° РґР»СЏ РІСЃРµС… => yes!
                 if (al.modalResult == al.cmdYes || al.modalResult == al.cmdYesForAll)
                     yes = true;
-                // если "отмена", значит стоп.
+                // РµСЃР»Рё "РѕС‚РјРµРЅР°", Р·РЅР°С‡РёС‚ СЃС‚РѕРї.
                 if (al.modalResult == al.cmdCancel)
                     break;
-                // команда для всех
+                // РєРѕРјР°РЅРґР° РґР»СЏ РІСЃРµС…
                 if (al.modalResult == al.cmdYesForAll || al.modalResult == al.cmdNoForAll)
                     forAll = true;
                 al = null;
@@ -53,31 +53,31 @@ class CopyMoveThread implements Runnable
             }
             if (!fileExists || yes)
             {
-                if (!mustMove) // копирование
+                if (!mustMove) // РєРѕРїРёСЂРѕРІР°РЅРёРµ
                 {
                     if (!filesystem.copyFile (sourceFileFullName, targetPath + sourceOnlyName))
                         Buffer.errors += Locale.Strings[Locale.FILE] + sourceOnlyName + " " + Locale.Strings[Locale.FILE_NOT_COPIED] + "\n\n";
                 }
-                else // перемещение
+                else // РїРµСЂРµРјРµС‰РµРЅРёРµ
                 {
-                    if (filesystem.copyFile (sourceFileFullName, targetPath + sourceOnlyName)) // скопирован?
+                    if (filesystem.copyFile (sourceFileFullName, targetPath + sourceOnlyName)) // СЃРєРѕРїРёСЂРѕРІР°РЅ?
                     {
-                        if (filesystem.isReadOnly (sourceFileFullName)) // источник readonly
+                        if (filesystem.isReadOnly (sourceFileFullName)) // РёСЃС‚РѕС‡РЅРёРє readonly
                             Buffer.errors += sourceOnlyName + " " + Locale.Strings[Locale.SOURCE_FILE_READONLY_BE_COPIED] + "\n\n";
                         else
-                            filesystem.deleteFile (sourceFileFullName, true); // удаляем исходный файл
+                            filesystem.deleteFile (sourceFileFullName, true); // СѓРґР°Р»СЏРµРј РёСЃС…РѕРґРЅС‹Р№ С„Р°Р№Р»
                     }
-                    else // не перемещен
+                    else // РЅРµ РїРµСЂРµРјРµС‰РµРЅ
                         Buffer.errors += Locale.Strings[Locale.FILE] + sourceOnlyName + " " + Locale.Strings[Locale.FILE_NOT_MOVED] + "\n\n";
                 }
             }
-            // удалить последний из буфера
+            // СѓРґР°Р»РёС‚СЊ РїРѕСЃР»РµРґРЅРёР№ РёР· Р±СѓС„РµСЂР°
             Buffer.remove (Buffer.buf.size() - 1);
         }
         Buffer.waitAlert = null;
         main.dsp.setCurrent (new alMessage (Buffer.errors));
     }
-    /** Обрезание последнего слэша у s */
+    /** РћР±СЂРµР·Р°РЅРёРµ РїРѕСЃР»РµРґРЅРµРіРѕ СЃР»СЌС€Р° Сѓ s */
     public static String noLastSlash (String s)
     {
         if (s.charAt (s.length()-1) == '/')
@@ -147,7 +147,7 @@ public class Buffer
     public static Zipper zz = null;
     public static CopyMoveThread cmt = null;
     /**
-     * Добавить в буфер
+     * Р”РѕР±Р°РІРёС‚СЊ РІ Р±СѓС„РµСЂ
      */
     public static void add (String file, int moveit)
     {
@@ -155,7 +155,7 @@ public class Buffer
         move.add (moveit);
     }
     /**
-     * Удалить из буфера
+     * РЈРґР°Р»РёС‚СЊ РёР· Р±СѓС„РµСЂР°
      */
     public static void remove (int index)
     {
@@ -163,7 +163,7 @@ public class Buffer
         move.remove (index, 1);
     }
     /**
-     * Очистить буфер
+     * РћС‡РёСЃС‚РёС‚СЊ Р±СѓС„РµСЂ
      */
     public static void clear ()
     {
@@ -171,7 +171,7 @@ public class Buffer
         move.remove (0, move.size ());
     }
     /**
-     * Вернуть буфер как массив строк
+     * Р’РµСЂРЅСѓС‚СЊ Р±СѓС„РµСЂ РєР°Рє РјР°СЃСЃРёРІ СЃС‚СЂРѕРє
      */
     public static String[] getBuffer ()
     {
@@ -180,7 +180,7 @@ public class Buffer
         return bufs;
     }
     /**
-     * Запустить поток копирования/перемещения
+     * Р—Р°РїСѓСЃС‚РёС‚СЊ РїРѕС‚РѕРє РєРѕРїРёСЂРѕРІР°РЅРёСЏ/РїРµСЂРµРјРµС‰РµРЅРёСЏ
      */
     public static void copyMoveFiles ()
     {
@@ -197,7 +197,7 @@ public class Buffer
         }
     }
     /**
-     * Запустить поток сжатия файлов
+     * Р—Р°РїСѓСЃС‚РёС‚СЊ РїРѕС‚РѕРє СЃР¶Р°С‚РёСЏ С„Р°Р№Р»РѕРІ
      */
     public static void zipFiles (String zipName, int zipLevel)
     {
@@ -218,7 +218,7 @@ public class Buffer
         }
     }
     /**
-     * Создать waitAlert
+     * РЎРѕР·РґР°С‚СЊ waitAlert
      */
     public static void createWait ()
     {
@@ -230,7 +230,7 @@ public class Buffer
         waitAlert.setCommandListener (wcl = new WaitComLis ());
     }
     /**
-     * Остановить процесс
+     * РћСЃС‚Р°РЅРѕРІРёС‚СЊ РїСЂРѕС†РµСЃСЃ
      */
     public static void stopThread ()
     {

@@ -2,7 +2,7 @@
  * gkcCanvas.java
  *
  * Get Key Codes canvas
- * (c) 2006, Виталий Филиппов [VMX]
+ * (c) 2006, Р’РёС‚Р°Р»РёР№ Р¤РёР»РёРїРїРѕРІ [VMX]
  */
 
 package com.vmx;

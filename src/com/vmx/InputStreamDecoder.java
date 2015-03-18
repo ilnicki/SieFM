@@ -6,7 +6,7 @@ public class InputStreamDecoder
 {
     int enc;
     BufDataInputStream bdis;
-    /** Конструктор */
+    /** РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ */
     public InputStreamDecoder (InputStream is, String enc) throws UnsupportedEncodingException, IOException
     {
         if (enc.compareTo ("UTF-8") == 0)
@@ -17,7 +17,7 @@ public class InputStreamDecoder
             throw new UnsupportedEncodingException ("Encoding " + enc + " is not supported by InputStreamDecoder");
         bdis = new BufDataInputStream (2048, is);
     }
-    /** Конструктор */
+    /** РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ */
     public InputStreamDecoder (BufDataInputStream bdis, String enc) throws UnsupportedEncodingException
     {
         if (enc.compareTo ("UTF-8") == 0)
@@ -28,7 +28,7 @@ public class InputStreamDecoder
             throw new UnsupportedEncodingException ("Encoding " + enc + " is not supported by InputStreamDecoder");
         this.bdis = bdis;
     }
-    /** Считать символ */
+    /** РЎС‡РёС‚Р°С‚СЊ СЃРёРјРІРѕР» */
     public char readChar () throws IOException
     {
         char c = (char)-1;
@@ -47,7 +47,7 @@ public class InputStreamDecoder
         }
         return c;
     }
-    /** Считать строку длиной максимум len */
+    /** РЎС‡РёС‚Р°С‚СЊ СЃС‚СЂРѕРєСѓ РґР»РёРЅРѕР№ РјР°РєСЃРёРјСѓРј len */
     public String readChars (int len) throws IOException
     {
         if (bdis.available () <= 0)
@@ -62,7 +62,7 @@ public class InputStreamDecoder
         }
         throw new IOException ("Internal InputStreamDecoder error");
     }
-    /** Считать символ назад */
+    /** РЎС‡РёС‚Р°С‚СЊ СЃРёРјРІРѕР» РЅР°Р·Р°Рґ */
     public char readCharBack () throws IOException
     {
         if (bdis.tell () <= 0)
@@ -78,7 +78,7 @@ public class InputStreamDecoder
         }
         throw new IOException ("Internal InputStreamDecoder error");
     }
-    /** Пропустить n символов, возвращает число пропущенных байт */
+    /** РџСЂРѕРїСѓСЃС‚РёС‚СЊ n СЃРёРјРІРѕР»РѕРІ, РІРѕР·РІСЂР°С‰Р°РµС‚ С‡РёСЃР»Рѕ РїСЂРѕРїСѓС‰РµРЅРЅС‹С… Р±Р°Р№С‚ */
     public int skipChars (int n) throws IOException
     {
         if (enc == 1)

@@ -21,7 +21,7 @@ public class images
             buttons, icons, playerUI, playAnim, waitAnim;
     protected static Image iconsExplode [];
     /**
-     * Загрузка картинок в статические поля
+     * Р—Р°РіСЂСѓР·РєР° РєР°СЂС‚РёРЅРѕРє РІ СЃС‚Р°С‚РёС‡РµСЃРєРёРµ РїРѕР»СЏ
      */
     public images () throws java.io.IOException
     {
@@ -40,7 +40,7 @@ public class images
         playerUI = Image.createImage ("/img/player_ui.jpg");
     }
     /**
-     * Получить иконку с номером index - вырезать из icons если ещё не вырезана
+     * РџРѕР»СѓС‡РёС‚СЊ РёРєРѕРЅРєСѓ СЃ РЅРѕРјРµСЂРѕРј index - РІС‹СЂРµР·Р°С‚СЊ РёР· icons РµСЃР»Рё РµС‰С‘ РЅРµ РІС‹СЂРµР·Р°РЅР°
      */
     public static Image getIcon (int index)
     {
@@ -51,8 +51,8 @@ public class images
         return iconsExplode [index];
     }
     /**
-     * Нарисовать иконку с номером index на объекте Graphics g
-     * в положении x,y
+     * РќР°СЂРёСЃРѕРІР°С‚СЊ РёРєРѕРЅРєСѓ СЃ РЅРѕРјРµСЂРѕРј index РЅР° РѕР±СЉРµРєС‚Рµ Graphics g
+     * РІ РїРѕР»РѕР¶РµРЅРёРё x,y
      */
     public static void drawIcon (Graphics g, int index, int x, int y)
     {

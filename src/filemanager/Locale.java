@@ -54,10 +54,10 @@ public class Locale
     public static String Strings [];
     public static String lang;
     
-    public static String locales [] = null;   // имена языков типа "ru", "en"...
-    public static String languages [] = null; // названия языков (русский, english, ...)
+    public static String locales [] = null;   // РёРјРµРЅР° СЏР·С‹РєРѕРІ С‚РёРїР° "ru", "en"...
+    public static String languages [] = null; // РЅР°Р·РІР°РЅРёСЏ СЏР·С‹РєРѕРІ (СЂСѓСЃСЃРєРёР№, english, ...)
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public Locale (String lang) throws IOException, UTFDataFormatException
     {
@@ -88,7 +88,7 @@ public class Locale
         bdis.close ();
         v = null;
         Strings [63] += "\n" + Strings [64];
-        // Текст лицензии
+        // РўРµРєСЃС‚ Р»РёС†РµРЅР·РёРё
         bdis = new BufDataInputStream (2048, getClass().getResourceAsStream ("/lang/" + lang + "/license.lng"));
         if (!bdis.checkBOM ())
         {
@@ -99,14 +99,14 @@ public class Locale
         bdis.close ();
     }
     /**
-     * Получить поток с текстом about'а
+     * РџРѕР»СѓС‡РёС‚СЊ РїРѕС‚РѕРє СЃ С‚РµРєСЃС‚РѕРј about'Р°
      */
     public static InputStream getAboutStream ()
     {
         return InputStream.class.getResourceAsStream ("/lang/" + lang + "/about.lng");
     }
     /**
-     * Получить список доступных языков
+     * РџРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РґРѕСЃС‚СѓРїРЅС‹С… СЏР·С‹РєРѕРІ
      */
     public static boolean readLocaleList ()
     {

@@ -4,7 +4,7 @@ import javax.microedition.lcdui.*;
 import com.vmx.*;
 
 /**
- * Конфигуратор раскладки клавиатуры
+ * РљРѕРЅС„РёРіСѓСЂР°С‚РѕСЂ СЂР°СЃРєР»Р°РґРєРё РєР»Р°РІРёР°С‚СѓСЂС‹
  */
 public class keyConfig
        extends gkcCanvas
@@ -20,7 +20,7 @@ public class keyConfig
     int header, footer;
     protected Image offscreen;
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     public keyConfig ()
     {
@@ -46,7 +46,7 @@ public class keyConfig
         offscreen = Image.createImage (w, h);
     }
     /**
-     * Отрисовка
+     * РћС‚СЂРёСЃРѕРІРєР°
      */
     protected void paint (Graphics g)
     {
@@ -88,7 +88,7 @@ public class keyConfig
         g.drawLine (w-3, sbstart, w-3, sbstart+sbsize);
     }
     /**
-     * Показать :)
+     * РџРѕРєР°Р·Р°С‚СЊ :)
      */
     public void show ()
     {
@@ -97,7 +97,7 @@ public class keyConfig
         main.dsp.setCurrent (this);
     }
     /**
-     * Обработчик нажатий клавиш
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёР№ РєР»Р°РІРёС€
      */
     public void keyPressed (int key)
     {
@@ -130,7 +130,7 @@ public class keyConfig
         repaint();
     }
     /**
-     * Выбор команды меню
+     * Р’С‹Р±РѕСЂ РєРѕРјР°РЅРґС‹ РјРµРЅСЋ
      */
     public void menuAction (int code)
     {
@@ -140,14 +140,14 @@ public class keyConfig
         main.menu.ret ();
     }
     /**
-     * Константы положений настроек клавиш в массиве
+     * РљРѕРЅСЃС‚Р°РЅС‚С‹ РїРѕР»РѕР¶РµРЅРёР№ РЅР°СЃС‚СЂРѕРµРє РєР»Р°РІРёС€ РІ РјР°СЃСЃРёРІРµ
      */
     public static final int CONF_LSK = 0, CONF_RSK = 1, CONF_DIAL = 2,
             CONF_CANCEL = 3, CONF_UP = 4, CONF_DOWN = 5, CONF_LEFT = 6,
             CONF_RIGHT = 7, CONF_FIRE = 8, CONF_STAR = 9, CONF_POUND = 10,
             CONF_NUM = 11;
     /**
-     * Массив конфигурации
+     * РњР°СЃСЃРёРІ РєРѕРЅС„РёРіСѓСЂР°С†РёРё
      */
     public static int keyConfig [] =
     {
@@ -169,7 +169,7 @@ public class keyConfig
         -1, -1, -1, -1
     };
     /**
-     * Имена клавиш из локали
+     * РРјРµРЅР° РєР»Р°РІРёС€ РёР· Р»РѕРєР°Р»Рё
      */
     protected static final int lockeyNames [] =
     {

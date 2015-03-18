@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 import javax.microedition.lcdui.Canvas;
@@ -8,7 +8,7 @@ import java.io.*;
 import com.vmx.*;
 
 /**
- * Класс - просмотрщик картинок
+ * РљР»Р°СЃСЃ - РїСЂРѕСЃРјРѕС‚СЂС‰РёРє РєР°СЂС‚РёРЅРѕРє
  */
 public class cvsImageView extends gkcCanvas
 {
@@ -25,7 +25,7 @@ public class cvsImageView extends gkcCanvas
     String currentPictureFile;
     Font nameFont;
     /**
-     * Конструктор
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
      */
     cvsImageView ()
     {
@@ -35,7 +35,7 @@ public class cvsImageView extends gkcCanvas
         nameFont = Font.getFont (Font.FACE_SYSTEM, Font.STYLE_PLAIN, Font.SIZE_SMALL);
     }
     /**
-     * Префиксная функция загрузки картинки
+     * РџСЂРµС„РёРєСЃРЅР°СЏ С„СѓРЅРєС†РёСЏ Р·Р°РіСЂСѓР·РєРё РєР°СЂС‚РёРЅРєРё
      */
     protected void predisplay ()
     {
@@ -50,7 +50,7 @@ public class cvsImageView extends gkcCanvas
         rotate = false;
     }
     /**
-     * Постфиксная функция загрузки картинки
+     * РџРѕСЃС‚С„РёРєСЃРЅР°СЏ С„СѓРЅРєС†РёСЏ Р·Р°РіСЂСѓР·РєРё РєР°СЂС‚РёРЅРєРё
      */
     protected void postdisplay ()
     {
@@ -90,7 +90,7 @@ public class cvsImageView extends gkcCanvas
         predisplay ();
         this.parent = parent;
         currentPictureFile = imgName;
-        // грузим картинку в полный размер, потом по ширине, потом по высоте, если не выходит
+        // РіСЂСѓР·РёРј РєР°СЂС‚РёРЅРєСѓ РІ РїРѕР»РЅС‹Р№ СЂР°Р·РјРµСЂ, РїРѕС‚РѕРј РїРѕ С€РёСЂРёРЅРµ, РїРѕС‚РѕРј РїРѕ РІС‹СЃРѕС‚Рµ, РµСЃР»Рё РЅРµ РІС‹С…РѕРґРёС‚
         if ((currentImage = readImageFromFile (imgName, false)) == null)
         {
             if ((currentImage = readImageFromFile (imgName, 0, h)) == null)
@@ -105,8 +105,8 @@ public class cvsImageView extends gkcCanvas
             if (hbig || wbig)
             {
                 scaled = true;
-                // если и ширина велика, и высота тоже, тогда выбираем,
-                // по высоте или ширине вписывать в экран
+                // РµСЃР»Рё Рё С€РёСЂРёРЅР° РІРµР»РёРєР°, Рё РІС‹СЃРѕС‚Р° С‚РѕР¶Рµ, С‚РѕРіРґР° РІС‹Р±РёСЂР°РµРј,
+                // РїРѕ РІС‹СЃРѕС‚Рµ РёР»Рё С€РёСЂРёРЅРµ РІРїРёСЃС‹РІР°С‚СЊ РІ СЌРєСЂР°РЅ
                 if (hbig && wbig)
                 {
                     currentImage = readImageFromFile (imgName, 0, h);
@@ -117,11 +117,11 @@ public class cvsImageView extends gkcCanvas
                         else currentImage = readImageFromFile (imgName, w, 0);
                     }
                 }
-                // если только высота - то по высоте
+                // РµСЃР»Рё С‚РѕР»СЊРєРѕ РІС‹СЃРѕС‚Р° - С‚Рѕ РїРѕ РІС‹СЃРѕС‚Рµ
                 else if (hbig)
                     currentImage = readImageFromFile (imgName, 0, h);
-                // если только ширина - то смотрим, а не придётся ли его потом поворачивать?
-                // если придётся, то выравниваем по "ширине", но "ширина" это сейчас высота экрана
+                // РµСЃР»Рё С‚РѕР»СЊРєРѕ С€РёСЂРёРЅР° - С‚Рѕ СЃРјРѕС‚СЂРёРј, Р° РЅРµ РїСЂРёРґС‘С‚СЃСЏ Р»Рё РµРіРѕ РїРѕС‚РѕРј РїРѕРІРѕСЂР°С‡РёРІР°С‚СЊ?
+                // РµСЃР»Рё РїСЂРёРґС‘С‚СЃСЏ, С‚Рѕ РІС‹СЂР°РІРЅРёРІР°РµРј РїРѕ "С€РёСЂРёРЅРµ", РЅРѕ "С€РёСЂРёРЅР°" СЌС‚Рѕ СЃРµР№С‡Р°СЃ РІС‹СЃРѕС‚Р° СЌРєСЂР°РЅР°
                 else if (wbig)
                 {
                     if (currentImage.getWidth () > currentImage.getHeight ())
@@ -134,11 +134,11 @@ public class cvsImageView extends gkcCanvas
         repaint ();
     }
     /**
-     * Открыть рисунок средствами Siemens
+     * РћС‚РєСЂС‹С‚СЊ СЂРёСЃСѓРЅРѕРє СЃСЂРµРґСЃС‚РІР°РјРё Siemens
      *
      * @param imgName String
-     * @param h int - высота
-     * @param w int - ширина
+     * @param h int - РІС‹СЃРѕС‚Р°
+     * @param w int - С€РёСЂРёРЅР°
      * @return Image
      */
     public final javax.microedition.lcdui.Image readImageFromFile (String imgName, int w, int h)
@@ -151,7 +151,7 @@ public class cvsImageView extends gkcCanvas
         return image;
     }
     /**
-     * Открыть рисунок средствами Siemens
+     * РћС‚РєСЂС‹С‚СЊ СЂРёСЃСѓРЅРѕРє СЃСЂРµРґСЃС‚РІР°РјРё Siemens
      *
      * @param imgName String
      * @param Scale boolean
@@ -167,11 +167,11 @@ public class cvsImageView extends gkcCanvas
         return image;
     }
     /**
-     * Функция отрисовки
+     * Р¤СѓРЅРєС†РёСЏ РѕС‚СЂРёСЃРѕРІРєРё
      */
     protected void paint (Graphics g)
     {
-        // фон
+        // С„РѕРЅ
         if (currentImage != null)
         {
             g.setColor (0x000000);
@@ -182,7 +182,7 @@ public class cvsImageView extends gkcCanvas
             picture.setPosition (curposx, curposy);
             picture.paint (g);
         }
-        else // нет изображения
+        else // РЅРµС‚ РёР·РѕР±СЂР°Р¶РµРЅРёСЏ
             g.drawRegion (images.waitAnim, 0, 0, 32, 32, Sprite.TRANS_NONE, w/2-16, h/2-16, Graphics.LEFT | Graphics.TOP);
         if (enableUI)
         {
@@ -197,20 +197,20 @@ public class cvsImageView extends gkcCanvas
             g.drawString (tmp, w/2, h - 13, g.TOP | g.HCENTER);
         }
     }
-    /** Пересчитать положение левого верхнего угла картинки */
+    /** РџРµСЂРµСЃС‡РёС‚Р°С‚СЊ РїРѕР»РѕР¶РµРЅРёРµ Р»РµРІРѕРіРѕ РІРµСЂС…РЅРµРіРѕ СѓРіР»Р° РєР°СЂС‚РёРЅРєРё */
     private void placeImageToCenter ()
     {
         curposx = getWidth()/2 - pictureWidth/2;
         curposy = getHeight()/2 - pictureHeight/2;
     }
-    /** Поменять местами pictureHeight и pictureWidth */
+    /** РџРѕРјРµРЅСЏС‚СЊ РјРµСЃС‚Р°РјРё pictureHeight Рё pictureWidth */
     private void swapHW ()
     {
         int r = pictureHeight;
         pictureHeight = pictureWidth;
         pictureWidth = r;
     }
-    /** Обработчик нажатий клавиш */
+    /** РћР±СЂР°Р±РѕС‚С‡РёРє РЅР°Р¶Р°С‚РёР№ РєР»Р°РІРёС€ */
     protected void keyPressed (int keyCode)
     {
         if (keyCode == KEY_POUND)
@@ -218,18 +218,18 @@ public class cvsImageView extends gkcCanvas
             enableUI = !enableUI;
             repaint ();
         }
-        // Следующая картинка
+        // РЎР»РµРґСѓСЋС‰Р°СЏ РєР°СЂС‚РёРЅРєР°
         else if (keyCode == KEY_DOWN || keyCode == KEY_NUM8)
             nextPicture ();
-        // Предыдущ картинка
+        // РџСЂРµРґС‹РґСѓС‰ РєР°СЂС‚РёРЅРєР°
         else if (keyCode == KEY_UP || keyCode == KEY_NUM2)
             prevPicture ();
-        // Выход
+        // Р’С‹С…РѕРґ
         else if (keyCode == KEY_CANCEL || keyCode == KEY_RSK)
             main.dsp.setCurrent (parent);
     }
     /**
-     * следующая картинка
+     * СЃР»РµРґСѓСЋС‰Р°СЏ РєР°СЂС‚РёРЅРєР°
      */
     private void nextPicture ()
     {
@@ -241,7 +241,7 @@ public class cvsImageView extends gkcCanvas
         main.FileSelect.selectFile ();
     }
     /**
-     * предыдущая картинка
+     * РїСЂРµРґС‹РґСѓС‰Р°СЏ РєР°СЂС‚РёРЅРєР°
      */
     private void prevPicture ()
     {

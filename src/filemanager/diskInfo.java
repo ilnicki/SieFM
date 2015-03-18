@@ -7,12 +7,12 @@ public class diskInfo implements CommandListener
 {
     Displayable parent;
     Command cmdpropsOK = new Command (Locale.Strings[Locale.OK_CMD], Command.BACK, 1);
-    /** Конструктор */
+    /** РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ */
     public diskInfo ()
     {
         parent = null;
     }
-    /** Показ информации о диске */
+    /** РџРѕРєР°Р· РёРЅС„РѕСЂРјР°С†РёРё Рѕ РґРёСЃРєРµ */
     public void showDiskProperties (Displayable parent)
     {
         this.parent = parent;
@@ -56,7 +56,7 @@ public class diskInfo implements CommandListener
         frmProps.setCommandListener (this);
         main.dsp.setCurrent (frmProps);
     }
-    /** Обработчик команд от формы свойств */
+    /** РћР±СЂР°Р±РѕС‚С‡РёРє РєРѕРјР°РЅРґ РѕС‚ С„РѕСЂРјС‹ СЃРІРѕР№СЃС‚РІ */
     public void commandAction (Command c, Displayable d)
     {
         main.dsp.setCurrent (parent);

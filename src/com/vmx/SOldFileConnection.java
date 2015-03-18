@@ -11,9 +11,9 @@ public class SOldFileConnection
     protected File mf;
     protected String filename;
     /**
-     * Конструктор. Открывает файл с именем filename. 
+     * РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ. РћС‚РєСЂС‹РІР°РµС‚ С„Р°Р№Р» СЃ РёРјРµРЅРµРј filename. 
      *
-     * filename вида "file:///0:/Misc/file.txt"
+     * filename РІРёРґР° "file:///0:/Misc/file.txt"
      */
     public SOldFileConnection (String URL) throws IOException
     {
@@ -23,7 +23,7 @@ public class SOldFileConnection
         this.filename = URL.substring (8);
     }
     /**
-     * Открыть входной поток
+     * РћС‚РєСЂС‹С‚СЊ РІС…РѕРґРЅРѕР№ РїРѕС‚РѕРє
      */
     public InputStream openInputStream () throws IOException
     {
@@ -32,7 +32,7 @@ public class SOldFileConnection
         return new SOldFileInputStream (mf, mf.open (filename));
     }
     /**
-     * Закрыть соединение наффик
+     * Р—Р°РєСЂС‹С‚СЊ СЃРѕРµРґРёРЅРµРЅРёРµ РЅР°С„С„РёРє
      */
     public void close ()
     {

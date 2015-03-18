@@ -13,7 +13,7 @@ public class WorkingMenu
         mn = menu;
     }
     /**
-     * Обработчик для меню
+     * РћР±СЂР°Р±РѕС‚С‡РёРє РґР»СЏ РјРµРЅСЋ
      */
     public void menuAction (int string)
     {
@@ -34,28 +34,28 @@ public class WorkingMenu
             string = Locale.DISK_INFO_CMD;
         switch (string)
         {
-            case Locale.EXIT_CMD: // выход
+            case Locale.EXIT_CMD: // РІС‹С…РѕРґ
                 main.midlet.destroyApp (true);
                 break;
-            case Locale.MARK_CMD: // выделить
+            case Locale.MARK_CMD: // РІС‹РґРµР»РёС‚СЊ
                 main.FileSelect.markSelected ();
                 mn.ret ();
                 break;
-            case Locale.MARK_ALL_CMD: // выделить все
+            case Locale.MARK_ALL_CMD: // РІС‹РґРµР»РёС‚СЊ РІСЃРµ
                 main.FileSelect.markAll ();
                 mn.ret ();
                 break;
-            case Locale.DEMARK_ALL_CMD: // сбросить выделение
+            case Locale.DEMARK_ALL_CMD: // СЃР±СЂРѕСЃРёС‚СЊ РІС‹РґРµР»РµРЅРёРµ
                 main.FileSelect.demarkAll ();
                 mn.ret ();
                 break;
-            case Locale.HELP_CMD: // справка
+            case Locale.HELP_CMD: // СЃРїСЂР°РІРєР°
                 main.textEditor.openStream (Locale.getAboutStream (), "UTF-8");
                 main.textEditor.parent = mn.parent;
                 main.textEditor.caption = Locale.ABOUT_MIDLET_NAME;
                 main.dsp.setCurrent (main.textEditor);
                 break;
-            case Locale.TO_FAVOUR_CMD: // папку в избранное
+            case Locale.TO_FAVOUR_CMD: // РїР°РїРєСѓ РІ РёР·Р±СЂР°РЅРЅРѕРµ
                 if ("..".equals (main.currentFile))
                     options.addFavorite (main.currentPath);
                 else if (main.currentPath != null)
@@ -63,24 +63,24 @@ public class WorkingMenu
                 else options.addFavorite (main.currentFile.substring (0,3));
                 main.dsp.setCurrent (mn.parent);
                 break;
-            case Locale.DISK_INFO_CMD: // инфо о диске
+            case Locale.DISK_INFO_CMD: // РёРЅС„Рѕ Рѕ РґРёСЃРєРµ
                 main.diskinfo.showDiskProperties (mn.parent);
                 break;
-            case Locale.PROPERTY_CMD: // свойства
+            case Locale.PROPERTY_CMD: // СЃРІРѕР№СЃС‚РІР°
                 main.dsp.setCurrent (new frmProperties (mn.parent));
                 break;
-            case Locale.BUFFER: // показать буфер обмена
+            case Locale.BUFFER: // РїРѕРєР°Р·Р°С‚СЊ Р±СѓС„РµСЂ РѕР±РјРµРЅР°
                 main.FileSelect.showBuffer ();
                 break;
-            case Locale.OPEN_CMD: // открыть
+            case Locale.OPEN_CMD: // РѕС‚РєСЂС‹С‚СЊ
                 mn.ret ();
                 main.FileSelect.selectFile ();
                 break;
-            case Locale.RENAME_CMD: // переименовать
+            case Locale.RENAME_CMD: // РїРµСЂРµРёРјРµРЅРѕРІР°С‚СЊ
                 main.dsp.setCurrent (new frmRename (mn.parent));
                 break;
-            case Locale.DELETE_CMD: // удалить выбранный/выделенные
-                if ("fav:/".equals (main.currentPath)) // удаляем из избранного
+            case Locale.DELETE_CMD: // СѓРґР°Р»РёС‚СЊ РІС‹Р±СЂР°РЅРЅС‹Р№/РІС‹РґРµР»РµРЅРЅС‹Рµ
+                if ("fav:/".equals (main.currentPath)) // СѓРґР°Р»СЏРµРј РёР· РёР·Р±СЂР°РЅРЅРѕРіРѕ
                 {
                     if (main.FileSelect.markMode)
                     {
@@ -92,7 +92,7 @@ public class WorkingMenu
                         options.deleteFavorite (main.FileSelect.files[main.FileSelect.scrSel]);
                     cvsWait.start ();
                 }
-                else if ("buf:/".equals (main.currentPath)) // удаляем из буфера
+                else if ("buf:/".equals (main.currentPath)) // СѓРґР°Р»СЏРµРј РёР· Р±СѓС„РµСЂР°
                 {
                     if (main.FileSelect.markMode)
                     {
@@ -106,24 +106,24 @@ public class WorkingMenu
                 }
                 else
                 {
-                    if (!main.FileSelect.markMode) // удаляем просто немаркированный файл
+                    if (!main.FileSelect.markMode) // СѓРґР°Р»СЏРµРј РїСЂРѕСЃС‚Рѕ РЅРµРјР°СЂРєРёСЂРѕРІР°РЅРЅС‹Р№ С„Р°Р№Р»
                         main.dsp.setCurrent (new alConfirmDelete (main.currentPath + main.currentFile, mn.parent));
                     else
                         main.dsp.setCurrent (new alConfirmDeleteSel (mn.parent));
                 }
                 break;
-            case Locale.NEW_FOLDER_CMD: // создать папку
+            case Locale.NEW_FOLDER_CMD: // СЃРѕР·РґР°С‚СЊ РїР°РїРєСѓ
                 main.dsp.setCurrent (new frmNewFolder (mn.parent));
                 break;
-            case Locale.NEW_FILE_CMD: // создать файл
+            case Locale.NEW_FILE_CMD: // СЃРѕР·РґР°С‚СЊ С„Р°Р№Р»
                 main.dsp.setCurrent (new frmNewFile (mn.parent));
                 break;
-            case Locale.MOVE_CMD: // переместить
+            case Locale.MOVE_CMD: // РїРµСЂРµРјРµСЃС‚РёС‚СЊ
                 moveit = 1;
-            case Locale.COPY_CMD: // копировать
-                if (!main.FileSelect.markMode) // копируем поодиночку
+            case Locale.COPY_CMD: // РєРѕРїРёСЂРѕРІР°С‚СЊ
+                if (!main.FileSelect.markMode) // РєРѕРїРёСЂСѓРµРј РїРѕРѕРґРёРЅРѕС‡РєСѓ
                     Buffer.add (main.currentPath + main.currentFile, moveit);
-                else // копируем выделенные в буфер
+                else // РєРѕРїРёСЂСѓРµРј РІС‹РґРµР»РµРЅРЅС‹Рµ РІ Р±СѓС„РµСЂ
                 {
                     for (int i = 1; i < main.FileSelect.files.length; i++)
                         if (main.FileSelect.marked [i])
@@ -137,7 +137,7 @@ public class WorkingMenu
                 al.setTimeout (3000);
                 main.dsp.setCurrent (al, mn.parent);
                 break;
-            case Locale.INSERT_CMD: // вставить
+            case Locale.INSERT_CMD: // РІСЃС‚Р°РІРёС‚СЊ
                 al = new Alert (Locale.Strings[Locale.WAIT],
                         Locale.Strings[Locale.WAIT_PLEASE],
                         null, AlertType.WARNING);
@@ -146,17 +146,17 @@ public class WorkingMenu
                 main.dsp.setCurrent (al, mn.parent);
                 Buffer.copyMoveFiles ();
                 break;
-            case Locale.FAVOURITE: // показать избранное
+            case Locale.FAVOURITE: // РїРѕРєР°Р·Р°С‚СЊ РёР·Р±СЂР°РЅРЅРѕРµ
                 main.currentPath = "fav:/";
                 cvsWait.start ();
                 break;
-            case Locale.PREFERENCES_CMD: // настройки
+            case Locale.PREFERENCES_CMD: // РЅР°СЃС‚СЂРѕР№РєРё
                 main.dsp.setCurrent (new frmOptions (mn.parent));
                 break;
-            case Locale.EXTRACT_ALL_CMD: // извлечь всё
+            case Locale.EXTRACT_ALL_CMD: // РёР·РІР»РµС‡СЊ РІСЃС‘
                 main.dsp.setCurrent (new frmExtractTo (mn.parent, null));
                 break;
-            case Locale.EXTRACT_CMD: // извлечь
+            case Locale.EXTRACT_CMD: // РёР·РІР»РµС‡СЊ
                 v = new Vector ();
                 if (main.FileSelect.markMode)
                 {
@@ -178,7 +178,7 @@ public class WorkingMenu
                 if (v.size () > 0)
                     main.dsp.setCurrent (new frmExtractTo (mn.parent, v));
                 break;
-            case Locale.CREATE_ZIP: // создать ZIP-архив из файлов из буфера
+            case Locale.CREATE_ZIP: // СЃРѕР·РґР°С‚СЊ ZIP-Р°СЂС…РёРІ РёР· С„Р°Р№Р»РѕРІ РёР· Р±СѓС„РµСЂР°
                 main.dsp.setCurrent (new frmCompress (mn.parent));
                 break;
             case Locale.EDIT_ID3_CMD:

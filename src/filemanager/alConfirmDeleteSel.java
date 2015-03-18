@@ -1,4 +1,4 @@
-package filemanager; // переведен
+package filemanager; // РїРµСЂРµРІРµРґРµРЅ
 
 import javax.microedition.lcdui.*;
 
@@ -27,15 +27,15 @@ public class alConfirmDeleteSel
     {
         if (command == cmdYes) 
         {
-            for (int i = 1; i < main.FileSelect.files.length; i++) // это файл
+            for (int i = 1; i < main.FileSelect.files.length; i++) // СЌС‚Рѕ С„Р°Р№Р»
             {
                 if (main.FileSelect.marked[i])
                 {
                     fileFullName = main.currentPath + main.FileSelect.files[i];
                     fileOnlyName = fileFullName.substring (fileFullName.lastIndexOf ('/') + 1);
-                    if (filesystem.isReadOnly (fileFullName)) // потому что ReadOnly
+                    if (filesystem.isReadOnly (fileFullName)) // РїРѕС‚РѕРјСѓ С‡С‚Рѕ ReadOnly
                         errors = errors + Locale.Strings[Locale.FILE] + fileOnlyName + Locale.Strings[Locale.READ_ONLY] + "\n";
-                    else if (!filesystem.deleteFile (fileFullName, true)) // файл удален НЕуспешно?
+                    else if (!filesystem.deleteFile (fileFullName, true)) // С„Р°Р№Р» СѓРґР°Р»РµРЅ РќР•СѓСЃРїРµС€РЅРѕ?
                         errors = errors + Locale.Strings[Locale.FILE] + fileOnlyName + Locale.Strings[Locale.FILE_NOT_DELETED] + "\n";
                 }
             }
