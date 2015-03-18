@@ -1,0 +1,24 @@
+﻿    SieFM is abbreviation for SIEmens File Manager. It can view, copy, move and delete files and folders on your mobile phone.
+    SieFM is SIEMENS file manager, it will not work on other phones :)
+    Unlike standart mobile CardExplorer this midlet can delete Read-Only files, view hidden files, folders and disks, and delete directories recursively.
+    Also you can view images, videos, play sounds, view and edit texts in windows-1251 and UTF-8 encodings.
+    With SieFM you also can work with ZIP-archives - note that *.jar, *.sdt, *.scs also are ZIP archives.
+    To create ZIP archive - copy or move files to clipboard then in some folder select command "Create - ZIP archive..."
+    To extract files from ZIP archive - open it and select one of two following commands: "Archive - Extract" or "Archive - Extract All".
+
+Supported file types:
+Image: *.png *.jpg *.gif *.bmp *.bmx
+Sound: *.mid *.wav *.amr *.imy + для x75 *.mp3 и *.aac
+Video: *.3gp *.mp4
+Text: *.txt *.tmo *.jad *.log
+Archive: *.zip *.jar *.sdt *.scs
+
+You can always get the newest midlet version http://vmx.yourcmc.ru.
+Also you can view discussion in Java section of Siemens Club forum (http://forum.siemens-club.org).
+
+P.S. Thank you for references and testing SieFM! Send wishes to vmx@yourcmc.ru or vitalif@mail.ru.
+
+© VMX 2006, DiHLoS 2005
+Also respect to:
+DOMr - got FileManager x65 sources from DiHLoS %)
+Spider13 - started Vista style idea.

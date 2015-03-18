@@ -1,0 +1,24 @@
+    SieFM es abreviacion de SIEmens File Manager. Puede ver, copiar, mover y borrar archivos y carpetas de su celular.
+    SieFM es SIEMENS file manager, y no funciona en otros celulares :)
+    A diferencia del administrador de archivos estandard, este programa le permite borrar archivos de solo lectura, ver archivos, carpetas y discos ocultos, y borrar recursivamente.
+    Tambien puede ver imagenes, videos, escuchar sonidos y mirar y editar texto en codificaciуn windows-1251 y UTF-8.
+    Con SieFM puede trabajar con archivos comprimidos ZIP (y *.jar, *.sdt, *.scs que tambien son somprimidos).
+    Para crear un ZIP - copie o mueva archivos al portapapeles y en la misma carpeta seleccione el comando "Crear - Archivo ZIP..."
+    Para extraer archivos de un ZIP - Abralo y seleccione uno o dos de los comandos: "Comprimidos - Extraer" o "Comprimidos - Extraer Todo".
+
+Tipos de archivos soportados:
+Imagen: *.png *.jpg *.gif *.bmp *.bmx
+Sonido: *.mid *.wav *.amr *.imy + en x75 *.mp3 ? *.aac
+Video: *.3gp *.mp4
+Texto: *.txt *.tmo *.jad *.log
+Comprimidos: *.zip *.jar *.sdt *.scs
+
+Usted puede siempre bajar la ultima versiуn de este programa en http://vmx.yourcmc.ru.
+Puede visitar los foros de discuciуn en la secciуn Java de Siemens Club forum (http://forum.siemens-club.org).
+
+P.D. Gracias por utilizar y disfrutar SieFM! Envнenos sus comentarios a vmx@yourcmc.ru o vitalif@mail.ru. (en ruso)
+
+© VMX 2006, DiHLoS 2005
+Also respect to:
+DOMr - got FileManager x65 sources from DiHLoS %)
+Spider13 - started Vista style idea.

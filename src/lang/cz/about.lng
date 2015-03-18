@@ -1,0 +1,20 @@
+﻿S aplikací SieFM můžete prohlížet soubory a složky, kopírovat a přesouvat soubory a složky ve svém mobilu.
+Narozdíl od vestavěné aplikace CardExplorer můžete mazat soubory "jen pro čtení", procházet skryté adresáře a disky, otvírat skryté soubory a měnit jejich atributy.
+Dále pak prohlížet obrázky, přehrávat audio a video soubory, otevírat a editovat soubory s kódováním windows-1251 a UTF-8.
+
+Podporovené typy souborů:
+Obrázky: *.png *.jpg *.gif *.bmp *.bmx
+Zvuky: *.mid *.wav *.amr *.imy + ??? x75 *.mp3 ? *.aac
+Video: *.3gp *.mp4
+Texty: *.txt *.tmo *.jad *.log
+
+Aktuální verze programu najdete na stránce http://vmx.yourcmc.ru.
+Diskuzní fórum k aplikaci naleznete na stránkách diskuzního fóra "Siemens Club" (http://forum.siemens-club.org) v sekci Java.
+
+P.S. Děkuji za Vaše připomínky a postřehy z testování aplikace! Svá přání a podněty zasílejte na adresy vmx@yourcmc.ru nebo vitalif@mail.ru.
+
+© VMX 2006, DiHLoS 2005
+Poděkování:
+DOMr - že získal zdrojové kódy k FileManager x65 autora DiHLoS %)
+Spider13 - za vytvoření grafického prostředí Vista.
+truhlik - za českou lokalizaci.
