@@ -2,10 +2,17 @@ package com.vmx;
 
 import java.io.UnsupportedEncodingException;
 
+/**
+ *
+ * @author Dmytro
+ */
 public class StringEncoder
 {
-    /** Таблица кодировки "windows-1251" */
-    protected static char cp1251 [] =
+
+    /**
+     * Таблица кодировки "windows-1251"
+     */
+    protected static char cp1251[] =
     {
         '\u0410', '\u0411', '\u0412', '\u0413', '\u0414', '\u0415', '\u0416',
         '\u0417', '\u0418', '\u0419', '\u041A', '\u041B', '\u041C', '\u041D',
@@ -18,70 +25,103 @@ public class StringEncoder
         '\u0448', '\u0449', '\u042A', '\u044B', '\u044C', '\u044D', '\u044E',
         '\u044F'
     };
-    /** Конструктор. Пустой. */
-    public StringEncoder ()
+
+    /**
+     * Конструктор. Пустой.
+     */
+    public StringEncoder()
     {
     }
-    /** Кодировать строку s в кодировку enc */
-    public static byte [] encodeString (String s, String enc) throws UnsupportedEncodingException
+
+    /**
+     * Кодировать строку s в кодировку enc.
+     *
+     * @param s
+     * @param enc
+     * @return
+     * @throws java.io.UnsupportedEncodingException
+     */
+    public static byte[] encodeString(String s, String enc) throws UnsupportedEncodingException
     {
-        byte [] bs;
+        byte[] bs;
         try
         {
-            bs = s.getBytes (enc);
-        }
-        catch (UnsupportedEncodingException x)
+            bs = s.getBytes(enc);
+        } catch (UnsupportedEncodingException x)
         {
-            if (enc.compareTo ("windows-1251") == 0)
+            if (enc.compareTo("windows-1251") == 0)
             {
-                bs = new byte [s.length ()];
-                for (int i = 0; i < s.length (); i++)
-                    bs [i] = encodeCharCP1251 (s.charAt (i));
+                bs = new byte[s.length()];
+                for (int i = 0; i < s.length(); i++)
+                    bs[i] = encodeCharCP1251(s.charAt(i));
                 return bs;
             }
             throw x;
         }
         return bs;
     }
-    /** Получить длину строки s в байтах в кодировке enc */
-    public static int getEncodedLength (String s, String enc) throws UnsupportedEncodingException
+
+    /**
+     * Получить длину строки s в байтах в кодировке enc.
+     *
+     * @param s
+     * @param enc
+     * @return
+     * @throws java.io.UnsupportedEncodingException
+     */
+    public static int getEncodedLength(String s, String enc) throws UnsupportedEncodingException
     {
-        byte [] bs;
+        byte[] bs;
         try
         {
-            bs = s.getBytes (enc);
+            bs = s.getBytes(enc);
             return bs.length;
-        }
-        catch (UnsupportedEncodingException x)
+        } catch (UnsupportedEncodingException x)
         {
-            if (enc.compareTo ("windows-1251") == 0)
-                return s.length ();
+            if (enc.compareTo("windows-1251") == 0)
+                return s.length();
             throw x;
         }
     }
-    /** Декодировать участок массива b длиной len со смещения off из кодировки enc */
-    public static String decodeString (byte [] bs, int off, int len, String enc) throws UnsupportedEncodingException
+
+    /**
+     * Декодировать участок массива b длиной len со смещения off из кодировки
+     * enc.
+     *
+     * @param bs
+     * @param off
+     * @param len
+     * @param enc
+     * @return
+     * @throws java.io.UnsupportedEncodingException
+     */
+    public static String decodeString(byte[] bs, int off, int len, String enc) throws UnsupportedEncodingException
     {
         String s;
         try
         {
-            s = new String (bs, off, len, enc);
-        }
-        catch (UnsupportedEncodingException x)
+            s = new String(bs, off, len, enc);
+        } catch (UnsupportedEncodingException x)
         {
-            if (enc.compareTo ("windows-1251") == 0)
+            if (enc.compareTo("windows-1251") == 0)
             {
                 s = "";
                 for (int i = 0; i < len; i++)
-                    s += decodeCharCP1251 (bs [off+i]);
+                    s += decodeCharCP1251(bs[off + i]);
                 return s;
             }
             throw x;
         }
         return s;
     }
-    /** Декодировать символ в windows-1251 */
-    public static char decodeCharCP1251 (byte b)
+
+    /**
+     * Декодировать символ в windows-1251.
+     *
+     * @param b
+     * @return
+     */
+    public static char decodeCharCP1251(byte b)
     {
         int ich = b & 0xff;
         if (ich == 0xb8) // ё
@@ -89,11 +129,17 @@ public class StringEncoder
         else if (ich == 0xa8) // Ё
             return 0x0401;
         else if (ich >= 0xc0)
-            return cp1251 [ich-192];
-        return (char)ich;
+            return cp1251[ich - 192];
+        return (char) ich;
     }
-    /** Кодировать символ в windows-1251 */
-    public static byte encodeCharCP1251 (char ch)
+
+    /**
+     * Кодировать символ в windows-1251.
+     *
+     * @param ch
+     * @return
+     */
+    public static byte encodeCharCP1251(char ch)
     {
         if (ch > 0 && ch < 128)
             return (byte) ch;
@@ -109,6 +155,6 @@ public class StringEncoder
             return -70; // є
         else if (ch == 0x457)
             return -65; // ї
-        return (byte)((byte)(ch) + 176);
+        return (byte) ((byte) (ch) + 176);
     }
 }

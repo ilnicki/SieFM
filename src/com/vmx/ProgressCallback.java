@@ -1,8 +1,27 @@
 package com.vmx;
 
+/**
+ *
+ * @author Dmytro
+ */
 public interface ProgressCallback
 {
-    public void setMax (int max);
-    public void setProgress (int progress);
-    public void progress (int plus);
+
+    /**
+     *
+     * @param max
+     */
+    public void setMax(int max);
+
+    /**
+     *
+     * @param progress
+     */
+    public void setProgress(int progress);
+
+    /**
+     *
+     * @param plus
+     */
+    public void progress(int plus);
 }

@@ -2,89 +2,134 @@ package com.vmx;
 
 import java.io.*;
 
+/**
+ *
+ * @author Dmytro
+ */
 public class InputStreamDecoder
 {
+
     int enc;
     BufDataInputStream bdis;
-    /** Конструктор */
-    public InputStreamDecoder (InputStream is, String enc) throws UnsupportedEncodingException, IOException
+
+    /**
+     * Конструктор.
+     *
+     * @param is
+     * @param enc
+     * @throws java.io.UnsupportedEncodingException
+     * @throws java.io.IOException
+     */
+    public InputStreamDecoder(InputStream is, String enc) throws UnsupportedEncodingException, IOException
     {
-        if (enc.compareTo ("UTF-8") == 0)
+        if (enc.compareTo("UTF-8") == 0)
             this.enc = 1;
-        else if (enc.compareTo ("windows-1251") == 0)
+        else if (enc.compareTo("windows-1251") == 0)
             this.enc = 2;
         else
-            throw new UnsupportedEncodingException ("Encoding " + enc + " is not supported by InputStreamDecoder");
-        bdis = new BufDataInputStream (2048, is);
+            throw new UnsupportedEncodingException("Encoding " + enc + " is not supported by InputStreamDecoder");
+        bdis = new BufDataInputStream(2048, is);
     }
-    /** Конструктор */
-    public InputStreamDecoder (BufDataInputStream bdis, String enc) throws UnsupportedEncodingException
+
+    /**
+     * Конструктор.
+     *
+     * @param bdis
+     * @param enc
+     * @throws java.io.UnsupportedEncodingException
+     */
+    public InputStreamDecoder(BufDataInputStream bdis, String enc) throws UnsupportedEncodingException
     {
-        if (enc.compareTo ("UTF-8") == 0)
+        if (enc.compareTo("UTF-8") == 0)
             this.enc = 1;
-        else if (enc.compareTo ("windows-1251") == 0)
+        else if (enc.compareTo("windows-1251") == 0)
             this.enc = 2;
         else
-            throw new UnsupportedEncodingException ("Encoding " + enc + " is not supported by InputStreamDecoder");
+            throw new UnsupportedEncodingException("Encoding " + enc + " is not supported by InputStreamDecoder");
         this.bdis = bdis;
     }
-    /** Считать символ */
-    public char readChar () throws IOException
+
+    /**
+     * Считать символ.
+     *
+     * @return
+     * @throws java.io.IOException
+     */
+    public char readChar() throws IOException
     {
-        char c = (char)-1;
-        if (bdis.available () > 0)
+        char c = (char) -1;
+        if (bdis.available() > 0)
         {
             if (enc == 2)
             {
                 int i = bdis.read();
                 if (i > -1)
-                    c = StringEncoder.decodeCharCP1251 ((byte)i);
-            }
-            else if (enc == 1)
-                c = bdis.readCharUTF ();
+                    c = StringEncoder.decodeCharCP1251((byte) i);
+            } else if (enc == 1)
+                c = bdis.readCharUTF();
             else
-                throw new IOException ("Internal InputStreamDecoder error");
+                throw new IOException("Internal InputStreamDecoder error");
         }
         return c;
     }
-    /** Считать строку длиной максимум len */
-    public String readChars (int len) throws IOException
+
+    /**
+     * Считать строку длиной максимум len.
+     *
+     * @param len
+     * @return
+     * @throws java.io.IOException
+     */
+    public String readChars(int len) throws IOException
     {
-        if (bdis.available () <= 0)
+        if (bdis.available() <= 0)
             return null;
         if (enc == 1)
-            return bdis.readUTF (len);
+            return bdis.readUTF(len);
         else if (enc == 2)
         {
-            byte [] bs = new byte [len];
-            int rl = bdis.read (bs);
-            return StringEncoder.decodeString (bs, 0, rl, "windows-1251");
+            byte[] bs = new byte[len];
+            int rl = bdis.read(bs);
+            return StringEncoder.decodeString(bs, 0, rl, "windows-1251");
         }
-        throw new IOException ("Internal InputStreamDecoder error");
+        throw new IOException("Internal InputStreamDecoder error");
     }
-    /** Считать символ назад */
-    public char readCharBack () throws IOException
+
+    /**
+     * Считать символ назад.
+     *
+     * @return
+     * @throws java.io.IOException
+     */
+    public char readCharBack() throws IOException
     {
-        if (bdis.tell () <= 0)
-            return (char)-1;
+        if (bdis.tell() <= 0)
+            return (char) -1;
         if (enc == 1)
-            return bdis.readCharBackUTF ();
+            return bdis.readCharBackUTF();
         else if (enc == 2)
         {
             int i = bdis.readBack();
             if (i == -1)
-                return (char)-1;
-            return StringEncoder.decodeCharCP1251 ((byte)i);
+                return (char) -1;
+            return StringEncoder.decodeCharCP1251((byte) i);
         }
-        throw new IOException ("Internal InputStreamDecoder error");
+        throw new IOException("Internal InputStreamDecoder error");
     }
-    /** Пропустить n символов, возвращает число пропущенных байт */
-    public int skipChars (int n) throws IOException
+
+    /**
+     * Пропустить n символов, возвращает число пропущенных байт.
+     *
+     * @param n
+     * @return
+     * @throws java.io.IOException
+     */
+    public int skipChars(int n) throws IOException
     {
         if (enc == 1)
-            return bdis.skipUTF (n);
+            return bdis.skipUTF(n);
         else if (enc == 2)
-            return bdis.skipBytes (n);
-        throw new IOException ("Internal InputStreamDecoder error");
+            return bdis.skipBytes(n);
+        throw new IOException("Internal InputStreamDecoder error");
     }
 }

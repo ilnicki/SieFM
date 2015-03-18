@@ -1,8 +1,12 @@
-package filemanager; // переведен
+package filemanager;
 
 import javax.microedition.lcdui.*;
 
-public class frmNewFolder
+/**
+ *
+ * @author Dmytro
+ */
+public class NewFolderForm
         extends Form
         implements CommandListener
 {
@@ -10,7 +14,11 @@ public class frmNewFolder
     TextField tf;
     String FolderName;
     
-    public frmNewFolder (Displayable parent)
+    /**
+     *
+     * @param parent
+     */
+    public NewFolderForm (Displayable parent)
     {
         super (Locale.Strings[Locale.CREATE_NEW_FOLDER]);
         this.parent = parent;
@@ -19,22 +27,27 @@ public class frmNewFolder
         setCommandListener (this);
         addCommand (new Command (Locale.Strings[Locale.CANCEL_CMD], Command.BACK, 1));
         addCommand (new Command (Locale.Strings[Locale.OK_CMD], Command.OK, 1));
-        com.siemens.mp.lcdui.Displayable.setHeadlineIcon (this, images.getIcon(images.iFolder));
+        com.siemens.mp.lcdui.Displayable.setHeadlineIcon (this, Images.getIcon(Images.iFolder));
     }
     
+    /**
+     *
+     * @param command
+     * @param displayable
+     */
     public void commandAction (Command command, Displayable displayable)
     {
         if (command.getCommandType () == Command.BACK)
-            main.dsp.setCurrent (parent);
+            Main.dsp.setCurrent (parent);
         else
         {
             if (command.getCommandType () == Command.OK)
             {
-                if (filesystem.makeNewDir (main.currentPath + tf.getString () + "/")) // если папка создана
-                    cvsWait.start ();
+                if (Filesystem.makeNewDir (Main.currentPath + tf.getString () + "/")) // если папка создана
+                    WaitCanvas.start ();
                 else // не создана
                 {
-                    if ((filesystem.isFileExist (main.currentPath + tf.getString () + "/")) &&
+                    if ((Filesystem.isFileExist (Main.currentPath + tf.getString () + "/")) &&
                         (!tf.getString ().equalsIgnoreCase (""))) // такой файл уже есть
                     {
                         Alert al = new Alert (Locale.Strings[Locale.ERROR],
@@ -42,7 +55,7 @@ public class frmNewFolder
                                 null, AlertType.ERROR);
                                 //images.error, null);
                         al.setTimeout (3000);
-                        main.dsp.setCurrent (al, this);
+                        Main.dsp.setCurrent (al, this);
                     }
                     else
                     {
@@ -51,7 +64,7 @@ public class frmNewFolder
                                 null, AlertType.ERROR);
                                 //images.error, null);
                         al.setTimeout (3000);
-                        main.dsp.setCurrent (al, parent);
+                        Main.dsp.setCurrent (al, parent);
                     }
                 }
             }

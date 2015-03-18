@@ -1,8 +1,12 @@
-package filemanager; // переведен
+package filemanager;
 
 import javax.microedition.lcdui.*;
 
-public class alConfirmDelete extends Alert implements CommandListener
+/**
+ *
+ * @author Dmytro
+ */
+public class ConfirmDeleteAlert extends Alert implements CommandListener
 {
     Command cmdYes = new Command (Locale.Strings[Locale.YES_CMD], Command.CANCEL, 2);
     Command cmdNo = new Command (Locale.Strings[Locale.NO_CMD], Command.OK, 1);
@@ -11,7 +15,12 @@ public class alConfirmDelete extends Alert implements CommandListener
     String fn;
     boolean tryrec;
 
-    public alConfirmDelete (String fileName, Displayable parent)
+    /**
+     *
+     * @param fileName
+     * @param parent
+     */
+    public ConfirmDeleteAlert (String fileName, Displayable parent)
     {
         super (Locale.Strings[Locale.CONFIRMATION], Locale.Strings[Locale.DEL_SELECTED_FILE] + "?",
                null, AlertType.CONFIRMATION);
@@ -23,11 +32,16 @@ public class alConfirmDelete extends Alert implements CommandListener
         setCommandListener (this);
     }
     
+    /**
+     *
+     * @param command
+     * @param displayable
+     */
     public void commandAction (Command command, Displayable displayable)
     {
         if (command == cmdYes)
         {
-            if (filesystem.isDir (fn)) // это папка
+            if (Filesystem.isDir (fn)) // это папка
             {
                 //System.out.println (fn);
                 if (tryrec)
@@ -38,50 +52,50 @@ public class alConfirmDelete extends Alert implements CommandListener
                     this.setTimeout (Alert.FOREVER);
                     this.removeCommand (cmdYes);
                     this.removeCommand (cmdNo);
-                    main.dsp.setCurrent (this, parent);
+                    Main.dsp.setCurrent (this, parent);
                 }
-                if (filesystem.deleteFile (fn, tryrec)) // папка удаленa успешно?
+                if (Filesystem.deleteFile (fn, tryrec)) // папка удаленa успешно?
                 {
-                    main.FileSelect.delete (main.FileSelect.scrSel);
+                    Main.FileSelect.delete (Main.FileSelect.scrSel);
                     Alert al = new Alert ("", Locale.Strings[Locale.FOLDER_DELETED], null, AlertType.INFO);
                     al.setTimeout (1500);
-                    main.dsp.setCurrent (al, parent);
+                    Main.dsp.setCurrent (al, parent);
                 }
-                else if (filesystem.isReadOnly (fn)) // потому что ReadOnly
+                else if (Filesystem.isReadOnly (fn)) // потому что ReadOnly
                 {
                     Alert al = new Alert (Locale.Strings[Locale.ERROR],
                             Locale.Strings[Locale.READ_ONLY],
                             null, AlertType.ERROR);
                             //images.error, null);
                     al.setTimeout (3000);
-                    main.dsp.setCurrent (al, parent);
+                    Main.dsp.setCurrent (al, parent);
                 }
                 else // папка не пуста
                 { 
                     this.setString (Locale.Strings[Locale.FOLDER_NOT_EMPTY]);
                     this.setTimeout (3000);
                     this.tryrec = true;
-                    main.dsp.setCurrent (this, parent);
+                    Main.dsp.setCurrent (this, parent);
                 }
             }
             else // это файл
             {
-                if (filesystem.isReadOnly (fn)) // потому что ReadOnly
+                if (Filesystem.isReadOnly (fn)) // потому что ReadOnly
                 {
                     Alert al = new Alert (Locale.Strings[Locale.ERROR],
                             Locale.Strings[Locale.READ_ONLY],
                             null, AlertType.ERROR);
                     al.setTimeout (3000);
-                    main.dsp.setCurrent (al, parent);
+                    Main.dsp.setCurrent (al, parent);
                 }
-                else if (filesystem.deleteFile (fn, false)) // файл удален успешно?
+                else if (Filesystem.deleteFile (fn, false)) // файл удален успешно?
                 {
-                    main.FileSelect.delete (main.FileSelect.scrSel);
+                    Main.FileSelect.delete (Main.FileSelect.scrSel);
                     Alert al = new Alert ("",
                             Locale.Strings[Locale.FILE_DELETED],
                             null, AlertType.INFO);
                     al.setTimeout (1500);
-                    main.dsp.setCurrent (al, parent);
+                    Main.dsp.setCurrent (al, parent);
                 }
                 else // файл не удален неивестно почему
                 {
@@ -89,11 +103,11 @@ public class alConfirmDelete extends Alert implements CommandListener
                             Locale.Strings[Locale.FILE_NOT_DELETED],
                             null, AlertType.ERROR);
                     al.setTimeout (3000);
-                    main.dsp.setCurrent (al, parent);
+                    Main.dsp.setCurrent (al, parent);
                 }
             }
         }
         if (command == cmdNo)
-            main.dsp.setCurrent (parent);
+            Main.dsp.setCurrent (parent);
     }
 }

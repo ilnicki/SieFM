@@ -1,66 +1,93 @@
 package com.vmx;
 
+/**
+ *
+ * @author Dmytro
+ */
 public class IntVector
 {
-    protected int [] array;
+
+    protected int[] array;
     protected int count;
     public final int arrplus;
-    public IntVector ()
+
+    /**
+     * Конструктор.
+     */
+    public IntVector()
     {
-        array = new int [0];
+        array = new int[0];
         count = 0;
         arrplus = 32;
     }
+
     /**
-     * Удалить элементы с first по first+n-1
+     * Удалить элементы с first по first + n - 1.
+     *
+     * @param first
+     * @param n
      */
-    public void remove (int first, int n)
+    public void remove(int first, int n)
     {
         if (first < 0 || first >= count || n <= 0)
             return;
-        if (first+n >= count)
+        if (first + n >= count)
             count = first;
         else
-            for (int i = first; i < count-n; i++)
-                array [i] = array [i+n];
+            for (int i = first; i < count - n; i++)
+                array[i] = array[i + n];
     }
+
     /**
-     * Добавить в array значение n
+     * Добавить в array значение n.
+     *
+     * @param el
      */
-    public void add (int el)
+    public void add(int el)
     {
         if (count >= array.length)
         {
-            int [] newarray = new int [array.length + arrplus];
-            System.arraycopy (array, 0, newarray, 0, array.length);
+            int[] newarray = new int[array.length + arrplus];
+            System.arraycopy(array, 0, newarray, 0, array.length);
             array = newarray;
         }
-        array [count++] = el;
+        array[count++] = el;
     }
+
     /**
-     * Получить элемент номер index
+     * Получить элемент номер index.
+     *
+     * @param index
+     * @return
      */
-    public int get (int index)
+    public int get(int index)
     {
         return array[index];
     }
+
     /**
-     * Найти value в векторе
+     * Найти value в векторе.
+     *
+     * @param value
+     * @return
      */
-    public int find (int value)
+    public int find(int value)
     {
         int i;
         for (i = 0; i < count; i++)
-            if (array [i] == value)
+            if (array[i] == value)
                 break;
         if (i >= count)
             return -1;
         return i;
     }
+
     /**
-     * Получить размер
+     * Получить размер.
+     *
+     * @return
      */
-    public int size ()
+    public int size()
     {
         return count;
     }

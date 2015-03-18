@@ -5,148 +5,325 @@ import javax.microedition.io.file.*;
 import java.io.*;
 import java.util.Enumeration;
 
+/**
+ *
+ * @author Dmytro
+ */
 public class SOldFileConnection
         implements FileConnection
 {
+
     protected File mf;
     protected String filename;
+
     /**
-     * Конструктор. Открывает файл с именем filename. 
+     * Конструктор. Открывает файл с именем URL. URK должен начинаться со схемы
+     * "file:///".
      *
-     * filename вида "file:///0:/Misc/file.txt"
+     * @param URL
+     * @throws java.io.IOException
      */
-    public SOldFileConnection (String URL) throws IOException
+    public SOldFileConnection(String URL) throws IOException
     {
-        if (!URL.startsWith ("file:///"))
-            throw new IOException ("Unknown schema");
-        mf = new File ();
-        this.filename = URL.substring (8);
+        if (!URL.startsWith("file:///"))
+            throw new IOException("Unknown schema");
+        mf = new File();
+        this.filename = URL.substring(8);
     }
+
     /**
-     * Открыть входной поток
+     * Открыть входной поток.
+     *
+     * @return
+     * @throws java.io.IOException
      */
-    public InputStream openInputStream () throws IOException
+    public InputStream openInputStream() throws IOException
     {
         if (mf == null)
             return null;
-        return new SOldFileInputStream (mf, mf.open (filename));
+        return new SOldFileInputStream(mf, mf.open(filename));
     }
+
     /**
-     * Закрыть соединение наффик
+     * Закрыть соединение.
      */
-    public void close ()
+    public void close()
     {
         mf = null;
     }
 
-    public boolean isOpen() {
+    /**
+     * Проверка, открыто ли соединение.
+     * 
+     * @return
+     */
+    public boolean isOpen()
+    {
         return false;
     }
 
-    public DataInputStream openDataInputStream() throws IOException {
+    /**
+     *
+     * @return @throws IOException
+     */
+    public DataInputStream openDataInputStream() throws IOException
+    {
         return null;
     }
 
-    public OutputStream openOutputStream() throws IOException {
+    /**
+     *
+     * @return @throws IOException
+     */
+    public OutputStream openOutputStream() throws IOException
+    {
         return null;
     }
 
-    public DataOutputStream openDataOutputStream() throws IOException {
+    /**
+     *
+     * @return @throws IOException
+     */
+    public DataOutputStream openDataOutputStream() throws IOException
+    {
         return null;
     }
 
-    public OutputStream openOutputStream(long l) throws IOException {
+    /**
+     *
+     * @param l
+     * @return
+     * @throws IOException
+     */
+    public OutputStream openOutputStream(long l) throws IOException
+    {
         return null;
     }
 
-    public long totalSize() {
+    /**
+     *
+     * @return
+     */
+    public long totalSize()
+    {
         return -1;
     }
 
-    public long availableSize() {
+    /**
+     *
+     * @return
+     */
+    public long availableSize()
+    {
         return -1;
     }
 
-    public long usedSize() {
+    /**
+     *
+     * @return
+     */
+    public long usedSize()
+    {
         return -1;
     }
 
-    public long directorySize(boolean flag) throws IOException {
+    /**
+     *
+     * @param flag
+     * @return
+     * @throws IOException
+     */
+    public long directorySize(boolean flag) throws IOException
+    {
         return -1;
     }
 
-    public long fileSize() throws IOException {
+    /**
+     *
+     * @return @throws IOException
+     */
+    public long fileSize() throws IOException
+    {
         return -1;
     }
 
-    public boolean canRead() {
+    /**
+     *
+     * @return
+     */
+    public boolean canRead()
+    {
         return false;
     }
 
-    public boolean canWrite() {
+    /**
+     *
+     * @return
+     */
+    public boolean canWrite()
+    {
         return false;
     }
 
-    public boolean isHidden() {
+    /**
+     *
+     * @return
+     */
+    public boolean isHidden()
+    {
         return false;
     }
 
-    public void setReadable(boolean flag) throws IOException {
+    /**
+     *
+     * @param flag
+     * @throws IOException
+     */
+    public void setReadable(boolean flag) throws IOException
+    {
     }
 
-    public void setWritable(boolean flag) throws IOException {
+    /**
+     *
+     * @param flag
+     * @throws IOException
+     */
+    public void setWritable(boolean flag) throws IOException
+    {
     }
 
-    public void setHidden(boolean flag) throws IOException {
+    /**
+     *
+     * @param flag
+     * @throws IOException
+     */
+    public void setHidden(boolean flag) throws IOException
+    {
     }
 
-    public Enumeration list() throws IOException {
+    /**
+     *
+     * @return @throws IOException
+     */
+    public Enumeration list() throws IOException
+    {
         return null;
     }
 
-    public Enumeration list(String s, boolean flag) throws IOException {
+    /**
+     *
+     * @param s
+     * @param flag
+     * @return
+     * @throws IOException
+     */
+    public Enumeration list(String s, boolean flag) throws IOException
+    {
         return null;
     }
 
-    public void create() throws IOException {
+    /**
+     *
+     * @throws IOException
+     */
+    public void create() throws IOException
+    {
     }
 
-    public void mkdir() throws IOException {
+    /**
+     *
+     * @throws IOException
+     */
+    public void mkdir() throws IOException
+    {
     }
 
-    public boolean exists() {
+    /**
+     *
+     * @return
+     */
+    public boolean exists()
+    {
         return false;
     }
 
-    public boolean isDirectory() {
+    /**
+     *
+     * @return
+     */
+    public boolean isDirectory()
+    {
         return false;
     }
 
-    public void delete() throws IOException {
+    /**
+     *
+     * @throws IOException
+     */
+    public void delete() throws IOException
+    {
     }
 
-    public void rename(String s) throws IOException {
+    /**
+     *
+     * @param s
+     * @throws IOException
+     */
+    public void rename(String s) throws IOException
+    {
     }
 
-    public void truncate(long l) throws IOException {
+    /**
+     *
+     * @param l
+     * @throws IOException
+     */
+    public void truncate(long l) throws IOException
+    {
     }
 
-    public void setFileConnection(String s) throws IOException {
+    /**
+     *
+     * @param s
+     * @throws IOException
+     */
+    public void setFileConnection(String s) throws IOException
+    {
     }
 
-    public String getName() {
+    /**
+     *
+     * @return
+     */
+    public String getName()
+    {
         return null;
     }
 
-    public String getPath() {
+    /**
+     *
+     * @return
+     */
+    public String getPath()
+    {
         return null;
     }
 
-    public String getURL() {
+    /**
+     *
+     * @return
+     */
+    public String getURL()
+    {
         return null;
     }
 
-    public long lastModified() {
+    /**
+     *
+     * @return
+     */
+    public long lastModified()
+    {
         return -1;
     }
 }

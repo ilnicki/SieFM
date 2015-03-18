@@ -2,11 +2,19 @@ package filemanager;
 
 import javax.microedition.lcdui.*;
 
-public class frmEULA
+/**
+ *
+ * @author Dmytro
+ */
+public class EulaForm
        extends Form
        implements CommandListener
 {
-    public frmEULA ()
+
+    /**
+     *
+     */
+    public EulaForm ()
     {
         super (Locale.Strings[Locale.LICENSE_AGR]);
         StringItem si = new StringItem (null,
@@ -17,19 +25,25 @@ public class frmEULA
         addCommand (new Command (Locale.Strings[Locale.NO_CMD], Command.EXIT, 1));
         addCommand (new Command (Locale.Strings[Locale.YES_CMD], Command.OK, 1));
         setCommandListener (this);
-        com.siemens.mp.lcdui.Displayable.setHeadlineIcon (this, images.getIcon (images.iText));
+        com.siemens.mp.lcdui.Displayable.setHeadlineIcon (this, Images.getIcon (Images.iText));
     }
+
+    /**
+     *
+     * @param command
+     * @param displayable
+     */
     public void commandAction (Command command, Displayable displayable)
     {
         if (command.getCommandType () == Command.OK)
         {
-            options.firstTime = false;
-            cvsWait.start ();
+            Options.firstTime = false;
+            WaitCanvas.start ();
         }
         else if (command.getCommandType () == Command.EXIT)
         {
-            options.firstTime = true;
-            main.midlet.destroyApp (false);
+            Options.firstTime = true;
+            Main.midlet.destroyApp (false);
         }
     }
 }

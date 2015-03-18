@@ -4,135 +4,160 @@ import javax.microedition.midlet.*;
 import javax.microedition.lcdui.*;
 import java.io.*;
 
-public class main extends MIDlet
+/**
+ *
+ * @author Dmytro
+ */
+public class Main extends MIDlet
 {
-    public static main midlet;
-    public static images img = null;
+    public static Main midlet;
+    public static Images img = null;
     public static Locale locale;
-    public static String currentPath = null, currentFile = null;
-    public static cvsFileSelect FileSelect;
-    public static keyConfig keycfg;
-    public static diskInfo diskinfo;
-    public static cvsImageView imageview;
-    public static cvsPlayer player;
-    public static cvsMenu menu;
-    public static cvsVideoPlayer videoplayer;
-    public static cvsTextView textEditor;
-    public static filesystem fs;
+    public static String currentPath = null;
+    public static String currentFile = null;
+    public static FileSelectCanvas FileSelect;
+    public static KeyConfigCanvas keycfg;
+    public static DiskInfo diskinfo;
+    public static ImageViewCanvas imageview;
+    public static PlayerCanvas player;
+    public static MenuCanvas menu;
+    public static VideoPlayerCanvas videoplayer;
+    public static TextViewCanvas textEditor;
+    public static Filesystem fs;
     public static Display dsp;
-    public static cvsWait wait;
+    public static WaitCanvas wait;
     public static boolean isFavorite = false;
-
     public boolean alreadyStarted;
     public static int loadStage = -1;
     public static int stagesCount = 7;
-    public cvsSplash splashScreen;
-    
+    public SplashCanvas splashScreen;
     public static final int COPYBUFSIZE = 65536;
     public static final int ARCBUFSIZE = 8192;
-    
-    public main ()
+
+    /**
+     *
+     */
+    public Main()
     {
         midlet = this;
         alreadyStarted = false;
         img = null;
     }
-    
-    public void startApp () throws MIDletStateChangeException
+
+    /**
+     *
+     * @throws MIDletStateChangeException
+     */
+    public void startApp() throws MIDletStateChangeException
     {
         if (!alreadyStarted)
         {
-            String lang = getAppProperty ("Default-language");
-            options.restoreOptions ();
-            if (!options.firstTime)
-                lang = options.language;
+            String lang = getAppProperty("Default-language");
+            
+            Options.restoreOptions();
+            if (!Options.firstTime)
+                lang = Options.language;
+            
             // Показываем заставку
-            dsp = Display.getDisplay (this);
+            dsp = Display.getDisplay(this);
             loadStage = 1;
-            options.loadFavorites ();
-            if (!options.quickSplash)
-                dsp.setCurrent (splashScreen = new cvsSplash ());
+            Options.loadFavorites();
+            
+            if (!Options.quickSplash)
+                dsp.setCurrent(splashScreen = new SplashCanvas());
+            
             // Загружаем список языков и язык
-            if (!Locale.readLocaleList ())
-                throw new MIDletStateChangeException ("Fatal error: /lang/lang.ini not found");
-            try 
+            if (!Locale.readLocaleList())
+                throw new MIDletStateChangeException("Fatal error: /lang/lang.ini not found");
+            
+            try
             {
-                locale = new Locale (lang);
-                options.language = lang;
-            }
-            catch (IOException iox)
+                locale = new Locale(lang);
+                Options.language = lang;
+            } catch (IOException iox)
             {
-                options.language = "en";
+                Options.language = "en";
                 try
                 {
-                    locale = new Locale ("en");
-                }
-                catch (IOException iox1)
+                    locale = new Locale("en");
+                } catch (IOException iox1)
                 {
-                    throw new MIDletStateChangeException ("Cannot load even default \"en\" locale!");
+                    throw new MIDletStateChangeException("Cannot load even default \"en\" locale!");
                 }
             }
             loadStage++;
+            
             // Загружаем картинки...
             try
             {
-                img = new images ();
+                img = new Images();
                 loadStage++;
-            }
-            catch (IOException iox1)
+            } catch (IOException iox1)
             {
-                throw new MIDletStateChangeException ("Cannot load images: " + iox1.getMessage ());
+                throw new MIDletStateChangeException("Cannot load images: " + iox1.getMessage());
             }
-            textEditor = new cvsTextView ();
-            keycfg = new keyConfig ();
+            
+            textEditor = new TextViewCanvas();
+            keycfg = new KeyConfigCanvas();
             loadStage++;
-            imageview = new cvsImageView ();
-            player = new cvsPlayer ();
-            wait = new cvsWait ();
+            imageview = new ImageViewCanvas();
+            player = new PlayerCanvas();
+            wait = new WaitCanvas();
             loadStage++;
-            videoplayer = new cvsVideoPlayer ();
-            menu = new cvsMenu ();
+            videoplayer = new VideoPlayerCanvas();
+            menu = new MenuCanvas();
             loadStage++;
+            
             try
             {
-                fs = new filesystem ();
-            }
-            catch (Exception iox)
+                fs = new Filesystem();
+            } catch (Exception iox)
             {
-                throw new MIDletStateChangeException ("Fatal error: cannot init filesystem driver (" + iox.getMessage () + ")");
+                throw new MIDletStateChangeException("Fatal error: cannot init filesystem driver (" + iox.getMessage() + ")");
             }
-            FileSelect = new cvsFileSelect ();
-            diskinfo = new diskInfo ();
+            
+            FileSelect = new FileSelectCanvas();
+            diskinfo = new DiskInfo();
             alreadyStarted = true;
             loadStage++;
             loadStage = 0x100; // 0x100 = подождать ещё
-            if (options.quickSplash)
+            
+            if (Options.quickSplash)
             {
                 splashScreen = null;
-                startUI ();
+                startUI();
             }
         }
     }
+
     /**
-     * Запуск интерфейса
+     * Запуск интерфейса.
      */
-    public static void startUI ()
+    public static void startUI()
     {
-        if (options.firstTime)
-            dsp.setCurrent (new frmEULA ());
+        if (Options.firstTime)
+            dsp.setCurrent(new EulaForm());
         else
-            wait.start ();
+            WaitCanvas.start();
     }
-    /** Приостановить выполнение приложения - вызывается JRE */
-    public void pauseApp ()
+
+    /**
+     * Приостановить выполнение приложения - вызывается JRE.
+     */
+    public void pauseApp()
     {
-        notifyPaused ();
+        notifyPaused();
     }
-    /** Уничтожить приложение - вызывается JRE */
-    public void destroyApp (boolean unconditional)
+
+    /**
+     * Уничтожить приложение - вызывается JRE.
+     * 
+     * @param unconditional
+     */
+    public void destroyApp(boolean unconditional)
     {
-        options.saveOptions ();
-        options.saveFavorites ();
-        midlet.notifyDestroyed ();
+        Options.saveOptions();
+        Options.saveFavorites();
+        this.notifyDestroyed();
     }
 }

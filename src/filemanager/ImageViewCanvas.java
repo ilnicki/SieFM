@@ -1,16 +1,15 @@
-package filemanager; // переведен
+package filemanager;
 
 import javax.microedition.lcdui.*;
-import javax.microedition.lcdui.Canvas;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.game.*;
 import java.io.*;
 import com.vmx.*;
 
 /**
- * Класс - просмотрщик картинок
+ * Класс - просмотрщик картинок.
  */
-public class cvsImageView extends gkcCanvas
+public class ImageViewCanvas extends KeyCodeCanvas
 {
     private Displayable parent;
     private javax.microedition.lcdui.Image currentImage = null;
@@ -27,7 +26,7 @@ public class cvsImageView extends gkcCanvas
     /**
      * Конструктор
      */
-    cvsImageView ()
+    ImageViewCanvas ()
     {
         setFullScreenMode (true);
         w = getWidth ();
@@ -40,7 +39,7 @@ public class cvsImageView extends gkcCanvas
     protected void predisplay ()
     {
         serviceRepaints ();
-        selectedIndex = main.FileSelect.scrSel;
+        selectedIndex = Main.FileSelect.scrSel;
         currentImage = null;
         pictureWidth = -1;
         pictureHeight = -1;
@@ -68,11 +67,16 @@ public class cvsImageView extends gkcCanvas
         }
     }
     
+    /**
+     *
+     * @param is
+     * @param parent
+     */
     public void displayImageFromStream (InputStream is, Displayable parent)
     {
         predisplay ();
         this.parent = parent;
-        currentPictureFile = main.currentPath + main.FileSelect.files[selectedIndex]; //!!!
+        currentPictureFile = Main.currentPath + Main.FileSelect.files[selectedIndex]; //!!!
         try
         {
             currentImage = Image.createImage (is);
@@ -85,6 +89,11 @@ public class cvsImageView extends gkcCanvas
         repaint ();
     }
     
+    /**
+     *
+     * @param imgName
+     * @param parent
+     */
     public void displayImage (String imgName, Displayable parent)
     {
         predisplay ();
@@ -168,6 +177,7 @@ public class cvsImageView extends gkcCanvas
     }
     /**
      * Функция отрисовки
+     * @param g
      */
     protected void paint (Graphics g)
     {
@@ -183,12 +193,12 @@ public class cvsImageView extends gkcCanvas
             picture.paint (g);
         }
         else // нет изображения
-            g.drawRegion (images.waitAnim, 0, 0, 32, 32, Sprite.TRANS_NONE, w/2-16, h/2-16, Graphics.LEFT | Graphics.TOP);
+            g.drawRegion (Images.waitAnim, 0, 0, 32, 32, Sprite.TRANS_NONE, w/2-16, h/2-16, Graphics.LEFT | Graphics.TOP);
         if (enableUI)
         {
-            g.drawRegion (images.playerUI, 0, 146,  w/2, 30,  0,  0, h - 30, Graphics.TOP | Graphics.LEFT);
-            g.drawRegion (images.playerUI, 132 - w/2, 146,  w/2, 30,  0,  w - w/2, h - 30, Graphics.TOP | Graphics.LEFT);
-            String tmp = main.FileSelect.files[selectedIndex];
+            g.drawRegion (Images.playerUI, 0, 146,  w/2, 30,  0,  0, h - 30, Graphics.TOP | Graphics.LEFT);
+            g.drawRegion (Images.playerUI, 132 - w/2, 146,  w/2, 30,  0,  w - w/2, h - 30, Graphics.TOP | Graphics.LEFT);
+            String tmp = Main.FileSelect.files[selectedIndex];
             g.setFont (nameFont);
             g.setColor (0x800000);
             g.drawString (tmp, w/2, h - 26, g.TOP | g.HCENTER);
@@ -210,7 +220,8 @@ public class cvsImageView extends gkcCanvas
         pictureHeight = pictureWidth;
         pictureWidth = r;
     }
-    /** Обработчик нажатий клавиш */
+    /** Обработчик нажатий клавиш
+     * @param keyCode */
     protected void keyPressed (int keyCode)
     {
         if (keyCode == KEY_POUND)
@@ -226,7 +237,7 @@ public class cvsImageView extends gkcCanvas
             prevPicture ();
         // Выход
         else if (keyCode == KEY_CANCEL || keyCode == KEY_RSK)
-            main.dsp.setCurrent (parent);
+            Main.dsp.setCurrent (parent);
     }
     /**
      * следующая картинка
@@ -235,10 +246,10 @@ public class cvsImageView extends gkcCanvas
     {
         currentImage = null;
         repaint ();
-        main.FileSelect.select (selectedIndex = main.FileSelect.getNextOfType (selectedIndex, filesystem.TYPE_PICTURE));
-        currentPictureFile = main.currentPath + main.FileSelect.files[selectedIndex];
-        main.currentFile = main.FileSelect.files[selectedIndex];
-        main.FileSelect.selectFile ();
+        Main.FileSelect.select (selectedIndex = Main.FileSelect.getNextOfType (selectedIndex, Filesystem.TYPE_PICTURE));
+        currentPictureFile = Main.currentPath + Main.FileSelect.files[selectedIndex];
+        Main.currentFile = Main.FileSelect.files[selectedIndex];
+        Main.FileSelect.selectFile ();
     }
     /**
      * предыдущая картинка
@@ -247,9 +258,9 @@ public class cvsImageView extends gkcCanvas
     {
         currentImage = null;
         repaint ();
-        main.FileSelect.select (selectedIndex = main.FileSelect.getPrevOfType (selectedIndex, filesystem.TYPE_PICTURE));
-        currentPictureFile = main.currentPath + main.FileSelect.files[selectedIndex];
-        main.currentFile = main.FileSelect.files[selectedIndex];
-        main.FileSelect.selectFile ();
+        Main.FileSelect.select (selectedIndex = Main.FileSelect.getPrevOfType (selectedIndex, Filesystem.TYPE_PICTURE));
+        currentPictureFile = Main.currentPath + Main.FileSelect.files[selectedIndex];
+        Main.currentFile = Main.FileSelect.files[selectedIndex];
+        Main.FileSelect.selectFile ();
     }
 }
